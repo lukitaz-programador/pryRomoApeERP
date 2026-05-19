@@ -52,13 +52,6 @@ namespace pryRomoApeERP.Base_de_Datos
 
                 conexionDB = new ConexionDB();
                 conexionDB.Conectar(rutaBD);
-
-                MessageBox.Show(
-                    "Conexión realizada correctamente",
-                    "BD",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
             }
             catch (Exception ex)
             {

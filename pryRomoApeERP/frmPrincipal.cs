@@ -43,7 +43,7 @@ namespace pryRomoApeERP
                 }
                 else
                 {
-                    lblEstado.Text = "No se pudo conectar";
+                    lblEstado.Text = "Desconectado";
                     lblEstado.ForeColor = Color.Red;
                 }
             }
