@@ -54,5 +54,34 @@ namespace pryRomoApeERP
                 );
             }
         }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNombre.Text != "" && txtApellido.Text != "")
+            {
+                btnIngresar.Enabled = true;
+            }
+            else
+            {
+                btnIngresar.Enabled = false;
+            }
+        }
+
+        private void txtApellido_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNombre.Text != "" && txtApellido.Text != "")
+            {
+                btnIngresar.Enabled = true;
+            }
+            else
+            {
+                btnIngresar.Enabled = false;
+            }
+        }
+
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
