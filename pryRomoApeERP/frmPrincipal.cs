@@ -13,18 +13,45 @@ namespace pryRomoApeERP
 {
     public partial class frmPrincipal : Form
     {
+        //Objeto para administrar archivo BD
+        private Archivo archivoBD;
+
+        //Objeto de conexión
+        private ConexionDB conexionBD;
+
         public frmPrincipal()
         {
             InitializeComponent();
         }
 
-        public ConexionDB EstaConectado;
-
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            if (EstaConectado == true)
+            try
             {
+                //Carga la BD
+                archivoBD = new Archivo("Romo.accdb");
 
+                //Obtiene la conexión
+                conexionBD = archivoBD.Conexion;
+
+                //Validación
+                if (conexionBD != null &&
+                    conexionBD.EstaConectado)
+                {
+                    lblEstado.Text = "Conectado";
+                    lblEstado.ForeColor = Color.Green;
+                }
+                else
+                {
+                    lblEstado.Text = "No se pudo conectar";
+                    lblEstado.ForeColor = Color.Red;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error:\n" + ex.Message
+                );
             }
         }
     }

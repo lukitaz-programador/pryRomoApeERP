@@ -47,9 +47,9 @@
             this.lblEstado.ForeColor = System.Drawing.Color.Red;
             this.lblEstado.Location = new System.Drawing.Point(105, 432);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(84, 13);
+            this.lblEstado.Size = new System.Drawing.Size(86, 13);
             this.lblEstado.TabIndex = 1;
-            this.lblEstado.Text = "desconectado...";
+            this.lblEstado.Text = "Desconectado...";
             // 
             // frmPrincipal
             // 

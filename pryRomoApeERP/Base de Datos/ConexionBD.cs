@@ -1,36 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.OleDb;
 
 namespace pryRomoApeERP.Base_de_Datos
 {
     public class ConexionDB
     {
-        private string _rutaArchivo;
+        private OleDbConnection conexion;
 
-        public string CadenaConexion { get; private set; }
-        public bool EstaConectado { get; private set; }
-
-        /// Establece la ruta del archivo .accdb/.mdb y construye la cadena de conexión.
-        public void Conectar(string rutaArchivo)
+        public OleDbConnection Conexion
         {
-            if (string.IsNullOrWhiteSpace(rutaArchivo))
-                throw new ArgumentException("La ruta del archivo no puede estar vacía.");
-
-            _rutaArchivo = rutaArchivo;
-            CadenaConexion = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={_rutaArchivo};Persist Security Info=False;";
-            EstaConectado = true;
+            get { return conexion; }
         }
 
-        /// Desconecta limpiando la cadena de conexión.
+        public bool EstaConectado
+        {
+            get
+            {
+                return conexion != null &&
+                       conexion.State == System.Data.ConnectionState.Open;
+            }
+        }
+
+        public void Conectar(string rutaArchivo)
+        {
+            try
+            {
+                string cadenaConexion =
+                $@"Provider=Microsoft.ACE.OLEDB.12.0;
+                Data Source={rutaArchivo};
+                Persist Security Info=False;";
+
+                conexion = new OleDbConnection(cadenaConexion);
+
+                conexion.Open();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(
+                    "Error al conectar con la base de datos:\n" +
+                    ex.Message);
+            }
+        }
+
         public void Desconectar()
         {
-            CadenaConexion = null;
-            _rutaArchivo = null;
-            EstaConectado = false;
+            if (conexion != null)
+            {
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+
+                conexion.Dispose();
+                conexion = null;
+            }
         }
     }
 }
-
