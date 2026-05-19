@@ -26,6 +26,8 @@ namespace pryRomoApeERP
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            txtConrtasenia.UseSystemPasswordChar = true;
+
             try
             {
                 //Carga la BD
@@ -57,7 +59,7 @@ namespace pryRomoApeERP
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtApellido.Text != "")
+            if (txtNombre.Text != "" && txtConrtasenia.Text != "")
             {
                 btnIngresar.Enabled = true;
             }
@@ -67,9 +69,22 @@ namespace pryRomoApeERP
             }
         }
 
-        private void txtApellido_TextChanged(object sender, EventArgs e)
+        private void chkVer_CheckedChanged(object sender, EventArgs e)
         {
-            if (txtNombre.Text != "" && txtApellido.Text != "")
+            if (chkVer.Checked)
+            {
+                txtConrtasenia.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtConrtasenia.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtConrtasenia_TextChanged(object sender, EventArgs e)
+        {
+
+            if (txtNombre.Text != "" && txtConrtasenia.Text != "")
             {
                 btnIngresar.Enabled = true;
             }

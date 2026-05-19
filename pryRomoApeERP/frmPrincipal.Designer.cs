@@ -32,10 +32,12 @@
             this.lblEstadoo = new System.Windows.Forms.Label();
             this.lblEstado = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.lblApellido = new System.Windows.Forms.Label();
+            this.lblContrasenia = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.btnIngresar = new System.Windows.Forms.Button();
-            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.txtConrtasenia = new System.Windows.Forms.TextBox();
+            this.lblVerCon = new System.Windows.Forms.Label();
+            this.chkVer = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblEstadoo
@@ -67,19 +69,19 @@
             this.lblNombre.TabIndex = 2;
             this.lblNombre.Text = "Nombre:";
             // 
-            // lblApellido
+            // lblContrasenia
             // 
-            this.lblApellido.AutoSize = true;
-            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.lblApellido.Location = new System.Drawing.Point(24, 66);
-            this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(62, 17);
-            this.lblApellido.TabIndex = 3;
-            this.lblApellido.Text = "Apellido:";
+            this.lblContrasenia.AutoSize = true;
+            this.lblContrasenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.lblContrasenia.Location = new System.Drawing.Point(24, 66);
+            this.lblContrasenia.Name = "lblContrasenia";
+            this.lblContrasenia.Size = new System.Drawing.Size(85, 17);
+            this.lblContrasenia.TabIndex = 3;
+            this.lblContrasenia.Text = "Contraseña:";
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(92, 28);
+            this.txtNombre.Location = new System.Drawing.Point(115, 28);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(183, 20);
             this.txtNombre.TabIndex = 4;
@@ -89,7 +91,7 @@
             // 
             this.btnIngresar.Enabled = false;
             this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnIngresar.Location = new System.Drawing.Point(188, 108);
+            this.btnIngresar.Location = new System.Drawing.Point(211, 135);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(87, 27);
             this.btnIngresar.TabIndex = 6;
@@ -97,23 +99,44 @@
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
-            // txtApellido
+            // txtConrtasenia
             // 
-            this.txtApellido.Location = new System.Drawing.Point(92, 66);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(183, 20);
-            this.txtApellido.TabIndex = 7;
-            this.txtApellido.TextChanged += new System.EventHandler(this.txtApellido_TextChanged);
+            this.txtConrtasenia.Location = new System.Drawing.Point(115, 66);
+            this.txtConrtasenia.Name = "txtConrtasenia";
+            this.txtConrtasenia.Size = new System.Drawing.Size(183, 20);
+            this.txtConrtasenia.TabIndex = 7;
+            this.txtConrtasenia.TextChanged += new System.EventHandler(this.txtConrtasenia_TextChanged);
+            // 
+            // lblVerCon
+            // 
+            this.lblVerCon.AutoSize = true;
+            this.lblVerCon.Location = new System.Drawing.Point(195, 93);
+            this.lblVerCon.Name = "lblVerCon";
+            this.lblVerCon.Size = new System.Drawing.Size(82, 13);
+            this.lblVerCon.TabIndex = 8;
+            this.lblVerCon.Text = "Ver contraseña:";
+            // 
+            // chkVer
+            // 
+            this.chkVer.AutoSize = true;
+            this.chkVer.Location = new System.Drawing.Point(283, 93);
+            this.chkVer.Name = "chkVer";
+            this.chkVer.Size = new System.Drawing.Size(15, 14);
+            this.chkVer.TabIndex = 9;
+            this.chkVer.UseVisualStyleBackColor = true;
+            this.chkVer.CheckedChanged += new System.EventHandler(this.chkVer_CheckedChanged);
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 265);
-            this.Controls.Add(this.txtApellido);
+            this.ClientSize = new System.Drawing.Size(339, 265);
+            this.Controls.Add(this.chkVer);
+            this.Controls.Add(this.lblVerCon);
+            this.Controls.Add(this.txtConrtasenia);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.lblApellido);
+            this.Controls.Add(this.lblContrasenia);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.lblEstadoo);
@@ -132,10 +155,12 @@
         private System.Windows.Forms.Label lblEstadoo;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.Label lblApellido;
+        private System.Windows.Forms.Label lblContrasenia;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Button btnIngresar;
-        private System.Windows.Forms.TextBox txtApellido;
+        private System.Windows.Forms.TextBox txtConrtasenia;
+        private System.Windows.Forms.Label lblVerCon;
+        private System.Windows.Forms.CheckBox chkVer;
     }
 }
 
