@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.lblEstadoo = new System.Windows.Forms.Label();
             this.lblEstado = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -58,8 +59,11 @@
             this.ClientSize = new System.Drawing.Size(525, 450);
             this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.lblEstadoo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ape ERP";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
