@@ -140,7 +140,7 @@ namespace pryRomoApeERP
                     );
 
                     //Abrir otro formulario si querés
-                    frmAplicacion paso = new frmAplicacion();
+                    frmPersonal paso = new frmPersonal();
                     paso.Show();
                     this.Hide();
                 }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace pryRomoApeERP
 {
-    public partial class frmAplicacion : Form
+    public partial class frmPersonal : Form
     {
-        public frmAplicacion()
+        public frmPersonal()
         {
             InitializeComponent();
         }
