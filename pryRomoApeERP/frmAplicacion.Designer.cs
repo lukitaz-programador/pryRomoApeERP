@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpDomicilio = new System.Windows.Forms.GroupBox();
             this.txtGeo = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -56,6 +57,13 @@
             this.lblTelefono = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblMail = new System.Windows.Forms.Label();
+            this.txtTelegram = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.txtX = new System.Windows.Forms.TextBox();
+            this.txtInstagram = new System.Windows.Forms.TextBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtTikTok = new System.Windows.Forms.TextBox();
+            this.txtFacebook = new System.Windows.Forms.TextBox();
             this.grpDomicilio.SuspendLayout();
             this.grpDatosPer.SuspendLayout();
             this.grpContacto.SuspendLayout();
@@ -288,6 +296,11 @@
             // 
             // grpRedes
             // 
+            this.grpRedes.Controls.Add(this.txtFacebook);
+            this.grpRedes.Controls.Add(this.txtTikTok);
+            this.grpRedes.Controls.Add(this.txtInstagram);
+            this.grpRedes.Controls.Add(this.txtX);
+            this.grpRedes.Controls.Add(this.txtTelegram);
             this.grpRedes.Controls.Add(this.lblTikTok);
             this.grpRedes.Controls.Add(this.lblTelegram);
             this.grpRedes.Controls.Add(this.lblX);
@@ -384,11 +397,61 @@
             this.lblMail.TabIndex = 0;
             this.lblMail.Text = "Mail:";
             // 
+            // txtTelegram
+            // 
+            this.txtTelegram.Location = new System.Drawing.Point(92, 32);
+            this.txtTelegram.Name = "txtTelegram";
+            this.txtTelegram.Size = new System.Drawing.Size(159, 20);
+            this.txtTelegram.TabIndex = 5;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // txtX
+            // 
+            this.txtX.Location = new System.Drawing.Point(92, 69);
+            this.txtX.Name = "txtX";
+            this.txtX.Size = new System.Drawing.Size(159, 20);
+            this.txtX.TabIndex = 6;
+            // 
+            // txtInstagram
+            // 
+            this.txtInstagram.Location = new System.Drawing.Point(92, 103);
+            this.txtInstagram.Name = "txtInstagram";
+            this.txtInstagram.Size = new System.Drawing.Size(159, 20);
+            this.txtInstagram.TabIndex = 7;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(469, 380);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 11;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // txtTikTok
+            // 
+            this.txtTikTok.Location = new System.Drawing.Point(92, 139);
+            this.txtTikTok.Name = "txtTikTok";
+            this.txtTikTok.Size = new System.Drawing.Size(159, 20);
+            this.txtTikTok.TabIndex = 8;
+            // 
+            // txtFacebook
+            // 
+            this.txtFacebook.Location = new System.Drawing.Point(92, 175);
+            this.txtFacebook.Name = "txtFacebook";
+            this.txtFacebook.Size = new System.Drawing.Size(159, 20);
+            this.txtFacebook.TabIndex = 9;
+            // 
             // frmPersonal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 415);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpContacto);
             this.Controls.Add(this.btnGuardarPer);
             this.Controls.Add(this.grpDatosPer);
@@ -438,5 +501,12 @@
         private System.Windows.Forms.Label lblTikTok;
         private System.Windows.Forms.Label lblTelegram;
         private System.Windows.Forms.Label lblX;
+        private System.Windows.Forms.TextBox txtInstagram;
+        private System.Windows.Forms.TextBox txtX;
+        private System.Windows.Forms.TextBox txtTelegram;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.TextBox txtFacebook;
+        private System.Windows.Forms.TextBox txtTikTok;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
