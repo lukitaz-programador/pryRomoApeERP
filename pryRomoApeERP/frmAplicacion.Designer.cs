@@ -268,9 +268,9 @@
             // 
             this.btnGuardarPer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnGuardarPer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnGuardarPer.Location = new System.Drawing.Point(501, 380);
+            this.btnGuardarPer.Location = new System.Drawing.Point(501, 369);
             this.btnGuardarPer.Name = "btnGuardarPer";
-            this.btnGuardarPer.Size = new System.Drawing.Size(143, 23);
+            this.btnGuardarPer.Size = new System.Drawing.Size(143, 34);
             this.btnGuardarPer.TabIndex = 8;
             this.btnGuardarPer.Text = "Guardar Datos";
             this.btnGuardarPer.UseVisualStyleBackColor = false;
@@ -446,9 +446,9 @@
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnCancelar.Location = new System.Drawing.Point(339, 380);
+            this.btnCancelar.Location = new System.Drawing.Point(339, 369);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(75, 34);
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
@@ -458,9 +458,9 @@
             // 
             this.btnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnLimpiar.Location = new System.Drawing.Point(420, 380);
+            this.btnLimpiar.Location = new System.Drawing.Point(420, 369);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 34);
             this.btnLimpiar.TabIndex = 12;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;

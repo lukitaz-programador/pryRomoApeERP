@@ -95,9 +95,9 @@
             this.btnIngresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnIngresar.Enabled = false;
             this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnIngresar.Location = new System.Drawing.Point(224, 148);
+            this.btnIngresar.Location = new System.Drawing.Point(224, 150);
             this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(87, 27);
+            this.btnIngresar.Size = new System.Drawing.Size(87, 30);
             this.btnIngresar.TabIndex = 6;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = false;
@@ -145,7 +145,7 @@
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnLimpiar.Location = new System.Drawing.Point(143, 150);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 30);
             this.btnLimpiar.TabIndex = 11;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
@@ -156,7 +156,7 @@
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnSalir.Location = new System.Drawing.Point(62, 150);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.Size = new System.Drawing.Size(75, 30);
             this.btnSalir.TabIndex = 12;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
