@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPersonal));
             this.grpDomicilio = new System.Windows.Forms.GroupBox();
             this.txtGeo = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -75,6 +76,7 @@
             // 
             // grpDomicilio
             // 
+            this.grpDomicilio.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.grpDomicilio.Controls.Add(this.txtGeo);
             this.grpDomicilio.Controls.Add(this.txtDireccion);
             this.grpDomicilio.Controls.Add(this.lblGeo);
@@ -142,49 +144,27 @@
             this.cmbProvincia.FormattingEnabled = true;
             this.cmbProvincia.Items.AddRange(new object[] {
             "Buenos Aires",
-            "",
             "Catamarca",
-            "",
             "Chaco",
-            "",
             "Chubut",
-            "",
             "Córdoba",
-            "",
             "Corrientes",
-            "",
             "Entre Ríos",
-            "",
             "Formosa",
-            "",
             "Jujuy",
-            "",
             "La Pampa",
-            "",
             "La Rioja",
-            "",
             "Mendoza",
-            "",
             "Misiones",
-            "",
             "Neuquén",
-            "",
             "Río Negro",
-            "",
             "Salta",
-            "",
             "San Juan",
-            "",
             "San Luis",
-            "",
             "Santa Cruz",
-            "",
             "Santa Fe",
-            "",
             "Santiago del Estero",
-            "",
             "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
-            "",
             "Tucumán"});
             this.cmbProvincia.Location = new System.Drawing.Point(97, 29);
             this.cmbProvincia.Name = "cmbProvincia";
@@ -214,6 +194,7 @@
             // 
             // grpDatosPer
             // 
+            this.grpDatosPer.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.grpDatosPer.Controls.Add(this.mskDNI);
             this.grpDatosPer.Controls.Add(this.lblNombre);
             this.grpDatosPer.Controls.Add(this.lblApellido);
@@ -285,16 +266,19 @@
             // 
             // btnGuardarPer
             // 
-            this.btnGuardarPer.Location = new System.Drawing.Point(550, 380);
+            this.btnGuardarPer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnGuardarPer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.btnGuardarPer.Location = new System.Drawing.Point(501, 380);
             this.btnGuardarPer.Name = "btnGuardarPer";
-            this.btnGuardarPer.Size = new System.Drawing.Size(94, 23);
+            this.btnGuardarPer.Size = new System.Drawing.Size(143, 23);
             this.btnGuardarPer.TabIndex = 8;
             this.btnGuardarPer.Text = "Guardar Datos";
-            this.btnGuardarPer.UseVisualStyleBackColor = true;
+            this.btnGuardarPer.UseVisualStyleBackColor = false;
             this.btnGuardarPer.Click += new System.EventHandler(this.btnGuardarPer_Click);
             // 
             // grpContacto
             // 
+            this.grpContacto.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.grpContacto.Controls.Add(this.grpRedes);
             this.grpContacto.Controls.Add(this.txtTelefono);
             this.grpContacto.Controls.Add(this.lblTelefono);
@@ -309,6 +293,7 @@
             // 
             // grpRedes
             // 
+            this.grpRedes.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.grpRedes.Controls.Add(this.txtFacebook);
             this.grpRedes.Controls.Add(this.txtTikTok);
             this.grpRedes.Controls.Add(this.txtInstagram);
@@ -459,22 +444,26 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(388, 380);
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.btnCancelar.Location = new System.Drawing.Point(339, 380);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(469, 380);
+            this.btnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.btnLimpiar.Location = new System.Drawing.Point(420, 380);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 12;
             this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.UseVisualStyleBackColor = false;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // chkEstado
@@ -487,12 +476,13 @@
             this.chkEstado.TabIndex = 23;
             this.chkEstado.Text = "Inactivo";
             this.chkEstado.UseVisualStyleBackColor = true;
+            this.chkEstado.CheckedChanged += new System.EventHandler(this.chkEstado_CheckedChanged);
             // 
             // lblEstadoUsuario
             // 
             this.lblEstadoUsuario.AutoSize = true;
             this.lblEstadoUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblEstadoUsuario.Location = new System.Drawing.Point(29, 380);
+            this.lblEstadoUsuario.Location = new System.Drawing.Point(29, 382);
             this.lblEstadoUsuario.Name = "lblEstadoUsuario";
             this.lblEstadoUsuario.Size = new System.Drawing.Size(125, 16);
             this.lblEstadoUsuario.TabIndex = 24;
@@ -502,6 +492,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(660, 415);
             this.Controls.Add(this.lblEstadoUsuario);
             this.Controls.Add(this.chkEstado);
@@ -511,6 +502,7 @@
             this.Controls.Add(this.btnGuardarPer);
             this.Controls.Add(this.grpDatosPer);
             this.Controls.Add(this.grpDomicilio);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPersonal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Personal";

@@ -57,6 +57,28 @@ namespace pryRomoApeERP
         private void cmbProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComprobarDatos();
+
+            switch (cmbProvincia.SelectedIndex)
+            {
+                case 0:
+                    cmbLocalidad.Items.Clear();
+                    cmbLocalidad.Items.Add("La Plata");
+                    cmbLocalidad.Items.Add("Berisso");
+                    cmbLocalidad.Items.Add("Ensenada");
+                    break;
+                case 1:
+                    cmbLocalidad.Items.Clear();
+                    cmbLocalidad.Items.Add("Mar del Plata");
+                    cmbLocalidad.Items.Add("Miramar");
+                    cmbLocalidad.Items.Add("Pinamar");
+                    break;
+                case 2:
+                    cmbLocalidad.Items.Clear();
+                    cmbLocalidad.Items.Add("Bahía Blanca");
+                    cmbLocalidad.Items.Add("Tornquist");
+                    cmbLocalidad.Items.Add("Coronel Suárez");
+                    break;
+            }
         }
 
         private void cmbLocalidad_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,7 +135,18 @@ namespace pryRomoApeERP
         {
             if (todosLosDatos == true)
             {
-                MessageBox.Show("Los datos se han guardado correctamente");
+                if (chkEstado.Checked == false)
+                {
+                    if (MessageBox.Show("¿Desea guardar los datos con el estado 'Inactivo'?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        // Guardar datos con estado 'Inactivo'
+                        MessageBox.Show("Datos guardados con estado 'Inactivo'");
+                    }
+                    else
+                    {
+                        // No guardar datos
+                    }
+                }
 
             }
             else
@@ -148,6 +181,18 @@ namespace pryRomoApeERP
                 txtFacebook.Clear();
                 cmbProvincia.SelectedIndex = -1;
                 cmbLocalidad.SelectedIndex = -1;
+            }
+        }
+
+        private void chkEstado_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkEstado.Checked) 
+            { 
+                chkEstado.Text = "Activo";
+            }
+            else
+            {
+                chkEstado.Text = "Inactivo";
             }
         }
     }

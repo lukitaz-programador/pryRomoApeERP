@@ -39,6 +39,8 @@
             this.lblVerCon = new System.Windows.Forms.Label();
             this.chkVer = new System.Windows.Forms.CheckBox();
             this.lblAcl = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblEstadoo
@@ -90,14 +92,15 @@
             // 
             // btnIngresar
             // 
+            this.btnIngresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnIngresar.Enabled = false;
-            this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnIngresar.Location = new System.Drawing.Point(224, 146);
+            this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.btnIngresar.Location = new System.Drawing.Point(224, 148);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(87, 27);
             this.btnIngresar.TabIndex = 6;
             this.btnIngresar.Text = "Ingresar";
-            this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.UseVisualStyleBackColor = false;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // txtContrasenia
@@ -136,11 +139,36 @@
             this.lblAcl.TabIndex = 10;
             this.lblAcl.Text = "(Ingrese su ID de usuario)";
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.btnLimpiar.Location = new System.Drawing.Point(143, 150);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 11;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.btnSalir.Location = new System.Drawing.Point(62, 150);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 12;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = false;
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(339, 265);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblAcl);
             this.Controls.Add(this.chkVer);
             this.Controls.Add(this.lblVerCon);
@@ -173,6 +201,8 @@
         private System.Windows.Forms.Label lblVerCon;
         private System.Windows.Forms.CheckBox chkVer;
         private System.Windows.Forms.Label lblAcl;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnSalir;
     }
 }
 
