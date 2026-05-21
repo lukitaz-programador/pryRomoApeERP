@@ -25,6 +25,8 @@ namespace pryRomoApeERP
             InitializeComponent();
         }
 
+        int intentosIngresos = 3;
+
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             txtContrasenia.UseSystemPasswordChar = true;
@@ -138,15 +140,24 @@ namespace pryRomoApeERP
                     );
 
                     //Abrir otro formulario si querés
-                    //frmMenu menu = new frmMenu();
-                    //menu.Show();
-                    //this.Hide();
+                    frmAplicacion paso = new frmAplicacion();
+                    paso.Show();
+                    this.Hide();
                 }
                 else
                 {
-                    MessageBox.Show(
-                        "Usuario o contraseña incorrectos"
-                    );
+                    intentosIngresos--;
+                    txtContrasenia.Clear();
+                    txtMail.Clear();
+                   
+                    if (intentosIngresos <= 0)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario o contraseña incorrectos, le quedan " + (intentosIngresos) + " intentos");
+                    }
                 }
             }
             catch (Exception ex)
