@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace pryRomoApeERP
 {
-    public partial class frmPersonal : Form
+    public partial class frmGestionDatosPersonales : Form
     {
-        public frmPersonal()
+        public frmGestionDatosPersonales()
         {
             InitializeComponent();
         }
@@ -193,6 +193,18 @@ namespace pryRomoApeERP
             else
             {
                 chkEstado.Text = "Inactivo";
+            }
+        }
+
+        private void chkResidencia_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkEstado.Checked)
+            {
+                chkEstado.Text = "Si, reside.";
+            }
+            else
+            {
+                chkEstado.Text = "No, no reside.";
             }
         }
     }

@@ -48,11 +48,23 @@
   <ItemGroup>
     <Compile Include="Base de Datos\Archivo.cs" />
     <Compile Include="Base de Datos\ConexionBD.cs" />
-    <Compile Include="frmAplicacion.cs">
+    <Compile Include="frmGestionDatosPersonales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAplicacion.Designer.cs">
-      <DependentUpon>frmAplicacion.cs</DependentUpon>
+    <Compile Include="frmGestionDatosPersonales.Designer.cs">
+      <DependentUpon>frmGestionDatosPersonales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGestionPerfiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestionPerfiles.Designer.cs">
+      <DependentUpon>frmGestionPerfiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
@@ -62,8 +74,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAplicacion.resx">
-      <DependentUpon>frmAplicacion.cs</DependentUpon>
+    <EmbeddedResource Include="frmGestionDatosPersonales.resx">
+      <DependentUpon>frmGestionDatosPersonales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGestionPerfiles.resx">
+      <DependentUpon>frmGestionPerfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>

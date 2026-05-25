@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace pryRomoApeERP
 {
-    public partial class frmPrincipal : Form
+    public partial class frmGestionPerfiles : Form
     {
-        public frmPrincipal()
+        public frmGestionPerfiles()
         {
             InitializeComponent();
-        }
-
-        private void btnGestionDatosPersonales_Click(object sender, EventArgs e)
-        {
-            frmGestionDatosPersonales paso = new frmGestionDatosPersonales();
-            paso.Show();
-            this.Hide();
         }
     }
 }
