@@ -98,54 +98,13 @@ namespace pryRomoApeERP
         }
 
 
-        private void RegistrarAuditoria(string usuario, string accion)
-        {
-            try
-            {
-                string consulta = @"INSERT INTO tablaRegistroAuditoria
-                           ([FechaHora],[MailUsuario],[Accion])
-                           VALUES (?,?,?)";
-
-                using (OleDbCommand cmd = new OleDbCommand(
-                    consulta,
-                    conexionBD.Conexion))
-                {
-                    // Fecha y hora
-                    cmd.Parameters.Add(
-                        "@FechaHora",
-                        OleDbType.DBTimeStamp
-                    ).Value = DateTime.Now;
-
-                    // Usuario
-                    cmd.Parameters.Add(
-                        "@MailUsuario",
-                        OleDbType.VarChar
-                    ).Value = usuario;
-
-                    // Accion
-                    cmd.Parameters.Add(
-                        "@Accion",
-                        OleDbType.VarChar
-                    ).Value = accion;
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Error auditoría:\n" +
-                    ex.Message
-                );
-            }
-        }
-
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             try
             {
                 bool ingresoExitoso = false;
 
+                // Validar usuario
                 string consulta =
                 "SELECT * FROM tablaUsuario " +
                 "WHERE Mail=? AND Contrasenia=?";
@@ -168,21 +127,47 @@ namespace pryRomoApeERP
                 OleDbDataReader lector =
                 cmd.ExecuteReader();
 
-                if (lector.Read())
-                {
-                    ingresoExitoso = true;
-                }
+                ingresoExitoso = lector.Read();
 
                 lector.Close();
 
+                // Determinar acción
+                string accion = ingresoExitoso
+                    ? "Login"
+                    : "FalloLogin";
+
+                // Registrar auditoría
+                string consultaAuditoria =
+                "INSERT INTO tablaRegistroAuditoria " +
+                "([FechaHora],[MailUsuario],[Accion]) " +
+                "VALUES (?,?,?)";
+
+                OleDbCommand cmdAuditoria =
+                new OleDbCommand(
+                    consultaAuditoria,
+                    conexionBD.Conexion
+                );
+
+                cmdAuditoria.Parameters.Add(
+                    "@FechaHora",
+                    OleDbType.DBTimeStamp
+                ).Value = DateTime.Now;
+
+                cmdAuditoria.Parameters.Add(
+                    "@MailUsuario",
+                    OleDbType.VarChar
+                ).Value = txtMail.Text;
+
+                cmdAuditoria.Parameters.Add(
+                    "@Accion",
+                    OleDbType.VarChar
+                ).Value = accion;
+
+                cmdAuditoria.ExecuteNonQuery();
+
+                // Resultado final
                 if (ingresoExitoso)
                 {
-                    // Registrar Login correcto
-                    RegistrarAuditoria(
-                        txtMail.Text,
-                        "Login"
-                    );
-
                     MessageBox.Show(
                         "Ingreso exitoso"
                     );
@@ -196,12 +181,6 @@ namespace pryRomoApeERP
                 }
                 else
                 {
-                    // Registrar intento fallido
-                    RegistrarAuditoria(
-                        txtMail.Text,
-                        "FalloLogin"
-                    );
-
                     intentosIngresos--;
 
                     txtContrasenia.Clear();
@@ -214,9 +193,9 @@ namespace pryRomoApeERP
                     else
                     {
                         MessageBox.Show(
-                            "Usuario o contraseña incorrectos, le quedan "
+                            "Usuario o contraseña incorrectos. Le quedan "
                             + intentosIngresos +
-                            " intentos"
+                            " intentos."
                         );
                     }
                 }

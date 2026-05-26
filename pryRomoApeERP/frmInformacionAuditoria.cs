@@ -1,13 +1,7 @@
 ﻿using pryRomoApeERP.Base_de_Datos;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace pryRomoApeERP
@@ -29,19 +23,26 @@ namespace pryRomoApeERP
                 archivoBD = new Archivo("Romo.accdb");
                 conexionBD = archivoBD.Conexion;
 
-                if (conexionBD != null && conexionBD.EstaConectado)
+                if (conexionBD != null &&
+                    conexionBD.EstaConectado)
                 {
                     CargarUsuarios();
                     CargarAcciones();
+                    CargarTodo();
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo conectar a la base de datos");
+                    MessageBox.Show(
+                        "No se pudo conectar a la base de datos"
+                    );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar el formulario:\n" + ex.Message);
+                MessageBox.Show(
+                    "Error:\n" +
+                    ex.Message
+                );
             }
         }
 
@@ -49,26 +50,44 @@ namespace pryRomoApeERP
         {
             try
             {
-                string consulta = "SELECT DISTINCT Usuario FROM tablaRegistroAuditoria ORDER BY Usuario";
-                OleDbCommand cmd = new OleDbCommand(consulta, conexionBD.Conexion);
-                OleDbDataReader lector = cmd.ExecuteReader();
+                string consulta =
+                "SELECT DISTINCT MailUsuario " +
+                "FROM tablaRegistroAuditoria " +
+                "ORDER BY MailUsuario";
+
+                OleDbCommand cmd =
+                new OleDbCommand(
+                    consulta,
+                    conexionBD.Conexion
+                );
+
+                OleDbDataReader lector =
+                cmd.ExecuteReader();
 
                 cmbUsuario.Items.Clear();
+
+                cmbUsuario.Items.Add("Todos");
 
                 while (lector.Read())
                 {
                     if (!lector.IsDBNull(0))
                     {
-                        cmbUsuario.Items.Add(lector["Usuario"].ToString());
+                        cmbUsuario.Items.Add(
+                            lector["MailUsuario"].ToString()
+                        );
                     }
                 }
 
                 lector.Close();
+
                 cmbUsuario.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar usuarios:\n" + ex.Message);
+                MessageBox.Show(
+                    "Error usuarios:\n" +
+                    ex.Message
+                );
             }
         }
 
@@ -76,38 +95,157 @@ namespace pryRomoApeERP
         {
             try
             {
-                string consulta = "SELECT DISTINCT Accion FROM tablaRegistroAuditoria ORDER BY Accion";
-                OleDbCommand cmd = new OleDbCommand(consulta, conexionBD.Conexion);
-                OleDbDataReader lector = cmd.ExecuteReader();
+                string consulta =
+                "SELECT DISTINCT Accion " +
+                "FROM tablaRegistroAuditoria " +
+                "ORDER BY Accion";
+
+                OleDbCommand cmd =
+                new OleDbCommand(
+                    consulta,
+                    conexionBD.Conexion
+                );
+
+                OleDbDataReader lector =
+                cmd.ExecuteReader();
 
                 cmbAccion.Items.Clear();
+
+                cmbAccion.Items.Add("Todas");
 
                 while (lector.Read())
                 {
                     if (!lector.IsDBNull(0))
                     {
-                        cmbAccion.Items.Add(lector["Accion"].ToString());
+                        cmbAccion.Items.Add(
+                            lector["Accion"].ToString()
+                        );
                     }
                 }
 
                 lector.Close();
+
                 cmbAccion.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar acciones:\n" + ex.Message);
+                MessageBox.Show(
+                    "Error acciones:\n" +
+                    ex.Message
+                );
+            }
+        }
+
+        private void CargarTodo()
+        {
+            try
+            {
+                string consulta =
+                "SELECT FechaHora, MailUsuario, Accion " +
+                "FROM tablaRegistroAuditoria " +
+                "ORDER BY FechaHora DESC";
+
+                OleDbDataAdapter da =
+                new OleDbDataAdapter(
+                    consulta,
+                    conexionBD.Conexion
+                );
+
+                DataTable dt =
+                new DataTable();
+
+                da.Fill(dt);
+
+                dgvAuditoria.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error:\n" +
+                    ex.Message
+                );
+            }
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string consulta =
+                "SELECT FechaHora, MailUsuario, Accion " +
+                "FROM tablaRegistroAuditoria " +
+                "WHERE 1=1";
+
+                OleDbCommand cmd =
+                new OleDbCommand();
+
+                cmd.Connection =
+                conexionBD.Conexion;
+
+                if (cmbUsuario.Text != "Todos")
+                {
+                    consulta +=
+                    " AND MailUsuario=?";
+
+                    cmd.Parameters.AddWithValue(
+                        "@MailUsuario",
+                        cmbUsuario.Text
+                    );
+                }
+
+                if (cmbAccion.Text != "Todas")
+                {
+                    consulta +=
+                    " AND Accion=?";
+
+                    cmd.Parameters.AddWithValue(
+                        "@Accion",
+                        cmbAccion.Text
+                    );
+                }
+
+                consulta +=
+                " ORDER BY FechaHora DESC";
+
+                cmd.CommandText =
+                consulta;
+
+                OleDbDataAdapter da =
+                new OleDbDataAdapter(cmd);
+
+                DataTable dt =
+                new DataTable();
+
+                da.Fill(dt);
+
+                dgvAuditoria.DataSource =
+                dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error consulta:\n" +
+                    ex.Message
+                );
             }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Desea salir de la gestión de datos personales?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(
+                "¿Desea salir?",
+                "Salir",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question)
+                == DialogResult.Yes)
             {
-                frmPrincipal paso = new frmPrincipal();
+                frmPrincipal paso =
+                new frmPrincipal();
+
                 paso.Show();
+
                 this.Hide();
             }
         }
-
     }
 }

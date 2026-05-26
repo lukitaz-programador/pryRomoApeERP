@@ -42,6 +42,7 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.fechaGuardada = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -174,12 +175,22 @@
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
+            // fechaGuardada
+            // 
+            this.fechaGuardada.Enabled = false;
+            this.fechaGuardada.Location = new System.Drawing.Point(458, 494);
+            this.fechaGuardada.Name = "fechaGuardada";
+            this.fechaGuardada.Size = new System.Drawing.Size(200, 20);
+            this.fechaGuardada.TabIndex = 14;
+            this.fechaGuardada.Visible = false;
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(660, 516);
+            this.Controls.Add(this.fechaGuardada);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
@@ -219,6 +230,7 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DateTimePicker fechaGuardada;
     }
 }
 

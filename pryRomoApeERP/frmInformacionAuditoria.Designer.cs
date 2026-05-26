@@ -35,6 +35,8 @@
             this.Calendario = new System.Windows.Forms.MonthCalendar();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.dgvAuditoria = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuditoria)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbUsuario
@@ -75,7 +77,7 @@
             // 
             // Calendario
             // 
-            this.Calendario.Location = new System.Drawing.Point(202, 182);
+            this.Calendario.Location = new System.Drawing.Point(416, 35);
             this.Calendario.Name = "Calendario";
             this.Calendario.TabIndex = 4;
             // 
@@ -88,6 +90,7 @@
             this.btnConsultar.TabIndex = 5;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // btnSalir
             // 
@@ -100,12 +103,21 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // dgvAuditoria
+            // 
+            this.dgvAuditoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAuditoria.Location = new System.Drawing.Point(55, 228);
+            this.dgvAuditoria.Name = "dgvAuditoria";
+            this.dgvAuditoria.Size = new System.Drawing.Size(553, 199);
+            this.dgvAuditoria.TabIndex = 7;
+            // 
             // frmInformacionAuditoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(660, 516);
+            this.Controls.Add(this.dgvAuditoria);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.Calendario);
@@ -117,6 +129,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Información Auditoria";
             this.Load += new System.EventHandler(this.frmInformacionAuditoria_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuditoria)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,5 +144,6 @@
         private System.Windows.Forms.MonthCalendar Calendario;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.DataGridView dgvAuditoria;
     }
 }
