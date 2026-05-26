@@ -207,5 +207,15 @@ namespace pryRomoApeERP
                 chkEstado.Text = "No, no reside.";
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Desea salir de la gestión de datos personales?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                frmPrincipal paso = new frmPrincipal();
+                paso.Show();
+                this.Hide();
+            }
+        }
     }
 }

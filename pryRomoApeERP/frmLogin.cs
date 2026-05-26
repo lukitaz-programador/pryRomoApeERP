@@ -167,5 +167,13 @@ namespace pryRomoApeERP
                 );
             }
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Desea salir de la gestión de datos personales?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }

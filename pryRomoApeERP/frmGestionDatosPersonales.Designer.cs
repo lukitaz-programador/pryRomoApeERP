@@ -86,6 +86,7 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.chkEstado = new System.Windows.Forms.CheckBox();
             this.lblEstadoUsuario = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.grpDomicilio.SuspendLayout();
             this.grpDatosPer.SuspendLayout();
             this.grpContacto.SuspendLayout();
@@ -705,12 +706,25 @@
             this.lblEstadoUsuario.TabIndex = 24;
             this.lblEstadoUsuario.Text = "Estado del Usuario:";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.button1.Location = new System.Drawing.Point(258, 473);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 34);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Salir";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmGestionDatosPersonales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(660, 516);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblEstadoUsuario);
             this.Controls.Add(this.chkEstado);
             this.Controls.Add(this.btnLimpiar);
@@ -794,5 +808,6 @@
         private System.Windows.Forms.Button btnAgregarTelefono;
         private System.Windows.Forms.Label lblAgregarMail;
         private System.Windows.Forms.Button btnAgregarMail;
+        private System.Windows.Forms.Button button1;
     }
 }

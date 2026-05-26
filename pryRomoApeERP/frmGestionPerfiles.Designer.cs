@@ -69,6 +69,7 @@
             this.btnSalir.TabIndex = 4;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // txtMailAniadirPerfil
             // 
@@ -91,10 +92,12 @@
             // 
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Items.AddRange(new object[] {
-            "ADMIN",
+            "Admin",
+            "Logis",
+            "Venta",
+            "Marke",
             "RRHH",
-            "PROG",
-            "MARK"});
+            "Conta"});
             this.checkedListBox1.Location = new System.Drawing.Point(40, 261);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(587, 169);
@@ -124,6 +127,7 @@
             this.Controls.Add(this.btnGuardarPerfiles);
             this.Controls.Add(this.lblMailNuevoP);
             this.Name = "frmGestionPerfiles";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de Perfiles";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

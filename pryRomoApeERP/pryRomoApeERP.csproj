@@ -60,6 +60,12 @@
     <Compile Include="frmGestionPerfiles.Designer.cs">
       <DependentUpon>frmGestionPerfiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmInformacionAuditoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInformacionAuditoria.Designer.cs">
+      <DependentUpon>frmInformacionAuditoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGestionPerfiles.resx">
       <DependentUpon>frmGestionPerfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInformacionAuditoria.resx">
+      <DependentUpon>frmInformacionAuditoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

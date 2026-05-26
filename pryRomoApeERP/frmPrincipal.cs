@@ -23,5 +23,35 @@ namespace pryRomoApeERP
             paso.Show();
             this.Hide();
         }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+        /*
+        IdPerfil | Nombre
+        ------------------
+        1 | Admin
+        2 | Logis
+        3 | Venta
+        4 | Marke
+        5 | RRHH
+        6 | Conta
+        */
+        
+            
+        }
+
+        private void btnInfoAuditoria_Click(object sender, EventArgs e)
+        {
+            frmInformacionAuditoria paso = new frmInformacionAuditoria();
+            paso.Show();
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmGestionPerfiles paso = new frmGestionPerfiles();
+            paso.Show();
+            this.Hide();
+        }
     }
 }
