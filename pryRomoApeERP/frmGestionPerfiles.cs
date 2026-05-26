@@ -31,5 +31,10 @@ namespace pryRomoApeERP
                 this.Hide();
             }
         }
+
+        private void txtMailAniadirPerfil_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

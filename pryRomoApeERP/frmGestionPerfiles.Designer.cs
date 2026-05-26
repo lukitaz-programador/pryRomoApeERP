@@ -34,7 +34,7 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.txtMailAniadirPerfil = new System.Windows.Forms.TextBox();
             this.btnActualizar = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.lstPerfiles = new System.Windows.Forms.CheckedListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +52,7 @@
             // btnGuardarPerfiles
             // 
             this.btnGuardarPerfiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnGuardarPerfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnGuardarPerfiles.Location = new System.Drawing.Point(500, 436);
             this.btnGuardarPerfiles.Name = "btnGuardarPerfiles";
             this.btnGuardarPerfiles.Size = new System.Drawing.Size(127, 34);
@@ -63,6 +64,7 @@
             // btnSalir
             // 
             this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnSalir.Location = new System.Drawing.Point(408, 436);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(86, 34);
@@ -77,6 +79,7 @@
             this.txtMailAniadirPerfil.Name = "txtMailAniadirPerfil";
             this.txtMailAniadirPerfil.Size = new System.Drawing.Size(220, 20);
             this.txtMailAniadirPerfil.TabIndex = 7;
+            this.txtMailAniadirPerfil.TextChanged += new System.EventHandler(this.txtMailAniadirPerfil_TextChanged);
             // 
             // btnActualizar
             // 
@@ -88,20 +91,21 @@
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = false;
             // 
-            // checkedListBox1
+            // lstPerfiles
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.lstPerfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.lstPerfiles.FormattingEnabled = true;
+            this.lstPerfiles.Items.AddRange(new object[] {
             "Admin",
             "Logis",
             "Venta",
             "Marke",
             "RRHH",
             "Conta"});
-            this.checkedListBox1.Location = new System.Drawing.Point(40, 261);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(587, 169);
-            this.checkedListBox1.TabIndex = 9;
+            this.lstPerfiles.Location = new System.Drawing.Point(40, 261);
+            this.lstPerfiles.Name = "lstPerfiles";
+            this.lstPerfiles.Size = new System.Drawing.Size(587, 169);
+            this.lstPerfiles.TabIndex = 9;
             // 
             // pictureBox1
             // 
@@ -121,7 +125,7 @@
             this.ClientSize = new System.Drawing.Size(660, 516);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnActualizar);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.lstPerfiles);
             this.Controls.Add(this.txtMailAniadirPerfil);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardarPerfiles);
@@ -142,7 +146,7 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.TextBox txtMailAniadirPerfil;
         private System.Windows.Forms.Button btnActualizar;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox lstPerfiles;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
