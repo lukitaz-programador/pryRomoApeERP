@@ -97,6 +97,49 @@ namespace pryRomoApeERP
             }
         }
 
+
+        private void RegistrarAuditoria(string usuario, string accion)
+        {
+            try
+            {
+                string consulta = @"INSERT INTO tablaRegistroAuditoria
+                           ([FechaHora],[MailUsuario],[Accion])
+                           VALUES (?,?,?)";
+
+                using (OleDbCommand cmd = new OleDbCommand(
+                    consulta,
+                    conexionBD.Conexion))
+                {
+                    // Fecha y hora
+                    cmd.Parameters.Add(
+                        "@FechaHora",
+                        OleDbType.DBTimeStamp
+                    ).Value = DateTime.Now;
+
+                    // Usuario
+                    cmd.Parameters.Add(
+                        "@MailUsuario",
+                        OleDbType.VarChar
+                    ).Value = usuario;
+
+                    // Accion
+                    cmd.Parameters.Add(
+                        "@Accion",
+                        OleDbType.VarChar
+                    ).Value = accion;
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error auditoría:\n" +
+                    ex.Message
+                );
+            }
+        }
+
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             try
@@ -105,14 +148,13 @@ namespace pryRomoApeERP
 
                 string consulta =
                 "SELECT * FROM tablaUsuario " +
-                "WHERE Mail = ? AND Contrasenia = ?";
+                "WHERE Mail=? AND Contrasenia=?";
 
                 OleDbCommand cmd = new OleDbCommand(
                     consulta,
                     conexionBD.Conexion
                 );
 
-                // IMPORTANTE: Access usa el orden de parámetros
                 cmd.Parameters.AddWithValue(
                     "@Mail",
                     txtMail.Text
@@ -135,28 +177,47 @@ namespace pryRomoApeERP
 
                 if (ingresoExitoso)
                 {
+                    // Registrar Login correcto
+                    RegistrarAuditoria(
+                        txtMail.Text,
+                        "Login"
+                    );
+
                     MessageBox.Show(
                         "Ingreso exitoso"
                     );
 
-                    //Abrir otro formulario si querés
-                    frmPrincipal paso = new frmPrincipal();
+                    frmPrincipal paso =
+                    new frmPrincipal();
+
                     paso.Show();
+
                     this.Hide();
                 }
                 else
                 {
+                    // Registrar intento fallido
+                    RegistrarAuditoria(
+                        txtMail.Text,
+                        "FalloLogin"
+                    );
+
                     intentosIngresos--;
+
                     txtContrasenia.Clear();
                     txtMail.Clear();
-                   
+
                     if (intentosIngresos <= 0)
                     {
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Usuario o contraseña incorrectos, le quedan " + (intentosIngresos) + " intentos");
+                        MessageBox.Show(
+                            "Usuario o contraseña incorrectos, le quedan "
+                            + intentosIngresos +
+                            " intentos"
+                        );
                     }
                 }
             }
@@ -170,7 +231,12 @@ namespace pryRomoApeERP
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Desea salir de la gestión de datos personales?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(
+                "¿Está seguro que desea salir?",
+                "Confirmar salida",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            ) == DialogResult.Yes)
             {
                 this.Close();
             }
