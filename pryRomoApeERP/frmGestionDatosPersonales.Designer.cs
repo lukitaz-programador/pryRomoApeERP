@@ -673,7 +673,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnLimpiar.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnLimpiar.Location = new System.Drawing.Point(420, 473);
             this.btnLimpiar.Name = "btnLimpiar";

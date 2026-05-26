@@ -41,12 +41,14 @@
             this.lblAcl = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblEstadoo
             // 
             this.lblEstadoo.AutoSize = true;
-            this.lblEstadoo.Location = new System.Drawing.Point(6, 242);
+            this.lblEstadoo.Location = new System.Drawing.Point(10, 494);
             this.lblEstadoo.Name = "lblEstadoo";
             this.lblEstadoo.Size = new System.Drawing.Size(104, 13);
             this.lblEstadoo.TabIndex = 0;
@@ -56,7 +58,7 @@
             // 
             this.lblEstado.AutoSize = true;
             this.lblEstado.ForeColor = System.Drawing.Color.Red;
-            this.lblEstado.Location = new System.Drawing.Point(108, 242);
+            this.lblEstado.Location = new System.Drawing.Point(112, 494);
             this.lblEstado.Name = "lblEstado";
             this.lblEstado.Size = new System.Drawing.Size(86, 13);
             this.lblEstado.TabIndex = 1;
@@ -66,7 +68,7 @@
             // 
             this.lblMail.AutoSize = true;
             this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.lblMail.Location = new System.Drawing.Point(24, 28);
+            this.lblMail.Location = new System.Drawing.Point(167, 204);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(37, 17);
             this.lblMail.TabIndex = 2;
@@ -76,7 +78,7 @@
             // 
             this.lblContrasenia.AutoSize = true;
             this.lblContrasenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.lblContrasenia.Location = new System.Drawing.Point(24, 78);
+            this.lblContrasenia.Location = new System.Drawing.Point(167, 254);
             this.lblContrasenia.Name = "lblContrasenia";
             this.lblContrasenia.Size = new System.Drawing.Size(85, 17);
             this.lblContrasenia.TabIndex = 3;
@@ -84,7 +86,7 @@
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(67, 28);
+            this.txtMail.Location = new System.Drawing.Point(210, 204);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(244, 20);
             this.txtMail.TabIndex = 4;
@@ -95,7 +97,7 @@
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnLogin.Enabled = false;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnLogin.Location = new System.Drawing.Point(224, 150);
+            this.btnLogin.Location = new System.Drawing.Point(367, 326);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(87, 30);
             this.btnLogin.TabIndex = 6;
@@ -105,7 +107,7 @@
             // 
             // txtContrasenia
             // 
-            this.txtContrasenia.Location = new System.Drawing.Point(115, 78);
+            this.txtContrasenia.Location = new System.Drawing.Point(258, 254);
             this.txtContrasenia.Name = "txtContrasenia";
             this.txtContrasenia.Size = new System.Drawing.Size(196, 20);
             this.txtContrasenia.TabIndex = 7;
@@ -114,7 +116,7 @@
             // lblVerCon
             // 
             this.lblVerCon.AutoSize = true;
-            this.lblVerCon.Location = new System.Drawing.Point(195, 105);
+            this.lblVerCon.Location = new System.Drawing.Point(338, 281);
             this.lblVerCon.Name = "lblVerCon";
             this.lblVerCon.Size = new System.Drawing.Size(82, 13);
             this.lblVerCon.TabIndex = 8;
@@ -123,7 +125,7 @@
             // chkVer
             // 
             this.chkVer.AutoSize = true;
-            this.chkVer.Location = new System.Drawing.Point(283, 105);
+            this.chkVer.Location = new System.Drawing.Point(426, 281);
             this.chkVer.Name = "chkVer";
             this.chkVer.Size = new System.Drawing.Size(15, 14);
             this.chkVer.TabIndex = 9;
@@ -133,7 +135,7 @@
             // lblAcl
             // 
             this.lblAcl.AutoSize = true;
-            this.lblAcl.Location = new System.Drawing.Point(170, 55);
+            this.lblAcl.Location = new System.Drawing.Point(313, 231);
             this.lblAcl.Name = "lblAcl";
             this.lblAcl.Size = new System.Drawing.Size(128, 13);
             this.lblAcl.TabIndex = 10;
@@ -141,9 +143,9 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnLimpiar.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnLimpiar.Location = new System.Drawing.Point(143, 150);
+            this.btnLimpiar.Location = new System.Drawing.Point(286, 326);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 30);
             this.btnLimpiar.TabIndex = 11;
@@ -154,19 +156,30 @@
             // 
             this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnSalir.Location = new System.Drawing.Point(62, 150);
+            this.btnSalir.Location = new System.Drawing.Point(205, 326);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 30);
             this.btnSalir.TabIndex = 12;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(249, 24);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(145, 138);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(339, 265);
+            this.ClientSize = new System.Drawing.Size(660, 516);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblAcl);
@@ -184,6 +197,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ape ERP";
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,6 +217,7 @@
         private System.Windows.Forms.Label lblAcl;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
