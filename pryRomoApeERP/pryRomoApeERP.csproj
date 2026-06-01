@@ -50,52 +50,56 @@
   <ItemGroup>
     <Compile Include="Base de Datos\Archivo.cs" />
     <Compile Include="Base de Datos\ConexionBD.cs" />
-    <Compile Include="frmGestionDatosPersonales.cs">
+    <Compile Include="Base de Datos\PerfilInfo.cs" />
+    <Compile Include="Base de Datos\tablaPerfil.cs" />
+    <Compile Include="Base de Datos\tablaRUP.cs" />
+    <Compile Include="Base de Datos\tablaUsuario.cs" />
+    <Compile Include="Formularios\frmGestionDatosPersonales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGestionDatosPersonales.Designer.cs">
+    <Compile Include="Formularios\frmGestionDatosPersonales.Designer.cs">
       <DependentUpon>frmGestionDatosPersonales.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGestionPerfiles.cs">
+    <Compile Include="Formularios\frmGestionPerfiles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGestionPerfiles.Designer.cs">
+    <Compile Include="Formularios\frmGestionPerfiles.Designer.cs">
       <DependentUpon>frmGestionPerfiles.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInformacionAuditoria.cs">
+    <Compile Include="Formularios\frmInformacionAuditoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInformacionAuditoria.Designer.cs">
+    <Compile Include="Formularios\frmInformacionAuditoria.Designer.cs">
       <DependentUpon>frmInformacionAuditoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLogin.cs">
+    <Compile Include="Formularios\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.cs">
+    <Compile Include="Formularios\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPrincipal.cs">
+    <Compile Include="Formularios\frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPrincipal.Designer.cs">
+    <Compile Include="Formularios\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades\RegistroAuditoria.cs" />
-    <EmbeddedResource Include="frmGestionDatosPersonales.resx">
+    <EmbeddedResource Include="Formularios\frmGestionDatosPersonales.resx">
       <DependentUpon>frmGestionDatosPersonales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGestionPerfiles.resx">
+    <EmbeddedResource Include="Formularios\frmGestionPerfiles.resx">
       <DependentUpon>frmGestionPerfiles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInformacionAuditoria.resx">
+    <EmbeddedResource Include="Formularios\frmInformacionAuditoria.resx">
       <DependentUpon>frmInformacionAuditoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
+    <EmbeddedResource Include="Formularios\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPrincipal.resx">
+    <EmbeddedResource Include="Formularios\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

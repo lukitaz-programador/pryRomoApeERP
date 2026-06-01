@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 
 namespace pryRomoApeERP.Base_de_Datos
@@ -53,6 +55,27 @@ namespace pryRomoApeERP.Base_de_Datos
 
                 conexion.Dispose();
                 conexion = null;
+            }
+        }
+
+        public int ExecuteNonQuery(string sql, List<object> parametros = null)
+        {
+            if (!EstaConectado)
+            {
+                throw new InvalidOperationException("La conexión no está abierta.");
+            }
+
+            using (var cmd = new OleDbCommand(sql, conexion))
+            {
+                if (parametros != null)
+                {
+                    foreach (var param in parametros)
+                    {
+                        cmd.Parameters.AddWithValue("@p", param ?? DBNull.Value);
+                    }
+                }
+
+                return cmd.ExecuteNonQuery();
             }
         }
     }

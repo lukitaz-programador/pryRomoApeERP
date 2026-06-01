@@ -1,7 +1,6 @@
 using pryRomoApeERP.Base_de_Datos;
 using System;
-using System.Data;
-using System.Data.OleDb;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace pryRomoApeERP.Utilidades
@@ -17,9 +16,6 @@ namespace pryRomoApeERP.Utilidades
 
         public void RegistrarAccion(string mailUsuario, string accion)
         {
-            OleDbConnection conn = null;
-            OleDbCommand cmd = null;
-            
             try
             {
                 if (conexionBD == null)
@@ -28,40 +24,24 @@ namespace pryRomoApeERP.Utilidades
                     return;
                 }
 
-                conn = conexionBD.Conexion;
-
-                if (conn == null)
+                if (!conexionBD.EstaConectado)
                 {
-                    MessageBox.Show("Error: Conexion es null");
+                    MessageBox.Show("Error: La conexión no está abierta");
                     return;
                 }
 
-                // Verificar el estado de la conexión
-                if (conn.State != ConnectionState.Open)
-                {
-                    MessageBox.Show($"Advertencia: Conexión cerrada. Estado: {conn.State}");
-                    return;
-                }
-
-                // Validar que no sean nulos los parámetros
                 string mail = string.IsNullOrEmpty(mailUsuario) ? "SinMail" : mailUsuario.Trim();
                 string acc = string.IsNullOrEmpty(accion) ? "SinAccion" : accion.Trim();
                 DateTime fecha = DateTime.Now;
 
-                string consulta =
-                "INSERT INTO tablaRegistroAuditoria (FechaHora, MailUsuario, Accion) " +
-                "VALUES (?, ?, ?)";
+                string sql = "INSERT INTO [tablaRegistroAuditoria] ([FechaHora], [MailUsuario], [Accion]) VALUES (?, ?, ?)";
 
-                cmd = new OleDbCommand(consulta, conn);
-                cmd.CommandType = CommandType.Text;
+                List<object> parametros = new List<object>();
+                parametros.Add(fecha);
+                parametros.Add(mail);
+                parametros.Add(acc);
 
-                // Agregar los parámetros en el mismo orden que en la consulta
-                cmd.Parameters.Add("@FechaHora", OleDbType.DBTimeStamp).Value = fecha;
-                cmd.Parameters.Add("@MailUsuario", OleDbType.VarChar).Value = mail;
-                cmd.Parameters.Add("@Accion", OleDbType.VarChar).Value = acc;
-
-                // Ejecutar el comando
-                int rowsAffected = cmd.ExecuteNonQuery();
+                int rowsAffected = conexionBD.ExecuteNonQuery(sql, parametros);
 
                 if (rowsAffected > 0)
                 {
@@ -72,22 +52,10 @@ namespace pryRomoApeERP.Utilidades
                     MessageBox.Show($"Advertencia: No se insertaron filas.\nMail: {mail}\nAccion: {acc}");
                 }
             }
-            catch (OleDbException oleDbEx)
-            {
-                MessageBox.Show($"Error OleDb en auditoría:\n{oleDbEx.Message}\n\nNúmero de error: {oleDbEx.Errors[0].NativeError}");
-                System.Diagnostics.Debug.WriteLine($"? Error OleDb: {oleDbEx.Message}");
-            }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al registrar auditoría:\n{ex.GetType().Name}\n{ex.Message}");
-                System.Diagnostics.Debug.WriteLine($"? Error general: {ex.Message}");
-            }
-            finally
-            {
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
+                System.Diagnostics.Debug.WriteLine($"? Error: {ex.Message}");
             }
         }
     }
