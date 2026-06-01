@@ -1,4 +1,6 @@
-﻿using System;
+﻿using pryRomoApeERP.Base_de_Datos;
+using pryRomoApeERP.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,12 @@ namespace pryRomoApeERP
 {
     public partial class frmGestionPerfiles : Form
     {
-        public frmGestionPerfiles()
+        private string mailUsuario;
+
+        public frmGestionPerfiles(string mail = "")
         {
             InitializeComponent();
+            mailUsuario = mail;
         }
 
         private void btnGuardarPerfiles_Click(object sender, EventArgs e)
@@ -26,7 +31,7 @@ namespace pryRomoApeERP
         {
             if (MessageBox.Show("¿Desea salir de la gestión de datos personales?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                frmPrincipal paso = new frmPrincipal();
+                frmPrincipal paso = new frmPrincipal(mailUsuario);
                 paso.Show();
                 this.Hide();
             }

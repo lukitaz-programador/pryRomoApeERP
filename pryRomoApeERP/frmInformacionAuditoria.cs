@@ -1,4 +1,5 @@
 ﻿using pryRomoApeERP.Base_de_Datos;
+using pryRomoApeERP.Utilidades;
 using System;
 using System.Data;
 using System.Data.OleDb;
@@ -10,10 +11,12 @@ namespace pryRomoApeERP
     {
         private Archivo archivoBD;
         private ConexionDB conexionBD;
+        private string mailUsuario;
 
-        public frmInformacionAuditoria()
+        public frmInformacionAuditoria(string mail = "")
         {
             InitializeComponent();
+            mailUsuario = mail;
         }
 
         private void frmInformacionAuditoria_Load(object sender, EventArgs e)
@@ -240,7 +243,7 @@ namespace pryRomoApeERP
                 == DialogResult.Yes)
             {
                 frmPrincipal paso =
-                new frmPrincipal();
+                new frmPrincipal(mailUsuario);
 
                 paso.Show();
 

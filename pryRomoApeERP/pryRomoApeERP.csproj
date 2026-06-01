@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilidades\RegistroAuditoria.cs" />
     <EmbeddedResource Include="frmGestionDatosPersonales.resx">
       <DependentUpon>frmGestionDatosPersonales.cs</DependentUpon>
     </EmbeddedResource>

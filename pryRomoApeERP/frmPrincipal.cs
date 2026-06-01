@@ -1,4 +1,6 @@
-﻿using System;
+﻿using pryRomoApeERP.Base_de_Datos;
+using pryRomoApeERP.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,46 +14,105 @@ namespace pryRomoApeERP
 {
     public partial class frmPrincipal : Form
     {
-        public frmPrincipal()
+        private string mailUsuario;
+        private Archivo archivoBD;
+        private ConexionDB conexionBD;
+        private RegistroAuditoria registroAuditoria;
+
+        public frmPrincipal(string mail = "")
         {
             InitializeComponent();
-        }
-
-        private void btnGestionDatosPersonales_Click(object sender, EventArgs e)
-        {
-            frmGestionDatosPersonales paso = new frmGestionDatosPersonales();
-            paso.Show();
-            this.Hide();
+            mailUsuario = mail;
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-        /*
-        IdPerfil | Nombre
-        ------------------
-        1 | Admin
-        2 | Logis
-        3 | Venta
-        4 | Marke
-        5 | RRHH
-        6 | Conta
-        */
-        
-            
+            /*
+            IdPerfil | Nombre
+            ------------------
+            1 | Admin
+            2 | Logis
+            3 | Venta
+            4 | Marke
+            5 | RRHH
+            6 | Conta
+            */
+
+            try
+            {
+                archivoBD = new Archivo("Romo.accdb");
+                conexionBD = archivoBD.Conexion;
+                registroAuditoria = new RegistroAuditoria(conexionBD);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error:\n" + ex.Message
+                );
+            }
+        }
+
+        private void btnGestionDatosPersonales_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                registroAuditoria.RegistrarAccion(
+                    mailUsuario,
+                    "Gestionar Datos Personales"
+                );
+
+                frmGestionDatosPersonales paso = new frmGestionDatosPersonales(mailUsuario);
+                paso.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error:\n" + ex.Message
+                );
+            }
         }
 
         private void btnInfoAuditoria_Click(object sender, EventArgs e)
         {
-            frmInformacionAuditoria paso = new frmInformacionAuditoria();
-            paso.Show();
-            this.Hide();
+            try
+            {
+                registroAuditoria.RegistrarAccion(
+                    mailUsuario,
+                    "Ver Información de Auditoría"
+                );
+
+                frmInformacionAuditoria paso = new frmInformacionAuditoria(mailUsuario);
+                paso.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error:\n" + ex.Message
+                );
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmGestionPerfiles paso = new frmGestionPerfiles();
-            paso.Show();
-            this.Hide();
+            try
+            {
+                registroAuditoria.RegistrarAccion(
+                    mailUsuario,
+                    "Gestionar Perfiles"
+                );
+
+                frmGestionPerfiles paso = new frmGestionPerfiles(mailUsuario);
+                paso.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error:\n" + ex.Message
+                );
+            }
         }
     }
 }

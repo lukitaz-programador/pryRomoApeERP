@@ -1,4 +1,5 @@
 ﻿using pryRomoApeERP.Base_de_Datos;
+using pryRomoApeERP.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,9 @@ namespace pryRomoApeERP
         //Objeto de conexión
         private ConexionDB conexionBD;
 
+        //Objeto para registrar auditoría
+        private RegistroAuditoria registroAuditoria;
+
         public frmLogin()
         {
             InitializeComponent();
@@ -38,6 +42,9 @@ namespace pryRomoApeERP
 
                 //Obtiene la conexión
                 conexionBD = archivoBD.Conexion;
+
+                //Inicializa el registro de auditoría
+                registroAuditoria = new RegistroAuditoria(conexionBD);
 
                 //Validación
                 if (conexionBD != null &&
@@ -137,33 +144,10 @@ namespace pryRomoApeERP
                     : "FalloLogin";
 
                 // Registrar auditoría
-                string consultaAuditoria =
-                "INSERT INTO tablaRegistroAuditoria " +
-                "([FechaHora],[MailUsuario],[Accion]) " +
-                "VALUES (?,?,?)";
-
-                OleDbCommand cmdAuditoria =
-                new OleDbCommand(
-                    consultaAuditoria,
-                    conexionBD.Conexion
+                registroAuditoria.RegistrarAccion(
+                    txtMail.Text,
+                    accion
                 );
-
-                cmdAuditoria.Parameters.Add(
-                    "@FechaHora",
-                    OleDbType.DBTimeStamp
-                ).Value = DateTime.Now;
-
-                cmdAuditoria.Parameters.Add(
-                    "@MailUsuario",
-                    OleDbType.VarChar
-                ).Value = txtMail.Text;
-
-                cmdAuditoria.Parameters.Add(
-                    "@Accion",
-                    OleDbType.VarChar
-                ).Value = accion;
-
-                cmdAuditoria.ExecuteNonQuery();
 
                 // Resultado final
                 if (ingresoExitoso)
@@ -173,7 +157,7 @@ namespace pryRomoApeERP
                     );
 
                     frmPrincipal paso =
-                    new frmPrincipal();
+                    new frmPrincipal(txtMail.Text);
 
                     paso.Show();
 

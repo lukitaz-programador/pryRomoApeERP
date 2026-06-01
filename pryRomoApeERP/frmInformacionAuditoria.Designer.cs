@@ -106,7 +106,7 @@
             // dgvAuditoria
             // 
             this.dgvAuditoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAuditoria.Location = new System.Drawing.Point(55, 228);
+            this.dgvAuditoria.Location = new System.Drawing.Point(55, 230);
             this.dgvAuditoria.Name = "dgvAuditoria";
             this.dgvAuditoria.Size = new System.Drawing.Size(553, 199);
             this.dgvAuditoria.TabIndex = 7;
