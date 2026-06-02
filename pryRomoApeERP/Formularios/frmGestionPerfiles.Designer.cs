@@ -32,7 +32,7 @@
             this.lblMailNuevoP = new System.Windows.Forms.Label();
             this.btnGuardarPerfiles = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.txtMailAniadirPerfil = new System.Windows.Forms.TextBox();
+            this.cboMail = new System.Windows.Forms.ComboBox();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.lstPerfiles = new System.Windows.Forms.CheckedListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -73,13 +73,15 @@
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // txtMailAniadirPerfil
+            // cboMail
             // 
-            this.txtMailAniadirPerfil.Location = new System.Drawing.Point(146, 215);
-            this.txtMailAniadirPerfil.Name = "txtMailAniadirPerfil";
-            this.txtMailAniadirPerfil.Size = new System.Drawing.Size(220, 20);
-            this.txtMailAniadirPerfil.TabIndex = 7;
-            this.txtMailAniadirPerfil.TextChanged += new System.EventHandler(this.txtMailAniadirPerfil_TextChanged);
+            this.cboMail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMail.FormattingEnabled = true;
+            this.cboMail.Location = new System.Drawing.Point(146, 215);
+            this.cboMail.Name = "cboMail";
+            this.cboMail.Size = new System.Drawing.Size(220, 21);
+            this.cboMail.TabIndex = 7;
+            this.cboMail.SelectedIndexChanged += new System.EventHandler(this.cboMail_SelectedIndexChanged);
             // 
             // btnActualizar
             // 
@@ -90,6 +92,7 @@
             this.btnActualizar.TabIndex = 8;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // lstPerfiles
             // 
@@ -126,7 +129,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.lstPerfiles);
-            this.Controls.Add(this.txtMailAniadirPerfil);
+            this.Controls.Add(this.cboMail);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardarPerfiles);
             this.Controls.Add(this.lblMailNuevoP);
@@ -144,7 +147,7 @@
         private System.Windows.Forms.Label lblMailNuevoP;
         private System.Windows.Forms.Button btnGuardarPerfiles;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.TextBox txtMailAniadirPerfil;
+        private System.Windows.Forms.ComboBox cboMail;
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.CheckedListBox lstPerfiles;
         private System.Windows.Forms.PictureBox pictureBox1;

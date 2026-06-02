@@ -114,5 +114,16 @@ namespace pryRomoApeERP
                 );
             }
         }
+
+        private void btnSalirApp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                registroAuditoria?.RegistrarAccion(mailUsuario, "Cerró la aplicación");
+            }
+            catch { }
+
+            Application.Exit();
+        }
     }
 }

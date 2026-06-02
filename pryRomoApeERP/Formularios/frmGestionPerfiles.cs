@@ -26,14 +26,15 @@ namespace pryRomoApeERP
             try
             {
                 archivoBD = new Archivo("Romo.accdb");
-                
+
                 if (archivoBD.Conexion != null && archivoBD.Conexion.EstaConectado)
                 {
                     tablaPerfilesAcceso = new tablaPerfil(archivoBD.Conexion);
                     tablaUsuariosAcceso = new tablaUsuario(archivoBD.Conexion);
                     auditoria = new RegistroAuditoria(archivoBD.Conexion);
-                    
+
                     CargarPerfilesDisponibles();
+                    CargarCorreosEnCombo();
                 }
                 else
                 {
@@ -51,13 +52,14 @@ namespace pryRomoApeERP
             try
             {
                 lstPerfiles.Items.Clear();
-                
-                List<PerfilInfo> perfiles = tablaPerfilesAcceso.ObtenerTodosPerfiles();
-                
-                foreach (PerfilInfo perfil in perfiles)
-                {
-                    lstPerfiles.Items.Add(perfil.Nombre, false);
-                }
+
+                // Cargar manualmente los perfiles solicitados
+                lstPerfiles.Items.Add("Admin", false);
+                lstPerfiles.Items.Add("Logis", false);
+                lstPerfiles.Items.Add("Venta", false);
+                lstPerfiles.Items.Add("Marke", false);
+                lstPerfiles.Items.Add("RRHH", false);
+                lstPerfiles.Items.Add("Conta", false);
 
                 if (!string.IsNullOrWhiteSpace(mailUsuario))
                 {
@@ -70,19 +72,52 @@ namespace pryRomoApeERP
             }
         }
 
+        private void CargarCorreosEnCombo()
+        {
+            try
+            {
+                cboMail.Items.Clear();
+
+                List<UsuarioInfo> usuarios = tablaUsuariosAcceso.ObtenerTodosUsuarios();
+
+                foreach (var u in usuarios)
+                {
+                    cboMail.Items.Add(u.Mail);
+                }
+
+                if (!string.IsNullOrWhiteSpace(mailUsuario))
+                {
+                    int index = cboMail.Items.IndexOf(mailUsuario);
+                    if (index >= 0)
+                        cboMail.SelectedIndex = index;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar correos:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void CargarPerfilesUsuario()
         {
             try
             {
-                List<PerfilInfo> perfilesUsuario = tablaPerfilesAcceso.ObtenerPerfilesUsuario(mailUsuario);
-                
+                string mail = cboMail.SelectedItem != null ? cboMail.SelectedItem.ToString() : mailUsuario;
+
+                if (string.IsNullOrWhiteSpace(mail))
+                    return;
+
+                List<PerfilInfo> perfilesUsuario = tablaPerfilesAcceso.ObtenerPerfilesUsuario(mail);
+
                 for (int i = 0; i < lstPerfiles.Items.Count; i++)
                 {
                     string nombrePerfil = lstPerfiles.Items[i].ToString();
-                    
+
                     bool tieneEstePerfil = perfilesUsuario.Exists(p => p.Nombre == nombrePerfil);
                     lstPerfiles.SetItemChecked(i, tieneEstePerfil);
                 }
+
+                auditoria?.RegistrarAccion(mailUsuario, $"Actualizó selección de perfiles para {mail}");
             }
             catch (Exception ex)
             {
@@ -94,13 +129,13 @@ namespace pryRomoApeERP
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtMailAniadirPerfil.Text))
+                string mailNuevo = cboMail.SelectedItem != null ? cboMail.SelectedItem.ToString() : string.Empty;
+
+                if (string.IsNullOrWhiteSpace(mailNuevo))
                 {
-                    MessageBox.Show("Por favor ingrese un mail de usuario.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Por favor seleccione un mail de usuario.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                string mailNuevo = txtMailAniadirPerfil.Text.Trim();
 
                 // Verificar que el usuario exista
                 if (!tablaUsuariosAcceso.UsuarioExiste(mailNuevo))
@@ -109,50 +144,51 @@ namespace pryRomoApeERP
                     return;
                 }
 
-                // Obtener el perfil seleccionado
-                int perfilSeleccionado = -1;
+                bool almenosUno = false;
+                // Asignar o quitar perfiles en la base de datos según estado del CheckedListBox
+                // Primero, para simplicidad, asignar perfiles seleccionados (solo asignaciones nuevas)
                 for (int i = 0; i < lstPerfiles.Items.Count; i++)
                 {
                     if (lstPerfiles.GetItemChecked(i))
                     {
+                        almenosUno = true;
                         string nombrePerfil = lstPerfiles.Items[i].ToString();
-                        List<PerfilInfo> perfiles = tablaPerfilesAcceso.ObtenerTodosPerfiles();
-                        
-                        foreach (PerfilInfo perfil in perfiles)
+                        int idPerfil = MapearNombreAIdPerfil(nombrePerfil);
+                        if (idPerfil > 0)
                         {
-                            if (perfil.Nombre == nombrePerfil)
-                            {
-                                perfilSeleccionado = perfil.IdPerfil;
-                                break;
-                            }
+                            tablaPerfilesAcceso.AsignarPerfilUsuario(mailNuevo, idPerfil);
                         }
-                        
-                        if (perfilSeleccionado != -1)
-                            break;
                     }
                 }
 
-                if (perfilSeleccionado == -1)
+                if (!almenosUno)
                 {
-                    MessageBox.Show("Por favor seleccione un perfil para asignar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Por favor seleccione al menos un perfil para asignar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (tablaPerfilesAcceso.AsignarPerfilUsuario(mailNuevo, perfilSeleccionado))
-                {
-                    auditoria.RegistrarAccion(mailUsuario, $"Asignó perfil al usuario {mailNuevo}");
-                    MessageBox.Show("Perfil asignado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtMailAniadirPerfil.Clear();
-                    CargarPerfilesDisponibles();
-                }
-                else
-                {
-                    MessageBox.Show("Error al asignar el perfil.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                auditoria?.RegistrarAccion(mailUsuario, $"Asignó perfiles al usuario {mailNuevo}");
+                MessageBox.Show("Perfiles procesados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CargarPerfilesDisponibles();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al guardar perfil:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private int MapearNombreAIdPerfil(string nombre)
+        {
+            switch (nombre)
+            {
+                case "Admin": return 1;
+                case "Logis": return 2;
+                case "Venta": return 3;
+                case "Marke": return 4;
+                case "RRHH": return 5;
+                case "Conta": return 6;
+                default: return -1;
             }
         }
 
@@ -161,7 +197,7 @@ namespace pryRomoApeERP
             if (MessageBox.Show("¿Desea salir de la gestión de perfiles?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 auditoria.RegistrarAccion(mailUsuario, "Salió de la gestión de perfiles");
-                
+
                 if (archivoBD?.Conexion != null)
                 {
                     archivoBD.Conexion.Desconectar();
@@ -173,9 +209,16 @@ namespace pryRomoApeERP
             }
         }
 
-        private void txtMailAniadirPerfil_TextChanged(object sender, EventArgs e)
+        private void cboMail_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Evento para cambios en el TextBox del mail
+            // Al seleccionar un correo, limpiar y marcar los perfiles correspondientes
+            CargarPerfilesUsuario();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            // Actualizar marcación de perfiles de acuerdo al correo seleccionado
+            CargarPerfilesUsuario();
         }
     }
 }

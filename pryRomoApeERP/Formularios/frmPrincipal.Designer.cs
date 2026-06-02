@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnInfoAuditoria = new System.Windows.Forms.Button();
             this.btnGestionarPerfiles = new System.Windows.Forms.Button();
+            this.btnSalirApp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGestionDatosPersonales
@@ -80,12 +81,25 @@
             this.btnGestionarPerfiles.UseVisualStyleBackColor = false;
             this.btnGestionarPerfiles.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnSalirApp
+            // 
+            this.btnSalirApp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSalirApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.btnSalirApp.Location = new System.Drawing.Point(480, 160);
+            this.btnSalirApp.Name = "btnSalirApp";
+            this.btnSalirApp.Size = new System.Drawing.Size(152, 34);
+            this.btnSalirApp.TabIndex = 4;
+            this.btnSalirApp.Text = "Salir";
+            this.btnSalirApp.UseVisualStyleBackColor = false;
+            this.btnSalirApp.Click += new System.EventHandler(this.btnSalirApp_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(660, 516);
+            this.Controls.Add(this.btnSalirApp);
             this.Controls.Add(this.btnGestionarPerfiles);
             this.Controls.Add(this.btnInfoAuditoria);
             this.Controls.Add(this.label1);
@@ -105,5 +119,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnInfoAuditoria;
         private System.Windows.Forms.Button btnGestionarPerfiles;
+        private System.Windows.Forms.Button btnSalirApp;
     }
 }

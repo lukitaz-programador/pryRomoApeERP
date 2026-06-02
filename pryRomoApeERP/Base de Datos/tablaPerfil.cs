@@ -90,11 +90,11 @@ namespace pryRomoApeERP.Base_de_Datos
                     return listaPerfiles;
                 }
 
+                // Access SQL requires parentheses when chaining JOINs
                 string consulta = @"
                     SELECT DISTINCT p.idPerfil, p.nombre, p.descripcion 
-                    FROM tablaPerfil p
-                    INNER JOIN tablaRUP r ON p.idPerfil = r.idPerfil
-                    INNER JOIN tablaUsuario u ON r.idUsuario = u.idUsuario
+                    FROM (tablaPerfil p INNER JOIN tablaRUP r ON p.idPerfil = r.idPerfil) 
+                    INNER JOIN tablaUsuario u ON r.idUsuario = u.idUsuario 
                     WHERE u.mail = ?
                     ORDER BY p.nombre";
 
