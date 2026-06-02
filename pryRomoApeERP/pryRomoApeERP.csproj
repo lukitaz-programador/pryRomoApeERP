@@ -128,7 +128,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Base de Datos\Romo.accdb">
+    <Content Include="Base de Datos\RomoBD.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="images.ico" />

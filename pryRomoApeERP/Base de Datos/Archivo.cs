@@ -25,16 +25,8 @@ namespace pryRomoApeERP.Base_de_Datos
         {
             try
             {
-                // Obtiene carpeta donde está ejecutándose el .exe
-                string rutaBase = AppDomain.CurrentDomain.BaseDirectory;
-
-                // Busca la base de datos dentro de:
-                // /Base de Datos/Romo.accdb
-                string rutaBD = Path.Combine(
-                                    rutaBase,
-                                    "Base de Datos",
-                                    NombreArchivo
-                                );
+                // Use the explicit absolute path provided
+                string rutaBD = @"C:\Users\Alumno\source\repos\lukitaz-programador\pryRomoApeERP\pryRomoApeERP\Base de Datos\RomoBD.accdb";
 
                 rutaBD = Path.GetFullPath(rutaBD);
 
