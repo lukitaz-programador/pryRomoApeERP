@@ -82,7 +82,6 @@
             this.txtMail = new System.Windows.Forms.TextBox();
             this.lblMail = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.chkEstado = new System.Windows.Forms.CheckBox();
             this.lblEstadoUsuario = new System.Windows.Forms.Label();
@@ -660,18 +659,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnCancelar.Location = new System.Drawing.Point(339, 473);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 34);
-            this.btnCancelar.TabIndex = 11;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // btnLimpiar
             // 
             this.btnLimpiar.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -710,7 +697,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.button1.Location = new System.Drawing.Point(258, 473);
+            this.button1.Location = new System.Drawing.Point(339, 473);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 34);
             this.button1.TabIndex = 25;
@@ -728,7 +715,6 @@
             this.Controls.Add(this.lblEstadoUsuario);
             this.Controls.Add(this.chkEstado);
             this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpContacto);
             this.Controls.Add(this.btnGuardarPer);
             this.Controls.Add(this.grpDatosPer);
@@ -737,6 +723,7 @@
             this.Name = "frmGestionDatosPersonales";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de datos personales";
+            this.Load += new System.EventHandler(this.frmGestionDatosPersonales_Load_1);
             this.grpDomicilio.ResumeLayout(false);
             this.grpDomicilio.PerformLayout();
             this.grpDatosPer.ResumeLayout(false);
@@ -786,7 +773,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.TextBox txtFacebook;
         private System.Windows.Forms.TextBox txtTikTok;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.CheckBox chkEstado;
         private System.Windows.Forms.Label lblEstadoUsuario;

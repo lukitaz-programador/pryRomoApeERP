@@ -22,22 +22,24 @@ namespace pryRomoApeERP
         public frmGestionDatosPersonales(string mail = "")
         {
             InitializeComponent();
+
             mailUsuario = mail;
+
+            this.AcceptButton = btnGuardarPer;
         }
 
         bool todosLosDatos = false;
 
         private void ComprobarDatos()
         {
-            if (txtApellido.Text != "" && txtNombre.Text != "" 
-                && mskDNI.Text != "" && txtDireccion.Text != "" 
-                && txtTelefono.Text != "" && txtGeo.Text != ""
-                && txtMail.Text != ""
+            if (txtApellido.Text.Trim() != ""
+                && txtNombre.Text.Trim() != ""
+                && mskDNI.MaskCompleted
+                && txtDireccion.Text.Trim() != ""
+                && txtGeo.Text.Trim() != ""
+                && cmbProvincia.SelectedIndex != -1
                 && cmbLocalidad.SelectedIndex != -1
-                &&cmbProvincia.SelectedIndex != -1
-                && (txtFacebook.Text != "" || txtInstagram.Text != ""
-                || txtTelegram.Text != "" || txtTikTok.Text != ""
-                || txtX.Text != ""))
+                && (txtMail.Text.Trim() != "" || txtTelefono.Text.Trim() != ""))
             {
                 todosLosDatos = true;
             }
@@ -141,54 +143,71 @@ namespace pryRomoApeERP
 
         private void btnGuardarPer_Click(object sender, EventArgs e)
         {
-            if (todosLosDatos == true)
-            {
-                if (chkEstado.Checked == false)
-                {
-                    if (MessageBox.Show("¿Desea guardar los datos con el estado 'Inactivo'?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        // Guardar datos con estado 'Inactivo'
-                        MessageBox.Show("Datos guardados con estado 'Inactivo'");
-                    }
-                    else
-                    {
-                        // No guardar datos
-                    }
-                }
+            ComprobarDatos();
 
-            }
-            else
+            if (!todosLosDatos)
             {
-                MessageBox.Show("Faltan datos por completar");
+                MessageBox.Show(
+                    "Faltan datos obligatorios por completar.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            string estado = chkEstado.Checked ? "Activo" : "Inactivo";
+
+            if (MessageBox.Show(
+                $"¿Desea guardar los datos con estado '{estado}'?",
+                "Guardar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                // AQUÍ VA EL GUARDADO EN ACCESS
+
+                MessageBox.Show(
+                    "Datos guardados correctamente.",
+                    "Guardar",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("¿Desea cancelar el ingreso de datos?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Close();
-            }
-        }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Desea limpiar los datos ingresados?", "Limpiar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(
+                "¿Desea limpiar los datos ingresados?",
+                "Limpiar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 txtApellido.Clear();
                 txtNombre.Clear();
                 mskDNI.Clear();
+
                 txtDireccion.Clear();
                 txtGeo.Clear();
+
                 txtMail.Clear();
                 txtTelefono.Clear();
+
                 txtTelegram.Clear();
                 txtX.Clear();
                 txtInstagram.Clear();
                 txtTikTok.Clear();
                 txtFacebook.Clear();
+
                 cmbProvincia.SelectedIndex = -1;
+
+                cmbLocalidad.Items.Clear();
                 cmbLocalidad.SelectedIndex = -1;
+
+                chkEstado.Checked = false;
+                chkResidencia.Checked = false;
+
+                todosLosDatos = false;
             }
         }
 
@@ -206,24 +225,47 @@ namespace pryRomoApeERP
 
         private void chkResidencia_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkEstado.Checked)
+            if (chkResidencia.Checked)
             {
-                chkEstado.Text = "Si, reside.";
+                chkResidencia.Text = "Sí, reside";
             }
             else
             {
-                chkEstado.Text = "No, no reside.";
+                chkResidencia.Text = "No, no reside";
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Desea salir de la gestión de datos personales?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(
+                "¿Desea salir de la gestión de datos personales?",
+                "Salir",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                frmPrincipal paso = new frmPrincipal(mailUsuario);
-                paso.Show();
-                this.Hide();
+                this.Close();
             }
+        }
+
+        private void mskDNI_TextChanged(object sender, EventArgs e)
+        {
+            ComprobarDatos();
+        }
+
+        private void frmGestionDatosPersonales_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void frmGestionDatosPersonales_Load_1(object sender, EventArgs e)
+        {
+            chkEstado.Checked = false;
+            chkEstado.Text = "Inactivo";
+
+            chkResidencia.Checked = false;
+            chkResidencia.Text = "No, no reside";
+
+            this.AcceptButton = btnGuardarPer;
         }
     }
 }

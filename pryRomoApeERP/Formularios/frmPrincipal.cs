@@ -125,5 +125,16 @@ namespace pryRomoApeERP
 
             Application.Exit();
         }
+
+        private void gestiónDeDatosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGestionDatosPersonales x = new frmGestionDatosPersonales(mailUsuario);
+            x.Show();
+        }
+        private void verInformacionDeAuditoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmInformacionAuditoria x = new frmInformacionAuditoria(mailUsuario);
+            x.Show();
+        }
     }
 }
