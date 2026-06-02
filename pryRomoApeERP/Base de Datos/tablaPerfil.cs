@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace pryRomoApeERP.Base_de_Datos
@@ -28,12 +29,13 @@ namespace pryRomoApeERP.Base_de_Datos
             {
                 if (conexionBD?.Conexion == null || conexionBD.Conexion.State != ConnectionState.Open)
                 {
-                    MessageBox.Show("Error: La conexión a la base de datos no está disponible.");
+                    MessageBox.Show("Error: La conexi\u00f3n a la base de datos no est\u00e1 disponible.");
                     return listaPerfiles;
                 }
 
+                // Asegurar que el campo descripcion siempre exista en el resultado
                 string consulta = @"
-                    SELECT idPerfil, nombre, descripcion 
+                    SELECT idPerfil, nombre, '' AS descripcion 
                     FROM tablaPerfil 
                     ORDER BY nombre";
 
@@ -74,7 +76,7 @@ namespace pryRomoApeERP.Base_de_Datos
         }
 
         /// <summary>
-        /// Obtiene los perfiles de un usuario específico
+        /// Obtiene los perfiles de un usuario especdfico
         /// </summary>
         public List<PerfilInfo> ObtenerPerfilesUsuario(string mailUsuario)
         {
@@ -86,21 +88,56 @@ namespace pryRomoApeERP.Base_de_Datos
             {
                 if (conexionBD?.Conexion == null || conexionBD.Conexion.State != ConnectionState.Open)
                 {
-                    MessageBox.Show("Error: La conexión a la base de datos no está disponible.");
+                    MessageBox.Show("Error: La conexi\u00f3n a la base de datos no est\u00e1 disponible.");
                     return listaPerfiles;
                 }
 
-                // Access SQL requires parentheses when chaining JOINs
-                string consulta = @"
-                    SELECT DISTINCT p.idPerfil, p.nombre, p.descripcion 
-                    FROM (tablaPerfil p INNER JOIN tablaRUP r ON p.idPerfil = r.idPerfil) 
-                    INNER JOIN tablaUsuario u ON r.idUsuario = u.idUsuario 
-                    WHERE u.mail = ?
-                    ORDER BY p.nombre";
+                // Obtener idUsuario a partir del mail
+                int idUsuario = ObtenerIdUsuarioByMail(mailUsuario);
+                if (idUsuario <= 0)
+                {
+                    return listaPerfiles; // usuario no encontrado
+                }
+
+                // Primero obtener lista de idPerfil desde tablaRUP para ese idUsuario
+                string consultaRUP = "SELECT idPerfil FROM tablaRUP WHERE idUsuario = ?";
+                cmd = new OleDbCommand(consultaRUP, conexionBD.Conexion);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.Add("@idUsuario", OleDbType.Integer).Value = idUsuario;
+
+                reader = cmd.ExecuteReader();
+
+                List<int> idsPerfiles = new List<int>();
+                while (reader.Read())
+                {
+                    if (!reader.IsDBNull(0))
+                    {
+                        int val = Convert.ToInt32(reader[0]);
+                        idsPerfiles.Add(val);
+                    }
+                }
+
+                reader.Close();
+                cmd.Dispose();
+                reader = null;
+                cmd = null;
+
+                if (idsPerfiles.Count == 0)
+                {
+                    return listaPerfiles; // no tiene perfiles asignados
+                }
+
+                // Construir consulta segura para obtener nombres de perfiles usando IN (valores numéricos)
+                string inClause = string.Join(",", idsPerfiles.Distinct().Select(i => i.ToString()));
+
+                string consulta = $@"
+                    SELECT idPerfil, nombre, '' AS descripcion
+                    FROM tablaPerfil
+                    WHERE idPerfil IN ({inClause})
+                    ORDER BY nombre";
 
                 cmd = new OleDbCommand(consulta, conexionBD.Conexion);
                 cmd.CommandType = CommandType.Text;
-                cmd.Parameters.Add("@mail", OleDbType.VarChar).Value = mailUsuario;
 
                 reader = cmd.ExecuteReader();
 
@@ -146,7 +183,7 @@ namespace pryRomoApeERP.Base_de_Datos
             {
                 if (conexionBD?.Conexion == null || conexionBD.Conexion.State != ConnectionState.Open)
                 {
-                    MessageBox.Show("Error: La conexión a la base de datos no está disponible.");
+                    MessageBox.Show("Error: La conexi\u00f3n a la base de datos no est\u00e1 disponible.");
                     return false;
                 }
 
@@ -164,32 +201,35 @@ namespace pryRomoApeERP.Base_de_Datos
                     return false;
                 }
 
-                // Verificar si ya existe la asignación
+                // Verificar si ya existe la asignaci3n
                 string consultaVerificar = @"
                     SELECT COUNT(*) as cantidad 
                     FROM tablaRUP 
                     WHERE idUsuario = ? AND idPerfil = ?";
 
                 cmd = new OleDbCommand(consultaVerificar, conexionBD.Conexion);
-                cmd.Parameters.Add("@idUsuario", OleDbType.Integer).Value = idUsuario;
-                cmd.Parameters.Add("@idPerfil", OleDbType.Integer).Value = idPerfil;
+                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                cmd.Parameters.AddWithValue("@idPerfil", idPerfil);
 
-                int cantidad = (int)cmd.ExecuteScalar();
+                object scalar = cmd.ExecuteScalar();
+                int cantidad = 0;
+                if (scalar != null && scalar != DBNull.Value)
+                    cantidad = Convert.ToInt32(scalar);
 
                 if (cantidad > 0)
                 {
-                    MessageBox.Show("Error: El usuario ya tiene asignado este perfil.");
+                    // ya existe, no insertar
                     return false;
                 }
 
-                // Insertar la asignación
+                // Insertar la asignaci3n
                 string consulta = @"
                     INSERT INTO tablaRUP (idUsuario, idPerfil) 
                     VALUES (?, ?)";
 
                 cmd = new OleDbCommand(consulta, conexionBD.Conexion);
-                cmd.Parameters.Add("@idUsuario", OleDbType.Integer).Value = idUsuario;
-                cmd.Parameters.Add("@idPerfil", OleDbType.Integer).Value = idPerfil;
+                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                cmd.Parameters.AddWithValue("@idPerfil", idPerfil);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -235,7 +275,7 @@ namespace pryRomoApeERP.Base_de_Datos
             {
                 string consulta = "SELECT idUsuario FROM tablaUsuario WHERE mail = ?";
                 cmd = new OleDbCommand(consulta, conexionBD.Conexion);
-                cmd.Parameters.Add("@mail", OleDbType.VarChar).Value = mail;
+                cmd.Parameters.AddWithValue("@mail", mail);
 
                 reader = cmd.ExecuteReader();
 
