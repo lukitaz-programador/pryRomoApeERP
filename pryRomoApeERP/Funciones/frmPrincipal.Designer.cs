@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSalirApp = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,11 +44,10 @@
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblPerfil = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblConexion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrReloj = new System.Windows.Forms.Timer(this.components);
+            this.btnSalirApp = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -58,23 +56,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.label1.Location = new System.Drawing.Point(190, 57);
+            this.label1.Location = new System.Drawing.Point(12, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(310, 39);
             this.label1.TabIndex = 1;
             this.label1.Text = "MENÚ PRINCIPAL";
-            // 
-            // btnSalirApp
-            // 
-            this.btnSalirApp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnSalirApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnSalirApp.Location = new System.Drawing.Point(569, 454);
-            this.btnSalirApp.Name = "btnSalirApp";
-            this.btnSalirApp.Size = new System.Drawing.Size(79, 28);
-            this.btnSalirApp.TabIndex = 4;
-            this.btnSalirApp.Text = "Salir";
-            this.btnSalirApp.UseVisualStyleBackColor = false;
-            this.btnSalirApp.Click += new System.EventHandler(this.btnSalirApp_Click);
             // 
             // menuStrip1
             // 
@@ -85,7 +71,7 @@
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(660, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1924, 24);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -101,14 +87,15 @@
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // gestiónToolStripMenuItem
             // 
@@ -123,21 +110,21 @@
             // datosPersonalesToolStripMenuItem
             // 
             this.datosPersonalesToolStripMenuItem.Name = "datosPersonalesToolStripMenuItem";
-            this.datosPersonalesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.datosPersonalesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.datosPersonalesToolStripMenuItem.Text = "Datos Personales";
             this.datosPersonalesToolStripMenuItem.Click += new System.EventHandler(this.datosPersonalesToolStripMenuItem_Click);
             // 
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // perfilesToolStripMenuItem
             // 
             this.perfilesToolStripMenuItem.Name = "perfilesToolStripMenuItem";
-            this.perfilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.perfilesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.perfilesToolStripMenuItem.Text = "Perfiles";
             this.perfilesToolStripMenuItem.Click += new System.EventHandler(this.perfilesToolStripMenuItem_Click);
             // 
@@ -152,7 +139,7 @@
             // verAuditoríaToolStripMenuItem
             // 
             this.verAuditoríaToolStripMenuItem.Name = "verAuditoríaToolStripMenuItem";
-            this.verAuditoríaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verAuditoríaToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.verAuditoríaToolStripMenuItem.Text = "Ver Auditoría";
             this.verAuditoríaToolStripMenuItem.Click += new System.EventHandler(this.verAuditoríaToolStripMenuItem_Click);
             // 
@@ -174,13 +161,11 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblUsuario,
-            this.lblPerfil,
             this.lblConexion,
-            this.lblEstado,
             this.lblFecha});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 494);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 1039);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(660, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1924, 22);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
@@ -191,23 +176,11 @@
             this.lblUsuario.Size = new System.Drawing.Size(118, 17);
             this.lblUsuario.Text = "toolStripStatusLabel1";
             // 
-            // lblPerfil
-            // 
-            this.lblPerfil.Name = "lblPerfil";
-            this.lblPerfil.Size = new System.Drawing.Size(118, 17);
-            this.lblPerfil.Text = "toolStripStatusLabel2";
-            // 
             // lblConexion
             // 
             this.lblConexion.Name = "lblConexion";
             this.lblConexion.Size = new System.Drawing.Size(118, 17);
             this.lblConexion.Text = "toolStripStatusLabel3";
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(118, 17);
-            this.lblEstado.Text = "toolStripStatusLabel1";
             // 
             // lblFecha
             // 
@@ -220,15 +193,27 @@
             this.tmrReloj.Interval = 1000;
             this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
             // 
+            // btnSalirApp
+            // 
+            this.btnSalirApp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSalirApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.btnSalirApp.Location = new System.Drawing.Point(1802, 12);
+            this.btnSalirApp.Name = "btnSalirApp";
+            this.btnSalirApp.Size = new System.Drawing.Size(110, 42);
+            this.btnSalirApp.TabIndex = 7;
+            this.btnSalirApp.Text = "Salir";
+            this.btnSalirApp.UseVisualStyleBackColor = false;
+            this.btnSalirApp.Click += new System.EventHandler(this.btnSalirApp_Click_1);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(660, 516);
+            this.ClientSize = new System.Drawing.Size(1924, 1061);
+            this.Controls.Add(this.btnSalirApp);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnSalirApp);
             this.Controls.Add(this.menuStrip1);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -246,7 +231,6 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSalirApp;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem sistemaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesiónToolStripMenuItem;
@@ -261,10 +245,9 @@
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
-        private System.Windows.Forms.ToolStripStatusLabel lblPerfil;
         private System.Windows.Forms.ToolStripStatusLabel lblConexion;
         private System.Windows.Forms.ToolStripStatusLabel lblFecha;
         private System.Windows.Forms.Timer tmrReloj;
-        private System.Windows.Forms.ToolStripStatusLabel lblEstado;
+        private System.Windows.Forms.Button btnSalirApp;
     }
 }

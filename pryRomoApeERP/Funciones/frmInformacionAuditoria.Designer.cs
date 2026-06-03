@@ -116,7 +116,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(660, 516);
+            this.ClientSize = new System.Drawing.Size(707, 516);
             this.Controls.Add(this.dgvAuditoria);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnConsultar);

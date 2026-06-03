@@ -38,7 +38,7 @@ namespace pryRomoApeERP
             try
             {
                 //Carga la BD
-                archivoBD = new Archivo("Romo.accdb");
+                archivoBD = new Archivo("RomoBD.accdb");
 
                 //Obtiene la conexión
                 conexionBD = archivoBD.Conexion;

@@ -14,6 +14,7 @@ namespace pryRomoApeERP
         private tablaUsuario tablaUsuariosAcceso;
         private RegistroAuditoria auditoria;
 
+
         public frmGestionPerfiles(string mail = "")
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace pryRomoApeERP
         {
             try
             {
-                archivoBD = new Archivo("Romo.accdb");
+                archivoBD = new Archivo("RomoBD.accdb");
 
                 if (archivoBD.Conexion != null && archivoBD.Conexion.EstaConectado)
                 {

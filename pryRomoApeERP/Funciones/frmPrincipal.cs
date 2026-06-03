@@ -29,14 +29,11 @@ namespace pryRomoApeERP
         {
             try
             {
-                archivoBD = new Archivo("Romo.accdb");
+                archivoBD = new Archivo("RomoBD.accdb");
                 conexionBD = archivoBD.Conexion;
                 registroAuditoria = new RegistroAuditoria(conexionBD);
 
                 lblUsuario.Text = $"Usuario: {mailUsuario}";
-
-                // Por ahora dejamos un perfil genérico
-                lblPerfil.Text = "Perfiles: Sin definir";
 
                 if (conexionBD != null &&
                     conexionBD.EstaConectado)
@@ -47,8 +44,6 @@ namespace pryRomoApeERP
                 {
                     lblConexion.Text = "BD: Desconectada";
                 }
-
-                lblEstado.Text = "Sistema Operativo";
 
                 lblFecha.Text =
                     DateTime.Now.ToString(
@@ -139,6 +134,16 @@ namespace pryRomoApeERP
         {
             frmInformacionAuditoria paso = new frmInformacionAuditoria();
             paso.ShowDialog();
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSalirApp_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

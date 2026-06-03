@@ -25,24 +25,18 @@ namespace pryRomoApeERP.Base_de_Datos
         {
             try
             {
-                // Use the explicit absolute path provided
                 string rutaBD =
                 Path.Combine(
-                 Application.StartupPath,
-                 "Base de Datos",
-                 "RomoBD.accdb");
-                
+                Application.StartupPath,
+                @"..\..\Base de Datos\Bases",
+                 NombreArchivo);
+
                 rutaBD = Path.GetFullPath(rutaBD);
 
                 if (!File.Exists(rutaBD))
                 {
                     MessageBox.Show(
-                        $"No se encontró la base de datos:\n{rutaBD}",
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-
+                        $"No se encontró la base de datos:\n{rutaBD}");
                     return;
                 }
 
@@ -51,12 +45,7 @@ namespace pryRomoApeERP.Base_de_Datos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Error:\n" + ex.Message,
-                    "Error de conexión",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show(ex.Message);
             }
         }
     }

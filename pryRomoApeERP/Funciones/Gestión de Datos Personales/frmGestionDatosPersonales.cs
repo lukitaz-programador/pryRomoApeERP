@@ -17,6 +17,8 @@ namespace pryRomoApeERP
 {
     public partial class frmGestionDatosPersonales : Form
     {
+        private Archivo archivoLocalidades;
+        private ConexionDB conexionLocalidades;
         private string mailUsuario;
         private Archivo archivoBD;
         private ConexionDB conexionBD;
@@ -29,10 +31,16 @@ namespace pryRomoApeERP
             try
             {
                 archivoBD =
-                    new Archivo("LocalidadesBD.accdb");
+                new Archivo("RomoBD.accdb");
 
                 conexionBD =
                     archivoBD.Conexion;
+
+                archivoLocalidades =
+                    new Archivo("LocalidadesBD.accdb");
+
+                conexionLocalidades =
+                    archivoLocalidades.Conexion;
 
                 InicializarControles();
 
@@ -40,8 +48,7 @@ namespace pryRomoApeERP
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -79,7 +86,7 @@ namespace pryRomoApeERP
                 OleDbCommand cmd =
                     new OleDbCommand(
                         sql,
-                        conexionBD.Conexion);
+                        conexionLocalidades.Conexion);
 
                 OleDbDataReader lector =
                     cmd.ExecuteReader();
@@ -115,7 +122,7 @@ namespace pryRomoApeERP
                 OleDbCommand cmd =
                     new OleDbCommand(
                         sql,
-                        conexionBD.Conexion);
+                        conexionLocalidades.Conexion);
 
                 cmd.Parameters.AddWithValue(
                     "@Provincia",

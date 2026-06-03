@@ -23,7 +23,7 @@ namespace pryRomoApeERP
         {
             try
             {
-                archivoBD = new Archivo("Romo.accdb");
+                archivoBD = new Archivo("RomoBD.accdb");
                 conexionBD = archivoBD.Conexion;
 
                 if (conexionBD != null &&
