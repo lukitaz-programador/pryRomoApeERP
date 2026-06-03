@@ -69,7 +69,7 @@
             // 
             this.lblMail.AutoSize = true;
             this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.lblMail.Location = new System.Drawing.Point(167, 204);
+            this.lblMail.Location = new System.Drawing.Point(169, 210);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(37, 17);
             this.lblMail.TabIndex = 2;
@@ -79,7 +79,7 @@
             // 
             this.lblContrasenia.AutoSize = true;
             this.lblContrasenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.lblContrasenia.Location = new System.Drawing.Point(167, 254);
+            this.lblContrasenia.Location = new System.Drawing.Point(169, 260);
             this.lblContrasenia.Name = "lblContrasenia";
             this.lblContrasenia.Size = new System.Drawing.Size(85, 17);
             this.lblContrasenia.TabIndex = 3;
@@ -87,7 +87,7 @@
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(210, 204);
+            this.txtMail.Location = new System.Drawing.Point(212, 210);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(244, 20);
             this.txtMail.TabIndex = 4;
@@ -95,10 +95,10 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnLogin.Enabled = false;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnLogin.Location = new System.Drawing.Point(367, 326);
+            this.btnLogin.Location = new System.Drawing.Point(369, 332);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(87, 30);
             this.btnLogin.TabIndex = 6;
@@ -108,7 +108,7 @@
             // 
             // txtContrasenia
             // 
-            this.txtContrasenia.Location = new System.Drawing.Point(258, 254);
+            this.txtContrasenia.Location = new System.Drawing.Point(260, 260);
             this.txtContrasenia.Name = "txtContrasenia";
             this.txtContrasenia.Size = new System.Drawing.Size(196, 20);
             this.txtContrasenia.TabIndex = 7;
@@ -117,7 +117,7 @@
             // lblVerCon
             // 
             this.lblVerCon.AutoSize = true;
-            this.lblVerCon.Location = new System.Drawing.Point(338, 281);
+            this.lblVerCon.Location = new System.Drawing.Point(340, 287);
             this.lblVerCon.Name = "lblVerCon";
             this.lblVerCon.Size = new System.Drawing.Size(82, 13);
             this.lblVerCon.TabIndex = 8;
@@ -126,7 +126,7 @@
             // chkVer
             // 
             this.chkVer.AutoSize = true;
-            this.chkVer.Location = new System.Drawing.Point(426, 281);
+            this.chkVer.Location = new System.Drawing.Point(428, 287);
             this.chkVer.Name = "chkVer";
             this.chkVer.Size = new System.Drawing.Size(15, 14);
             this.chkVer.TabIndex = 9;
@@ -136,7 +136,7 @@
             // lblAcl
             // 
             this.lblAcl.AutoSize = true;
-            this.lblAcl.Location = new System.Drawing.Point(313, 231);
+            this.lblAcl.Location = new System.Drawing.Point(315, 237);
             this.lblAcl.Name = "lblAcl";
             this.lblAcl.Size = new System.Drawing.Size(128, 13);
             this.lblAcl.TabIndex = 10;
@@ -144,9 +144,9 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnLimpiar.Location = new System.Drawing.Point(286, 326);
+            this.btnLimpiar.Location = new System.Drawing.Point(288, 332);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 30);
             this.btnLimpiar.TabIndex = 11;
@@ -155,9 +155,9 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnSalir.Location = new System.Drawing.Point(205, 326);
+            this.btnSalir.Location = new System.Drawing.Point(207, 332);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 30);
             this.btnSalir.TabIndex = 12;
@@ -170,7 +170,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(249, 24);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(145, 138);
+            this.pictureBox1.Size = new System.Drawing.Size(171, 155);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
@@ -186,9 +186,10 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(660, 516);
             this.Controls.Add(this.fechaGuardada);
             this.Controls.Add(this.pictureBox1);
@@ -209,7 +210,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ape ERP";
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
-            this.AcceptButton = this.btnLogin;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

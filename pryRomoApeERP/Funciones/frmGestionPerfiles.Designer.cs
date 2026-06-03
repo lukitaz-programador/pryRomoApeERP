@@ -51,7 +51,7 @@
             // 
             // btnGuardarPerfiles
             // 
-            this.btnGuardarPerfiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnGuardarPerfiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnGuardarPerfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnGuardarPerfiles.Location = new System.Drawing.Point(500, 436);
             this.btnGuardarPerfiles.Name = "btnGuardarPerfiles";
@@ -63,7 +63,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnSalir.Location = new System.Drawing.Point(408, 436);
             this.btnSalir.Name = "btnSalir";
@@ -85,7 +85,7 @@
             // 
             // btnActualizar
             // 
-            this.btnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnActualizar.Location = new System.Drawing.Point(517, 260);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(109, 23);
@@ -107,15 +107,16 @@
             "Conta"});
             this.lstPerfiles.Location = new System.Drawing.Point(40, 261);
             this.lstPerfiles.Name = "lstPerfiles";
-            this.lstPerfiles.Size = new System.Drawing.Size(587, 169);
+            this.lstPerfiles.Size = new System.Drawing.Size(587, 164);
             this.lstPerfiles.TabIndex = 9;
+            this.lstPerfiles.SelectedIndexChanged += new System.EventHandler(this.lstPerfiles_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(193, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(40, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(264, 157);
+            this.pictureBox1.Size = new System.Drawing.Size(586, 157);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
@@ -124,7 +125,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(660, 516);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnActualizar);
@@ -133,9 +134,11 @@
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardarPerfiles);
             this.Controls.Add(this.lblMailNuevoP);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGestionPerfiles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de Perfiles";
+            this.Load += new System.EventHandler(this.frmGestionPerfiles_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

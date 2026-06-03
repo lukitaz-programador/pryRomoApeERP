@@ -1,4 +1,5 @@
 ﻿using pryRomoApeERP.Base_de_Datos;
+using pryRomoApeERP.Funciones.Login;
 using pryRomoApeERP.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,7 @@ namespace pryRomoApeERP
                 lstPerfiles.Items.Add("Marke", false);
                 lstPerfiles.Items.Add("RRHH", false);
                 lstPerfiles.Items.Add("Conta", false);
+                lstPerfiles.Items.Add("Basico", false);
 
                 if (!string.IsNullOrWhiteSpace(mailUsuario))
                 {
@@ -189,6 +191,7 @@ namespace pryRomoApeERP
                 case "Marke": return 4;
                 case "RRHH": return 5;
                 case "Conta": return 6;
+                case "Basico": return 7;
                 default: return -1;
             }
         }
@@ -220,6 +223,20 @@ namespace pryRomoApeERP
         {
             // Actualizar marcación de perfiles de acuerdo al correo seleccionado
             CargarPerfilesUsuario();
+        }
+
+        private void frmGestionPerfiles_Load(object sender, EventArgs e)
+        {
+            if (!Seguridad.EsAdmin())
+            {
+                MessageBox.Show("No posee permisos.");
+                this.Close();
+            }
+        }
+
+        private void lstPerfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

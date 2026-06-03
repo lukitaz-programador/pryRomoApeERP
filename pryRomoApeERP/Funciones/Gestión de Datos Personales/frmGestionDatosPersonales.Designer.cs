@@ -74,7 +74,7 @@
             // 
             // grpDomicilio
             // 
-            this.grpDomicilio.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.grpDomicilio.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.grpDomicilio.Controls.Add(this.btnBuscarUbicacion);
             this.grpDomicilio.Controls.Add(this.lstUbicaciones);
             this.grpDomicilio.Controls.Add(this.btnAgregarUbicacion);
@@ -98,12 +98,13 @@
             // 
             // btnBuscarUbicacion
             // 
+            this.btnBuscarUbicacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnBuscarUbicacion.Location = new System.Drawing.Point(291, 110);
             this.btnBuscarUbicacion.Name = "btnBuscarUbicacion";
             this.btnBuscarUbicacion.Size = new System.Drawing.Size(75, 21);
             this.btnBuscarUbicacion.TabIndex = 25;
             this.btnBuscarUbicacion.Text = "Buscar";
-            this.btnBuscarUbicacion.UseVisualStyleBackColor = true;
+            this.btnBuscarUbicacion.UseVisualStyleBackColor = false;
             this.btnBuscarUbicacion.Click += new System.EventHandler(this.btnBuscarUbicacion_Click);
             // 
             // lstUbicaciones
@@ -116,12 +117,13 @@
             // 
             // btnAgregarUbicacion
             // 
+            this.btnAgregarUbicacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnAgregarUbicacion.Location = new System.Drawing.Point(277, 391);
             this.btnAgregarUbicacion.Name = "btnAgregarUbicacion";
             this.btnAgregarUbicacion.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarUbicacion.TabIndex = 6;
             this.btnAgregarUbicacion.Text = "Agregar";
-            this.btnAgregarUbicacion.UseVisualStyleBackColor = true;
+            this.btnAgregarUbicacion.UseVisualStyleBackColor = false;
             this.btnAgregarUbicacion.Click += new System.EventHandler(this.btnAgregarUbicacion_Click);
             // 
             // chkResidencia
@@ -147,12 +149,13 @@
             // 
             // btnEliminarUbicacion
             // 
+            this.btnEliminarUbicacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnEliminarUbicacion.Location = new System.Drawing.Point(196, 391);
             this.btnEliminarUbicacion.Name = "btnEliminarUbicacion";
             this.btnEliminarUbicacion.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarUbicacion.TabIndex = 4;
             this.btnEliminarUbicacion.Text = "Eliminar";
-            this.btnEliminarUbicacion.UseVisualStyleBackColor = true;
+            this.btnEliminarUbicacion.UseVisualStyleBackColor = false;
             this.btnEliminarUbicacion.Click += new System.EventHandler(this.btnEliminarUbicacion_Click);
             // 
             // txtGeo
@@ -233,7 +236,7 @@
             // 
             // grpDatosPer
             // 
-            this.grpDatosPer.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.grpDatosPer.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.grpDatosPer.Controls.Add(this.mskDNI);
             this.grpDatosPer.Controls.Add(this.lblNombre);
             this.grpDatosPer.Controls.Add(this.lblEstadoUsuario);
@@ -328,7 +331,7 @@
             // 
             // btnGuardarPer
             // 
-            this.btnGuardarPer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnGuardarPer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnGuardarPer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnGuardarPer.Location = new System.Drawing.Point(649, 620);
             this.btnGuardarPer.Name = "btnGuardarPer";
@@ -340,7 +343,7 @@
             // 
             // grpContacto
             // 
-            this.grpContacto.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.grpContacto.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.grpContacto.Controls.Add(this.lblFormato);
             this.grpContacto.Controls.Add(this.txtValorContacto);
             this.grpContacto.Controls.Add(this.lblValor);
@@ -404,22 +407,24 @@
             // 
             // btnAgregarContacto
             // 
+            this.btnAgregarContacto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnAgregarContacto.Location = new System.Drawing.Point(290, 553);
             this.btnAgregarContacto.Name = "btnAgregarContacto";
             this.btnAgregarContacto.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarContacto.TabIndex = 12;
             this.btnAgregarContacto.Text = "Agregar";
-            this.btnAgregarContacto.UseVisualStyleBackColor = true;
+            this.btnAgregarContacto.UseVisualStyleBackColor = false;
             this.btnAgregarContacto.Click += new System.EventHandler(this.btnAgregarContacto_Click);
             // 
             // btnEliminarContacto
             // 
+            this.btnEliminarContacto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnEliminarContacto.Location = new System.Drawing.Point(209, 553);
             this.btnEliminarContacto.Name = "btnEliminarContacto";
             this.btnEliminarContacto.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarContacto.TabIndex = 10;
             this.btnEliminarContacto.Text = "Eliminar";
-            this.btnEliminarContacto.UseVisualStyleBackColor = true;
+            this.btnEliminarContacto.UseVisualStyleBackColor = false;
             // 
             // lstContactos
             // 
@@ -436,7 +441,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnLimpiar.Location = new System.Drawing.Point(568, 620);
             this.btnLimpiar.Name = "btnLimpiar";
@@ -448,7 +453,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnSalir.Location = new System.Drawing.Point(487, 620);
             this.btnSalir.Name = "btnSalir";
@@ -462,7 +467,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(810, 666);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);

@@ -1,4 +1,5 @@
 ﻿using pryRomoApeERP.Base_de_Datos;
+using pryRomoApeERP.Funciones.Login;
 using pryRomoApeERP.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -109,12 +110,22 @@ namespace pryRomoApeERP
         {
             try
             {
-                bool ingresoExitoso = false;
-
                 // Validar usuario
                 string consulta =
-                "SELECT * FROM tablaUsuario " +
-                "WHERE Mail=? AND Contrasenia=?";
+@"SELECT
+    U.IdUsuario,
+    U.Nombre,
+    U.Mail,
+    R.IdPerfil
+FROM
+    tablaUsuario U
+INNER JOIN
+    tablaRUP R
+ON
+    U.IdUsuario = R.IdUsuario
+WHERE
+    U.Mail = ?
+    AND U.Contrasenia = ?";
 
                 OleDbCommand cmd = new OleDbCommand(
                     consulta,
@@ -131,10 +142,23 @@ namespace pryRomoApeERP
                     txtContrasenia.Text
                 );
 
-                OleDbDataReader lector =
-                cmd.ExecuteReader();
+                OleDbDataReader lector = cmd.ExecuteReader();
 
-                ingresoExitoso = lector.Read();
+                bool ingresoExitoso = false;
+
+                if (lector.Read())
+                {
+                    ingresoExitoso = true;
+
+                    Sesion.IdUsuario =
+                        Convert.ToInt32(lector["IdUsuario"]);
+
+                    Sesion.IdPerfil =
+                        Convert.ToInt32(lector["IdPerfil"]);
+
+                    Sesion.NombreUsuario =
+                        lector["Nombre"].ToString();
+                }
 
                 lector.Close();
 
@@ -152,8 +176,9 @@ namespace pryRomoApeERP
                 // Resultado final
                 if (ingresoExitoso)
                 {
+                    
                     MessageBox.Show(
-    $"🎉 ¡Bienvenido al sistema! 🎉\n\n" +
+    $"🎉 ¡Bienvenido al sistema! " + Sesion.IdPerfil + " 🎉\n\n" +
     $"Nos alegra verte nuevamente.\n" +
     $"El acceso fue validado correctamente.\n\n" +
     $"¡Que tengas una excelente jornada! 🚀",

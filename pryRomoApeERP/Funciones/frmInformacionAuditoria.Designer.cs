@@ -80,13 +80,14 @@
             // 
             // Calendario
             // 
+            this.Calendario.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.Calendario.Location = new System.Drawing.Point(396, 18);
             this.Calendario.Name = "Calendario";
             this.Calendario.TabIndex = 4;
             // 
             // btnConsultar
             // 
-            this.btnConsultar.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnConsultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnConsultar.Location = new System.Drawing.Point(569, 447);
             this.btnConsultar.Name = "btnConsultar";
@@ -98,7 +99,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.btnSalir.Location = new System.Drawing.Point(488, 447);
             this.btnSalir.Name = "btnSalir";
@@ -120,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(674, 489);
             this.Controls.Add(this.dgvAuditoria);
             this.Controls.Add(this.btnSalir);

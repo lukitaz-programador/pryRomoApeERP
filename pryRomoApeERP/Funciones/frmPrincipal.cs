@@ -1,5 +1,6 @@
 ﻿using pryRomoApeERP.Base_de_Datos;
 using pryRomoApeERP.Funciones;
+using pryRomoApeERP.Funciones.Login;
 using pryRomoApeERP.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace pryRomoApeERP
         private ConexionDB conexionBD;
         private RegistroAuditoria registroAuditoria;
 
+
         public frmPrincipal(string mail = "")
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace pryRomoApeERP
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            AplicarPermisos();
             try
             {
                 archivoBD = new Archivo("RomoBD.accdb");
@@ -61,6 +64,20 @@ namespace pryRomoApeERP
                     "Error:\n" + ex.Message
                 );
             }
+        }
+
+        private void AplicarPermisos()
+        {
+            verAuditoríaToolStripMenuItem.Enabled =
+                Sesion.IdPerfil == Perfiles.Admin;
+
+            perfilesToolStripMenuItem.Enabled =
+                Sesion.IdPerfil == Perfiles.Admin ||
+                Sesion.IdPerfil == Perfiles.RRHH;
+
+            datosPersonalesToolStripMenuItem.Enabled =
+                Sesion.IdPerfil == Perfiles.Admin ||
+                Sesion.IdPerfil == Perfiles.RRHH;
         }
 
         private void btnSalirApp_Click(object sender, EventArgs e)

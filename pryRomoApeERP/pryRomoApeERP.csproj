@@ -82,10 +82,10 @@
     <Compile Include="Funciones\frmInformacionAuditoria.Designer.cs">
       <DependentUpon>frmInformacionAuditoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Funciones\frmLogin.cs">
+    <Compile Include="Funciones\Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Funciones\frmLogin.Designer.cs">
+    <Compile Include="Funciones\Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Funciones\frmPrincipal.cs">
@@ -95,6 +95,9 @@
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Funciones\Gestión de Datos Personales\Ubicacion.cs" />
+    <Compile Include="Utilidades\Perfiles.cs" />
+    <Compile Include="Utilidades\Seguridad.cs" />
+    <Compile Include="Utilidades\Sesion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades\RegistroAuditoria.cs" />
@@ -110,7 +113,7 @@
     <EmbeddedResource Include="Funciones\frmInformacionAuditoria.resx">
       <DependentUpon>frmInformacionAuditoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Funciones\frmLogin.resx">
+    <EmbeddedResource Include="Funciones\Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Funciones\frmPrincipal.resx">
