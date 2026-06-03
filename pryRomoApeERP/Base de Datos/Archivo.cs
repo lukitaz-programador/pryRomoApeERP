@@ -26,7 +26,11 @@ namespace pryRomoApeERP.Base_de_Datos
             try
             {
                 // Use the explicit absolute path provided
-                string rutaBD = @"C:\Users\Alumno\source\repos\lukitaz-programador\pryRomoApeERP\pryRomoApeERP\Base de Datos\RomoBD.accdb";
+                string rutaBD =
+                Path.Combine(
+                 Application.StartupPath,
+                 "Base de Datos",
+                 "RomoBD.accdb");
 
                 rutaBD = Path.GetFullPath(rutaBD);
 

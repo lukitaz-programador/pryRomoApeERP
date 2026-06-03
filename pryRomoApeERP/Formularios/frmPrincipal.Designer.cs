@@ -28,70 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnGestionDatosPersonales = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnInfoAuditoria = new System.Windows.Forms.Button();
-            this.btnGestionarPerfiles = new System.Windows.Forms.Button();
             this.btnSalirApp = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.empresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestiónDeDatosPersonalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verInformaciónDeAuditoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestiónDePerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.datosPersonalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.perfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auditoríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verAuditoríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblPerfil = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblConexion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tmrReloj = new System.Windows.Forms.Timer(this.components);
+            this.lblEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnGestionDatosPersonales
-            // 
-            this.btnGestionDatosPersonales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnGestionDatosPersonales.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnGestionDatosPersonales.Location = new System.Drawing.Point(26, 91);
-            this.btnGestionDatosPersonales.Name = "btnGestionDatosPersonales";
-            this.btnGestionDatosPersonales.Size = new System.Drawing.Size(152, 49);
-            this.btnGestionDatosPersonales.TabIndex = 0;
-            this.btnGestionDatosPersonales.Text = "Gestionar datos personales";
-            this.btnGestionDatosPersonales.UseVisualStyleBackColor = false;
-            this.btnGestionDatosPersonales.Click += new System.EventHandler(this.btnGestionDatosPersonales_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.label1.Location = new System.Drawing.Point(170, 250);
+            this.label1.Location = new System.Drawing.Point(190, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(310, 39);
             this.label1.TabIndex = 1;
             this.label1.Text = "MENÚ PRINCIPAL";
             // 
-            // btnInfoAuditoria
-            // 
-            this.btnInfoAuditoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnInfoAuditoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnInfoAuditoria.Location = new System.Drawing.Point(252, 91);
-            this.btnInfoAuditoria.Name = "btnInfoAuditoria";
-            this.btnInfoAuditoria.Size = new System.Drawing.Size(152, 49);
-            this.btnInfoAuditoria.TabIndex = 2;
-            this.btnInfoAuditoria.Text = "Ver información de auditoria";
-            this.btnInfoAuditoria.UseVisualStyleBackColor = false;
-            this.btnInfoAuditoria.Click += new System.EventHandler(this.btnInfoAuditoria_Click);
-            // 
-            // btnGestionarPerfiles
-            // 
-            this.btnGestionarPerfiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnGestionarPerfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnGestionarPerfiles.Location = new System.Drawing.Point(480, 91);
-            this.btnGestionarPerfiles.Name = "btnGestionarPerfiles";
-            this.btnGestionarPerfiles.Size = new System.Drawing.Size(152, 49);
-            this.btnGestionarPerfiles.TabIndex = 3;
-            this.btnGestionarPerfiles.Text = "Gestionar Perfiles ";
-            this.btnGestionarPerfiles.UseVisualStyleBackColor = false;
-            this.btnGestionarPerfiles.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnSalirApp
             // 
             this.btnSalirApp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnSalirApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnSalirApp.Location = new System.Drawing.Point(569, 476);
+            this.btnSalirApp.Location = new System.Drawing.Point(569, 454);
             this.btnSalirApp.Name = "btnSalirApp";
             this.btnSalirApp.Size = new System.Drawing.Size(79, 28);
             this.btnSalirApp.TabIndex = 4;
@@ -102,40 +79,142 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.empresaToolStripMenuItem,
-            this.gestiónDeDatosPersonalesToolStripMenuItem,
-            this.verInformaciónDeAuditoriaToolStripMenuItem,
-            this.gestiónDePerfilesToolStripMenuItem});
+            this.sistemaToolStripMenuItem,
+            this.gestiónToolStripMenuItem,
+            this.auditoríaToolStripMenuItem,
+            this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(660, 24);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // empresaToolStripMenuItem
+            // sistemaToolStripMenuItem
             // 
-            this.empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            this.empresaToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.empresaToolStripMenuItem.Text = "Empresa";
+            this.sistemaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cerrarSesiónToolStripMenuItem,
+            this.salirToolStripMenuItem});
+            this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
+            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.sistemaToolStripMenuItem.Text = "Sistema";
             // 
-            // gestiónDeDatosPersonalesToolStripMenuItem
+            // cerrarSesiónToolStripMenuItem
             // 
-            this.gestiónDeDatosPersonalesToolStripMenuItem.Name = "gestiónDeDatosPersonalesToolStripMenuItem";
-            this.gestiónDeDatosPersonalesToolStripMenuItem.Size = new System.Drawing.Size(166, 20);
-            this.gestiónDeDatosPersonalesToolStripMenuItem.Text = "Gestión de datos personales";
-            this.gestiónDeDatosPersonalesToolStripMenuItem.Click += new System.EventHandler(this.gestiónDeDatosPersonalesToolStripMenuItem_Click);
+            this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
             // 
-            // verInformaciónDeAuditoriaToolStripMenuItem
+            // salirToolStripMenuItem
             // 
-            this.verInformaciónDeAuditoriaToolStripMenuItem.Name = "verInformaciónDeAuditoriaToolStripMenuItem";
-            this.verInformaciónDeAuditoriaToolStripMenuItem.Size = new System.Drawing.Size(169, 20);
-            this.verInformaciónDeAuditoriaToolStripMenuItem.Text = "Ver información de auditoria";
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
             // 
-            // gestiónDePerfilesToolStripMenuItem
+            // gestiónToolStripMenuItem
             // 
-            this.gestiónDePerfilesToolStripMenuItem.Name = "gestiónDePerfilesToolStripMenuItem";
-            this.gestiónDePerfilesToolStripMenuItem.Size = new System.Drawing.Size(116, 20);
-            this.gestiónDePerfilesToolStripMenuItem.Text = "Gestión de perfiles";
+            this.gestiónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.datosPersonalesToolStripMenuItem,
+            this.usuariosToolStripMenuItem,
+            this.perfilesToolStripMenuItem});
+            this.gestiónToolStripMenuItem.Name = "gestiónToolStripMenuItem";
+            this.gestiónToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.gestiónToolStripMenuItem.Text = "Gestión";
+            // 
+            // datosPersonalesToolStripMenuItem
+            // 
+            this.datosPersonalesToolStripMenuItem.Name = "datosPersonalesToolStripMenuItem";
+            this.datosPersonalesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.datosPersonalesToolStripMenuItem.Text = "Datos Personales";
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            // 
+            // perfilesToolStripMenuItem
+            // 
+            this.perfilesToolStripMenuItem.Name = "perfilesToolStripMenuItem";
+            this.perfilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.perfilesToolStripMenuItem.Text = "Perfiles";
+            // 
+            // auditoríaToolStripMenuItem
+            // 
+            this.auditoríaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verAuditoríaToolStripMenuItem});
+            this.auditoríaToolStripMenuItem.Name = "auditoríaToolStripMenuItem";
+            this.auditoríaToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.auditoríaToolStripMenuItem.Text = "Auditoría";
+            // 
+            // verAuditoríaToolStripMenuItem
+            // 
+            this.verAuditoríaToolStripMenuItem.Name = "verAuditoríaToolStripMenuItem";
+            this.verAuditoríaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verAuditoríaToolStripMenuItem.Text = "Ver Auditoría";
+            // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.acercaDeToolStripMenuItem});
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            // 
+            // acercaDeToolStripMenuItem
+            // 
+            this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.acercaDeToolStripMenuItem.Text = "Acerca de";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblUsuario,
+            this.lblPerfil,
+            this.lblConexion,
+            this.lblEstado,
+            this.lblFecha});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 494);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(660, 22);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(118, 17);
+            this.lblUsuario.Text = "toolStripStatusLabel1";
+            // 
+            // lblPerfil
+            // 
+            this.lblPerfil.Name = "lblPerfil";
+            this.lblPerfil.Size = new System.Drawing.Size(118, 17);
+            this.lblPerfil.Text = "toolStripStatusLabel2";
+            // 
+            // lblConexion
+            // 
+            this.lblConexion.Name = "lblConexion";
+            this.lblConexion.Size = new System.Drawing.Size(118, 17);
+            this.lblConexion.Text = "toolStripStatusLabel3";
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(118, 17);
+            this.lblFecha.Text = "toolStripStatusLabel4";
+            // 
+            // tmrReloj
+            // 
+            this.tmrReloj.Interval = 1000;
+            this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(118, 17);
+            this.lblEstado.Text = "toolStripStatusLabel1";
             // 
             // frmPrincipal
             // 
@@ -143,13 +222,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(660, 516);
-            this.Controls.Add(this.btnSalirApp);
-            this.Controls.Add(this.btnGestionarPerfiles);
-            this.Controls.Add(this.btnInfoAuditoria);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnGestionDatosPersonales);
+            this.Controls.Add(this.btnSalirApp);
             this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
@@ -157,22 +233,34 @@
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnGestionDatosPersonales;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnInfoAuditoria;
-        private System.Windows.Forms.Button btnGestionarPerfiles;
         private System.Windows.Forms.Button btnSalirApp;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem empresaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gestiónDeDatosPersonalesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verInformaciónDeAuditoriaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gestiónDePerfilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sistemaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cerrarSesiónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestiónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem datosPersonalesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem perfilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem auditoríaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verAuditoríaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
+        private System.Windows.Forms.ToolStripStatusLabel lblPerfil;
+        private System.Windows.Forms.ToolStripStatusLabel lblConexion;
+        private System.Windows.Forms.ToolStripStatusLabel lblFecha;
+        private System.Windows.Forms.Timer tmrReloj;
+        private System.Windows.Forms.ToolStripStatusLabel lblEstado;
     }
 }

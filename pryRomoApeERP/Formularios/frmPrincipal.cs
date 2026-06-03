@@ -27,85 +27,37 @@ namespace pryRomoApeERP
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            /*
-            IdPerfil | Nombre
-            ------------------
-            1 | Admin
-            2 | Logis
-            3 | Venta
-            4 | Marke
-            5 | RRHH
-            6 | Conta
-            */
-
             try
             {
                 archivoBD = new Archivo("Romo.accdb");
                 conexionBD = archivoBD.Conexion;
                 registroAuditoria = new RegistroAuditoria(conexionBD);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Error:\n" + ex.Message
-                );
-            }
-        }
 
-        private void btnGestionDatosPersonales_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                registroAuditoria.RegistrarAccion(
-                    mailUsuario,
-                    "Gestionar Datos Personales"
-                );
+                lblUsuario.Text = $"Usuario: {mailUsuario}";
 
-                frmGestionDatosPersonales paso = new frmGestionDatosPersonales(mailUsuario);
-                paso.Show();
-                this.Hide();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Error:\n" + ex.Message
-                );
-            }
-        }
+                // Por ahora dejamos un perfil genérico
+                lblPerfil.Text = "Perfiles: Sin definir";
 
-        private void btnInfoAuditoria_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                registroAuditoria.RegistrarAccion(
-                    mailUsuario,
-                    "Ver Información de Auditoría"
-                );
+                if (conexionBD != null &&
+                    conexionBD.EstaConectado)
+                {
+                    lblConexion.Text = "BD: Conectada";
+                }
+                else
+                {
+                    lblConexion.Text = "BD: Desconectada";
+                }
 
-                frmInformacionAuditoria paso = new frmInformacionAuditoria(mailUsuario);
-                paso.Show();
-                this.Hide();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Error:\n" + ex.Message
-                );
-            }
-        }
+                lblEstado.Text = "Sistema Operativo";
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                registroAuditoria.RegistrarAccion(
-                    mailUsuario,
-                    "Gestionar Perfiles"
-                );
+                lblFecha.Text =
+                    DateTime.Now.ToString(
+                        "dd/MM/yyyy HH:mm:ss");
 
-                frmGestionPerfiles paso = new frmGestionPerfiles(mailUsuario);
-                paso.Show();
-                this.Hide();
+                tmrReloj.Start();
+
+                this.WindowState =
+                    FormWindowState.Maximized;
             }
             catch (Exception ex)
             {
@@ -126,15 +78,44 @@ namespace pryRomoApeERP
             Application.Exit();
         }
 
-        private void gestiónDeDatosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void gestiónDeDatosPersonalesToolStripMenuItem_Click(object sender,EventArgs e)
         {
-            frmGestionDatosPersonales x = new frmGestionDatosPersonales(mailUsuario);
-            x.Show();
+            using (frmGestionDatosPersonales frm =
+                   new frmGestionDatosPersonales(mailUsuario))
+            {
+                frm.ShowDialog();
+            }
         }
-        private void verInformacionDeAuditoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void verInformacionDeAuditoriaToolStripMenuItem_Click(object sender,EventArgs e)
         {
-            frmInformacionAuditoria x = new frmInformacionAuditoria(mailUsuario);
-            x.Show();
+            using (frmInformacionAuditoria frm =
+                   new frmInformacionAuditoria(mailUsuario))
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                registroAuditoria?.RegistrarAccion(
+                    mailUsuario,
+                    "Logout");
+            }
+            catch { }
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void tmrReloj_Tick(object sender, EventArgs e)
+        {
+            lblFecha.Text =
+            DateTime.Now.ToString(
+            "dd/MM/yyyy HH:mm:ss");
         }
     }
 }

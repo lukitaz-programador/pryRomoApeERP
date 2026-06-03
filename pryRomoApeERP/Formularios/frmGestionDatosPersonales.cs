@@ -19,6 +19,25 @@ namespace pryRomoApeERP
         private ConexionDB conexionBD;
         private RegistroAuditoria registroAuditoria;
 
+        private void frmGestionDatosPersonales_Load(object sender, EventArgs e)
+        {
+            InicializarControles();
+        }
+
+        private void InicializarControles()
+        {
+            chkEstado.Checked = false;
+            chkEstado.Text = "Inactivo";
+
+            chkResidencia.Checked = false;
+            chkResidencia.Text = "No, no reside";
+
+            btnGuardarPer.Enabled = false;
+
+            this.AcceptButton = btnGuardarPer;
+            this.CancelButton = btnSalir;
+        }
+
         public frmGestionDatosPersonales(string mail = "")
         {
             InitializeComponent();
@@ -32,21 +51,31 @@ namespace pryRomoApeERP
 
         private void ComprobarDatos()
         {
-            if (txtApellido.Text.Trim() != ""
-                && txtNombre.Text.Trim() != ""
-                && mskDNI.MaskCompleted
-                && txtDireccion.Text.Trim() != ""
-                && txtGeo.Text.Trim() != ""
-                && cmbProvincia.SelectedIndex != -1
-                && cmbLocalidad.SelectedIndex != -1
-                && (txtMail.Text.Trim() != "" || txtTelefono.Text.Trim() != ""))
-            {
-                todosLosDatos = true;
-            }
-            else
-            {
-                todosLosDatos = false;
-            }
+            todosLosDatos =
+                txtApellido.Text.Trim() != "" &&
+                txtNombre.Text.Trim() != "" &&
+                ValidarDNI() &&
+                txtDireccion.Text.Trim() != "" &&
+                txtGeo.Text.Trim() != "" &&
+                cmbProvincia.SelectedIndex != -1 &&
+                cmbLocalidad.SelectedIndex != -1 &&
+                (
+                    txtMail.Text.Trim() != "" ||
+                    txtTelefono.Text.Trim() != ""
+                );
+
+            btnGuardarPer.Enabled = todosLosDatos;
+        }
+
+        private bool ValidarDNI()
+        {
+            string dni = mskDNI.Text.Trim();
+
+            if (!long.TryParse(dni, out long numero))
+                return false;
+
+            return numero >= 1000000 &&
+                   numero <= 99999999;
         }
 
         private void txtApellido_TextChanged(object sender, EventArgs e)
@@ -67,28 +96,6 @@ namespace pryRomoApeERP
         private void cmbProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComprobarDatos();
-
-            switch (cmbProvincia.SelectedIndex)
-            {
-                case 0:
-                    cmbLocalidad.Items.Clear();
-                    cmbLocalidad.Items.Add("La Plata");
-                    cmbLocalidad.Items.Add("Berisso");
-                    cmbLocalidad.Items.Add("Ensenada");
-                    break;
-                case 1:
-                    cmbLocalidad.Items.Clear();
-                    cmbLocalidad.Items.Add("Mar del Plata");
-                    cmbLocalidad.Items.Add("Miramar");
-                    cmbLocalidad.Items.Add("Pinamar");
-                    break;
-                case 2:
-                    cmbLocalidad.Items.Clear();
-                    cmbLocalidad.Items.Add("Bahía Blanca");
-                    cmbLocalidad.Items.Add("Tornquist");
-                    cmbLocalidad.Items.Add("Coronel Suárez");
-                    break;
-            }
         }
 
         private void cmbLocalidad_SelectedIndexChanged(object sender, EventArgs e)
@@ -171,6 +178,11 @@ namespace pryRomoApeERP
                     "Guardar",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+
+                btnGuardarPer.Enabled = false;
+
+                chkEstado.Text = "Inactivo";
+                chkResidencia.Text = "No, no reside";
             }
         }
 
@@ -235,13 +247,14 @@ namespace pryRomoApeERP
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(
                 "¿Desea salir de la gestión de datos personales?",
                 "Salir",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes)
+                MessageBoxIcon.Question)
+                == DialogResult.Yes)
             {
                 this.Close();
             }
@@ -252,20 +265,6 @@ namespace pryRomoApeERP
             ComprobarDatos();
         }
 
-        private void frmGestionDatosPersonales_Load(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void frmGestionDatosPersonales_Load_1(object sender, EventArgs e)
-        {
-            chkEstado.Checked = false;
-            chkEstado.Text = "Inactivo";
-
-            chkResidencia.Checked = false;
-            chkResidencia.Text = "No, no reside";
-
-            this.AcceptButton = btnGuardarPer;
-        }
+        
     }
 }

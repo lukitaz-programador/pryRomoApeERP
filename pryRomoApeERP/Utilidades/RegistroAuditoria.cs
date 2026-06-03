@@ -58,5 +58,23 @@ namespace pryRomoApeERP.Utilidades
                 System.Diagnostics.Debug.WriteLine($"? Error: {ex.Message}");
             }
         }
+        public void RegistrarAlta(string usuario,string entidad)
+        {
+            RegistrarAccion(
+                usuario,
+                $"Alta de {entidad}");
+        }
+        public void RegistrarModificacion( string usuario,string entidad)
+        {
+            RegistrarAccion(
+                usuario,
+                $"Modificación de {entidad}");
+        }
+        public void RegistrarBaja(string usuario,string entidad)
+        {
+            RegistrarAccion(
+                usuario,
+                $"Baja de {entidad}");
+        }
     }
 }
