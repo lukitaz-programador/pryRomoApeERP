@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace pryRomoApeERP
 {
@@ -19,9 +20,25 @@ namespace pryRomoApeERP
         private ConexionDB conexionBD;
         private RegistroAuditoria registroAuditoria;
 
-        private void frmGestionDatosPersonales_Load(object sender, EventArgs e)
+        private void frmGestionDatosPersonales_Load(object sender,EventArgs e)
         {
-            InicializarControles();
+            try
+            {
+                archivoBD =
+                    new Archivo("LocalidadesBD.accdb");
+
+                conexionBD =
+                    archivoBD.Conexion;
+
+                InicializarControles();
+
+                CargarProvincias();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message);
+            }
         }
 
         private void InicializarControles()
@@ -36,6 +53,88 @@ namespace pryRomoApeERP
 
             this.AcceptButton = btnGuardarPer;
             this.CancelButton = btnSalir;
+        }
+        private void CargarProvincias()
+        {
+            try
+            {
+                cmbProvincia.Items.Clear();
+                cmbProvincia.SelectedIndex = -1;
+                cmbLocalidad.Items.Clear();
+
+                string sql =
+                    "SELECT DISTINCT Provincia " +
+                    "FROM tablaLocalidades " +
+                    "ORDER BY Provincia";
+
+                OleDbCommand cmd =
+                    new OleDbCommand(
+                        sql,
+                        conexionBD.Conexion);
+
+                OleDbDataReader lector =
+                    cmd.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    cmbProvincia.Items.Add(
+                        lector["Provincia"].ToString());
+                }
+
+                lector.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error al cargar provincias:\n" +
+                    ex.Message);
+            }
+        }
+
+        private void CargarLocalidades(string provincia)
+        {
+            try
+            {
+                cmbLocalidad.Items.Clear();
+
+                string sql =
+                    "SELECT Nombre " +
+                    "FROM tablaLocalidades " +
+                    "WHERE Provincia = ? " +
+                    "ORDER BY Nombre";
+
+                OleDbCommand cmd =
+                    new OleDbCommand(
+                        sql,
+                        conexionBD.Conexion);
+
+                cmd.Parameters.AddWithValue(
+                    "@Provincia",
+                    provincia);
+
+                OleDbDataReader lector =
+                    cmd.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    cmbLocalidad.Items.Add(
+                        lector["Localidades"].ToString());
+                }
+
+                lector.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error al cargar localidades:\n" +
+                    ex.Message);
+            }
+
+            cmbLocalidad.AutoCompleteMode =
+                AutoCompleteMode.SuggestAppend;
+
+            cmbLocalidad.AutoCompleteSource =
+                AutoCompleteSource.ListItems;
         }
 
         public frmGestionDatosPersonales(string mail = "")
@@ -93,9 +192,15 @@ namespace pryRomoApeERP
             ComprobarDatos();
         }
 
-        private void cmbProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbProvincia_SelectedIndexChanged(object sender,EventArgs e)
         {
             ComprobarDatos();
+
+            if (cmbProvincia.SelectedIndex != -1)
+            {
+                CargarLocalidades(
+                    cmbProvincia.Text);
+            }
         }
 
         private void cmbLocalidad_SelectedIndexChanged(object sender, EventArgs e)
@@ -220,6 +325,10 @@ namespace pryRomoApeERP
                 chkResidencia.Checked = false;
 
                 todosLosDatos = false;
+                btnGuardarPer.Enabled = false;
+
+                chkEstado.Text = "Inactivo";
+                chkResidencia.Text = "No, no reside";
             }
         }
 

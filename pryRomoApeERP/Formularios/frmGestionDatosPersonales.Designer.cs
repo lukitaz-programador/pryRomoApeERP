@@ -118,7 +118,7 @@
             // 
             this.lblAgregarDomicilio.AutoSize = true;
             this.lblAgregarDomicilio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblAgregarDomicilio.Location = new System.Drawing.Point(13, 227);
+            this.lblAgregarDomicilio.Location = new System.Drawing.Point(13, 225);
             this.lblAgregarDomicilio.Name = "lblAgregarDomicilio";
             this.lblAgregarDomicilio.Size = new System.Drawing.Size(128, 16);
             this.lblAgregarDomicilio.TabIndex = 26;
@@ -127,7 +127,7 @@
             // btnAgregarDomicilio
             // 
             this.btnAgregarDomicilio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnAgregarDomicilio.Location = new System.Drawing.Point(154, 224);
+            this.btnAgregarDomicilio.Location = new System.Drawing.Point(154, 222);
             this.btnAgregarDomicilio.Name = "btnAgregarDomicilio";
             this.btnAgregarDomicilio.Size = new System.Drawing.Size(85, 23);
             this.btnAgregarDomicilio.TabIndex = 25;
@@ -137,7 +137,7 @@
             // chkResidencia
             // 
             this.chkResidencia.AutoSize = true;
-            this.chkResidencia.Location = new System.Drawing.Point(150, 191);
+            this.chkResidencia.Location = new System.Drawing.Point(150, 189);
             this.chkResidencia.Name = "chkResidencia";
             this.chkResidencia.Size = new System.Drawing.Size(89, 17);
             this.chkResidencia.TabIndex = 24;
@@ -149,7 +149,7 @@
             // 
             this.lblResidancia.AutoSize = true;
             this.lblResidancia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblResidancia.Location = new System.Drawing.Point(13, 191);
+            this.lblResidancia.Location = new System.Drawing.Point(13, 189);
             this.lblResidancia.Name = "lblResidancia";
             this.lblResidancia.Size = new System.Drawing.Size(130, 16);
             this.lblResidancia.TabIndex = 23;
@@ -157,7 +157,7 @@
             // 
             // txtGeo
             // 
-            this.txtGeo.Location = new System.Drawing.Point(97, 151);
+            this.txtGeo.Location = new System.Drawing.Point(97, 149);
             this.txtGeo.Name = "txtGeo";
             this.txtGeo.Size = new System.Drawing.Size(196, 20);
             this.txtGeo.TabIndex = 22;
@@ -165,7 +165,7 @@
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(97, 112);
+            this.txtDireccion.Location = new System.Drawing.Point(97, 110);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(196, 20);
             this.txtDireccion.TabIndex = 21;
@@ -175,7 +175,7 @@
             // 
             this.lblGeo.AutoSize = true;
             this.lblGeo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblGeo.Location = new System.Drawing.Point(12, 156);
+            this.lblGeo.Location = new System.Drawing.Point(12, 154);
             this.lblGeo.Name = "lblGeo";
             this.lblGeo.Size = new System.Drawing.Size(36, 16);
             this.lblGeo.TabIndex = 20;
@@ -185,7 +185,7 @@
             // 
             this.lblDireccion.AutoSize = true;
             this.lblDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblDireccion.Location = new System.Drawing.Point(12, 117);
+            this.lblDireccion.Location = new System.Drawing.Point(12, 115);
             this.lblDireccion.Name = "lblDireccion";
             this.lblDireccion.Size = new System.Drawing.Size(67, 16);
             this.lblDireccion.TabIndex = 19;
@@ -193,9 +193,8 @@
             // 
             // cmbLocalidad
             // 
-            this.cmbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLocalidad.FormattingEnabled = true;
-            this.cmbLocalidad.Location = new System.Drawing.Point(97, 70);
+            this.cmbLocalidad.Location = new System.Drawing.Point(97, 68);
             this.cmbLocalidad.Name = "cmbLocalidad";
             this.cmbLocalidad.Size = new System.Drawing.Size(196, 21);
             this.cmbLocalidad.TabIndex = 18;
@@ -205,30 +204,6 @@
             // 
             this.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProvincia.FormattingEnabled = true;
-            this.cmbProvincia.Items.AddRange(new object[] {
-            "Buenos Aires",
-            "Catamarca",
-            "Chaco",
-            "Chubut",
-            "Córdoba",
-            "Corrientes",
-            "Entre Ríos",
-            "Formosa",
-            "Jujuy",
-            "La Pampa",
-            "La Rioja",
-            "Mendoza",
-            "Misiones",
-            "Neuquén",
-            "Río Negro",
-            "Salta",
-            "San Juan",
-            "San Luis",
-            "Santa Cruz",
-            "Santa Fe",
-            "Santiago del Estero",
-            "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
-            "Tucumán"});
             this.cmbProvincia.Location = new System.Drawing.Point(97, 29);
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(196, 21);
@@ -249,7 +224,7 @@
             // 
             this.lblLocalidad.AutoSize = true;
             this.lblLocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblLocalidad.Location = new System.Drawing.Point(12, 75);
+            this.lblLocalidad.Location = new System.Drawing.Point(12, 73);
             this.lblLocalidad.Name = "lblLocalidad";
             this.lblLocalidad.Size = new System.Drawing.Size(70, 16);
             this.lblLocalidad.TabIndex = 13;
