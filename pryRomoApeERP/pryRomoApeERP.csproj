@@ -57,6 +57,12 @@
     <Compile Include="Base de Datos\Clases\tablaPerfil.cs" />
     <Compile Include="Base de Datos\Clases\tablaRUP.cs" />
     <Compile Include="Base de Datos\Clases\tablaUsuario.cs" />
+    <Compile Include="Funciones\frmAcercaDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Funciones\frmAcercaDe.Designer.cs">
+      <DependentUpon>frmAcercaDe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Funciones\Gestión de Datos Personales\Contacto.cs" />
     <Compile Include="Funciones\Gestión de Datos Personales\frmGestionDatosPersonales.cs">
       <SubType>Form</SubType>
@@ -92,6 +98,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades\RegistroAuditoria.cs" />
+    <EmbeddedResource Include="Funciones\frmAcercaDe.resx">
+      <DependentUpon>frmAcercaDe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Funciones\Gestión de Datos Personales\frmGestionDatosPersonales.resx">
       <DependentUpon>frmGestionDatosPersonales.cs</DependentUpon>
     </EmbeddedResource>

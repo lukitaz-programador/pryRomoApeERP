@@ -153,8 +153,14 @@ namespace pryRomoApeERP
                 if (ingresoExitoso)
                 {
                     MessageBox.Show(
-                        "Ingreso exitoso"
-                    );
+    $"🎉 ¡Bienvenido al sistema! 🎉\n\n" +
+    $"Nos alegra verte nuevamente.\n" +
+    $"El acceso fue validado correctamente.\n\n" +
+    $"¡Que tengas una excelente jornada! 🚀",
+    "Acceso concedido",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information
+);
 
                     frmPrincipal paso =
                     new frmPrincipal(txtMail.Text);

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -25,8 +26,6 @@ namespace pryRomoApeERP
 
         private List<Ubicacion> ubicaciones =
             new List<Ubicacion>();
-
-        bool todosLosDatos = false;
 
         public frmGestionDatosPersonales(string mail = "")
         {
@@ -68,6 +67,23 @@ namespace pryRomoApeERP
             }
         }
 
+        private void HabilitarEdicion(bool habilitar)
+        {
+            cmbProvincia.Enabled = habilitar;
+            cmbLocalidad.Enabled = habilitar;
+            txtDireccion.Enabled = habilitar;
+            txtGeo.Enabled = habilitar;
+
+            cmbTipoContacto.Enabled = habilitar;
+            txtValorContacto.Enabled = habilitar;
+
+            btnAgregarContacto.Enabled = habilitar;
+            btnEliminarContacto.Enabled = habilitar;
+
+            btnAgregarUbicacion.Enabled = habilitar;
+            btnEliminarUbicacion.Enabled = habilitar;
+        }
+
         private void InicializarControles()
         {
             chkEstado.Checked = false;
@@ -81,7 +97,7 @@ namespace pryRomoApeERP
             lblFormato.Text =
                 "Seleccione un tipo de contacto";
 
-            btnGuardarPer.Enabled = false;
+            HabilitarEdicion(false);
 
             this.AcceptButton = btnGuardarPer;
             this.CancelButton = btnSalir;
@@ -242,27 +258,41 @@ namespace pryRomoApeERP
 
         private void ComprobarDatos()
         {
-            todosLosDatos =
+            bool datosBasicos =
                 txtApellido.Text.Trim() != "" &&
                 txtNombre.Text.Trim() != "" &&
                 ValidarDNI();
 
-            btnGuardarPer.Enabled =
-                todosLosDatos;
+            HabilitarEdicion(datosBasicos);
+
+            txtNombre.BackColor =
+                txtNombre.Text.Trim() == ""
+                ? Color.MistyRose
+                : Color.White;
+
+            txtApellido.BackColor =
+                txtApellido.Text.Trim() == ""
+                ? Color.MistyRose
+                : Color.White;
+
+            mskDNI.BackColor =
+                ValidarDNI()
+                ? Color.White
+                : Color.MistyRose;
         }
 
         private bool ValidarDNI()
         {
             string dni =
-                mskDNI.Text.Trim();
+                new string(
+                    mskDNI.Text
+                    .Where(char.IsDigit)
+                    .ToArray());
 
-            if (!long.TryParse(
-                dni,
-                out long numero))
+            if (dni.Length < 7)
                 return false;
 
-            return numero >= 1000000 &&
-                   numero <= 99999999;
+            return long.TryParse(dni, out _);
         }
 
         private bool ValidarContacto()
@@ -295,7 +325,13 @@ namespace pryRomoApeERP
         private void ActualizarListaContactos()
         {
             lstContactos.DataSource = null;
-            lstContactos.DataSource = contactos;
+
+            lstContactos.DisplayMember = "";
+
+            lstContactos.DataSource =
+                contactos.ToList();
+
+            lstContactos.Refresh();
         }
 
         private void txtApellido_TextChanged(
@@ -361,44 +397,170 @@ namespace pryRomoApeERP
         }
 
         private void btnGuardarPer_Click(
-            object sender,
-            EventArgs e)
+    object sender,
+    EventArgs e)
         {
+            txtNombre.BackColor = Color.White;
+            txtApellido.BackColor = Color.White;
+            mskDNI.BackColor = Color.White;
+
+            bool error = false;
+
+            lstContactos.BackColor = Color.White;
+            lstUbicaciones.BackColor = Color.White;
+
+            if (txtNombre.Text.Trim() == "")
+            {
+                txtNombre.BackColor = Color.MistyRose;
+                error = true;
+            }
+
+            if (txtApellido.Text.Trim() == "")
+            {
+                txtApellido.BackColor = Color.MistyRose;
+                error = true;
+            }
+
+            if (!ValidarDNI())
+            {
+                mskDNI.BackColor = Color.MistyRose;
+                error = true;
+            }
+
+            if (ubicaciones.Count < 1)
+            {
+                lstUbicaciones.BackColor =
+                    Color.MistyRose;
+
+                error = true;
+            }
+
+            if (contactos.Count < 3)
+            {
+                lstContactos.BackColor =
+                    Color.MistyRose;
+
+                error = true;
+            }
+
+            if (error)
+            {
+                MessageBox.Show(
+                    "Complete todos los datos obligatorios.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
             DialogResult respuesta =
-    MessageBox.Show(
-        "¿Desea guardar los datos personales?",
-        "Guardar",
-        MessageBoxButtons.YesNo,
-        MessageBoxIcon.Question);
+                MessageBox.Show(
+                    "¿Desea guardar los datos?",
+                    "Guardar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
             if (respuesta != DialogResult.Yes)
             {
                 return;
             }
-            ComprobarDatos();
 
-            if (!todosLosDatos)
+            string usuario =
+                txtNombre.Text
+                    .Trim()
+                    .Substring(0, 1)
+                    .ToLower() +
+
+                txtApellido.Text
+                    .Trim()
+                    .Substring(0, 1)
+                    .ToLower() +
+
+                "@gmail.com";
+
+            string password =
+                txtNombre.Text
+                    .Trim()
+                    .Substring(0, 1)
+                    .ToLower() +
+
+                txtApellido.Text
+                    .Trim()
+                    .Substring(0, 1)
+                    .ToLower() +
+
+                "12345";
+
+
+            MessageBox.Show(
+                $"Datos validados correctamente.\n\n" +
+                $"Usuario generado:\n{usuario}\n\n" +
+                $"Contraseña generada:\n{password}",
+
+                "Información",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            // INSERT EN tablaUsuario
+
+            string sqlUsuario =
+                @"INSERT INTO tablaUsuario
+    (Nombre, Apellido, Mail, Contrasenia)
+    VALUES (?, ?, ?, ?)";
+
+            List<object> parametrosUsuario =
+                new List<object>()
+                {
+        txtNombre.Text.Trim(),
+        txtApellido.Text.Trim(),
+        usuario,
+        password
+                };
+
+            conexionBD.ExecuteNonQuery(
+                sqlUsuario,
+                parametrosUsuario);
+
+            // OBTENER ID DEL ÚLTIMO USUARIO INSERTADO
+
+            int idUsuario = 0;
+
+            string sqlUltimoUsuario =
+                "SELECT MAX(IdUsuario) FROM tablaUsuario";
+
+            using (OleDbCommand cmd =
+                new OleDbCommand(
+                    sqlUltimoUsuario,
+                    conexionBD.Conexion))
             {
-                MessageBox.Show(
-                    "Faltan datos obligatorios.");
-                return;
+                object resultado =
+                    cmd.ExecuteScalar();
+
+                if (resultado != DBNull.Value)
+                {
+                    idUsuario =
+                        Convert.ToInt32(resultado);
+                }
             }
 
-            string estado =
-                chkEstado.Checked
-                ? "Activo"
-                : "Inactivo";
+            // INSERT EN tablaRUP
 
-            if (MessageBox.Show(
-                $"¿Desea guardar los datos con estado '{estado}'?",
-                "Guardar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question)
-                == DialogResult.Yes)
-            {
-                MessageBox.Show(
-                    "Datos guardados correctamente.");
-            }
+            string sqlRUP =
+                @"INSERT INTO tablaRUP
+    (IdUsuario, idPerfil)
+    VALUES (?, ?)";
+
+            List<object> parametrosRUP =
+                new List<object>()
+                {
+        idUsuario,
+        7
+                };
+
+            conexionBD.ExecuteNonQuery(
+                sqlRUP,
+                parametrosRUP);
         }
 
         private void btnLimpiar_Click(
@@ -430,6 +592,7 @@ namespace pryRomoApeERP
 
             ActualizarListaContactos();
             ActualizarListaUbicaciones();
+            HabilitarEdicion(false);
         }
 
         private void btnSalir_Click(object sender,EventArgs e)
@@ -575,12 +738,6 @@ namespace pryRomoApeERP
             object sender,
             EventArgs e)
         {
-            if (!ValidarContacto())
-            {
-                MessageBox.Show(
-                    "Formato inválido");
-                return;
-            }
 
             if (cmbTipoContacto.SelectedIndex == -1)
             {
@@ -593,6 +750,13 @@ namespace pryRomoApeERP
             {
                 MessageBox.Show(
                     "Ingrese un valor");
+                return;
+            }
+
+            if (!ValidarContacto())
+            {
+                MessageBox.Show(
+                    "Formato inválido");
                 return;
             }
 
@@ -688,7 +852,7 @@ namespace pryRomoApeERP
 
             txtValorContacto.Enabled = true;
 
-            switch (cmbTipoContacto.Text)
+            switch (cmbTipoContacto.Text.Trim())
             {
                 case "Email":
                     lblFormato.Text =
@@ -717,7 +881,7 @@ namespace pryRomoApeERP
 
                 case "Facebook":
                     lblFormato.Text =
-                        "Ej: usuario";
+                        "Ej: nombre.apellido";
                     break;
 
                 case "TikTok":
@@ -737,7 +901,7 @@ namespace pryRomoApeERP
 
                 default:
                     lblFormato.Text =
-                        "Ingrese el valor";
+                        "Ingrese el valor correspondiente";
                     break;
             }
 

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGestionDatosPersonales));
             this.grpDomicilio = new System.Windows.Forms.GroupBox();
+            this.btnBuscarUbicacion = new System.Windows.Forms.Button();
             this.lstUbicaciones = new System.Windows.Forms.ListBox();
             this.btnAgregarUbicacion = new System.Windows.Forms.Button();
             this.chkResidencia = new System.Windows.Forms.CheckBox();
@@ -66,7 +67,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.btnBuscarUbicacion = new System.Windows.Forms.Button();
             this.grpDomicilio.SuspendLayout();
             this.grpDatosPer.SuspendLayout();
             this.grpContacto.SuspendLayout();
@@ -95,6 +95,16 @@
             this.grpDomicilio.TabIndex = 6;
             this.grpDomicilio.TabStop = false;
             this.grpDomicilio.Text = "Domicilio";
+            // 
+            // btnBuscarUbicacion
+            // 
+            this.btnBuscarUbicacion.Location = new System.Drawing.Point(291, 110);
+            this.btnBuscarUbicacion.Name = "btnBuscarUbicacion";
+            this.btnBuscarUbicacion.Size = new System.Drawing.Size(75, 21);
+            this.btnBuscarUbicacion.TabIndex = 25;
+            this.btnBuscarUbicacion.Text = "Buscar";
+            this.btnBuscarUbicacion.UseVisualStyleBackColor = true;
+            this.btnBuscarUbicacion.Click += new System.EventHandler(this.btnBuscarUbicacion_Click);
             // 
             // lstUbicaciones
             // 
@@ -400,6 +410,7 @@
             this.btnAgregarContacto.TabIndex = 12;
             this.btnAgregarContacto.Text = "Agregar";
             this.btnAgregarContacto.UseVisualStyleBackColor = true;
+            this.btnAgregarContacto.Click += new System.EventHandler(this.btnAgregarContacto_Click);
             // 
             // btnEliminarContacto
             // 
@@ -446,16 +457,6 @@
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // btnBuscarUbicacion
-            // 
-            this.btnBuscarUbicacion.Location = new System.Drawing.Point(291, 110);
-            this.btnBuscarUbicacion.Name = "btnBuscarUbicacion";
-            this.btnBuscarUbicacion.Size = new System.Drawing.Size(75, 21);
-            this.btnBuscarUbicacion.TabIndex = 25;
-            this.btnBuscarUbicacion.Text = "Buscar";
-            this.btnBuscarUbicacion.UseVisualStyleBackColor = true;
-            this.btnBuscarUbicacion.Click += new System.EventHandler(this.btnBuscarUbicacion_Click);
             // 
             // frmGestionDatosPersonales
             // 

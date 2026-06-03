@@ -1,4 +1,5 @@
 ﻿using pryRomoApeERP.Base_de_Datos;
+using pryRomoApeERP.Funciones;
 using pryRomoApeERP.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -144,6 +145,19 @@ namespace pryRomoApeERP
         private void btnSalirApp_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAcercaDe paso = new frmAcercaDe();
+            paso.ShowDialog();
+        }
+
+        private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmLogin paso = new frmLogin();
+            paso.ShowDialog();
         }
     }
 }

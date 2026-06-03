@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInformacionAuditoria));
             this.cmbUsuario = new System.Windows.Forms.ComboBox();
             this.cmbAccion = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,7 +44,7 @@
             // 
             this.cmbUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUsuario.FormattingEnabled = true;
-            this.cmbUsuario.Location = new System.Drawing.Point(141, 75);
+            this.cmbUsuario.Location = new System.Drawing.Point(113, 35);
             this.cmbUsuario.Name = "cmbUsuario";
             this.cmbUsuario.Size = new System.Drawing.Size(232, 21);
             this.cmbUsuario.TabIndex = 0;
@@ -52,7 +53,7 @@
             // 
             this.cmbAccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAccion.FormattingEnabled = true;
-            this.cmbAccion.Location = new System.Drawing.Point(141, 138);
+            this.cmbAccion.Location = new System.Drawing.Point(113, 98);
             this.cmbAccion.Name = "cmbAccion";
             this.cmbAccion.Size = new System.Drawing.Size(232, 21);
             this.cmbAccion.TabIndex = 1;
@@ -60,55 +61,59 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(79, 78);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.label1.Location = new System.Drawing.Point(51, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(57, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Usuario:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(79, 141);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.label2.Location = new System.Drawing.Point(51, 101);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.Size = new System.Drawing.Size(51, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "Acción:";
             // 
             // Calendario
             // 
-            this.Calendario.Location = new System.Drawing.Point(416, 35);
+            this.Calendario.Location = new System.Drawing.Point(396, 18);
             this.Calendario.Name = "Calendario";
             this.Calendario.TabIndex = 4;
             // 
             // btnConsultar
             // 
+            this.btnConsultar.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnConsultar.Location = new System.Drawing.Point(533, 454);
+            this.btnConsultar.Location = new System.Drawing.Point(569, 447);
             this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(75, 23);
+            this.btnConsultar.Size = new System.Drawing.Size(75, 30);
             this.btnConsultar.TabIndex = 5;
             this.btnConsultar.Text = "Consultar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.UseVisualStyleBackColor = false;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // btnSalir
             // 
+            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnSalir.Location = new System.Drawing.Point(452, 454);
+            this.btnSalir.Location = new System.Drawing.Point(488, 447);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.Size = new System.Drawing.Size(75, 30);
             this.btnSalir.TabIndex = 6;
             this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // dgvAuditoria
             // 
             this.dgvAuditoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAuditoria.Location = new System.Drawing.Point(55, 229);
+            this.dgvAuditoria.Location = new System.Drawing.Point(55, 192);
             this.dgvAuditoria.Name = "dgvAuditoria";
-            this.dgvAuditoria.Size = new System.Drawing.Size(553, 199);
+            this.dgvAuditoria.Size = new System.Drawing.Size(589, 236);
             this.dgvAuditoria.TabIndex = 7;
             // 
             // frmInformacionAuditoria
@@ -116,7 +121,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(707, 516);
+            this.ClientSize = new System.Drawing.Size(674, 489);
             this.Controls.Add(this.dgvAuditoria);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnConsultar);
@@ -125,6 +130,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbAccion);
             this.Controls.Add(this.cmbUsuario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmInformacionAuditoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Información Auditoria";
