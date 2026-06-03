@@ -47,7 +47,6 @@
             this.lblConexion = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrReloj = new System.Windows.Forms.Timer(this.components);
-            this.btnSalirApp = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -193,25 +192,12 @@
             this.tmrReloj.Interval = 1000;
             this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
             // 
-            // btnSalirApp
-            // 
-            this.btnSalirApp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnSalirApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnSalirApp.Location = new System.Drawing.Point(1802, 12);
-            this.btnSalirApp.Name = "btnSalirApp";
-            this.btnSalirApp.Size = new System.Drawing.Size(110, 42);
-            this.btnSalirApp.TabIndex = 7;
-            this.btnSalirApp.Text = "Salir";
-            this.btnSalirApp.UseVisualStyleBackColor = false;
-            this.btnSalirApp.Click += new System.EventHandler(this.btnSalirApp_Click_1);
-            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
-            this.Controls.Add(this.btnSalirApp);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -248,6 +234,5 @@
         private System.Windows.Forms.ToolStripStatusLabel lblConexion;
         private System.Windows.Forms.ToolStripStatusLabel lblFecha;
         private System.Windows.Forms.Timer tmrReloj;
-        private System.Windows.Forms.Button btnSalirApp;
     }
 }
