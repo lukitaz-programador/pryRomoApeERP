@@ -1,15 +1,17 @@
 ﻿using pryRomoApeERP.Base_de_Datos;
+using pryRomoApeERP.Funciones;
+using pryRomoApeERP.Funciones.Gestión_de_Datos_Personales;
 using pryRomoApeERP.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.OleDb;
 
 namespace pryRomoApeERP
 {
@@ -19,6 +21,8 @@ namespace pryRomoApeERP
         private Archivo archivoBD;
         private ConexionDB conexionBD;
         private RegistroAuditoria registroAuditoria;
+        private List<Contacto> contactos = new List<Contacto>();
+        private List<Ubicacion> ubicaciones = new List<Ubicacion>();
 
         private void frmGestionDatosPersonales_Load(object sender,EventArgs e)
         {
@@ -48,6 +52,11 @@ namespace pryRomoApeERP
 
             chkResidencia.Checked = false;
             chkResidencia.Text = "No, no reside";
+
+            txtValorContacto.Enabled = false;
+
+            lblFormato.Text =
+                "Seleccione un tipo de contacto";
 
             btnGuardarPer.Enabled = false;
 
@@ -118,7 +127,7 @@ namespace pryRomoApeERP
                 while (lector.Read())
                 {
                     cmbLocalidad.Items.Add(
-                        lector["Localidades"].ToString());
+                        lector["Nombre"].ToString());
                 }
 
                 lector.Close();
@@ -153,15 +162,7 @@ namespace pryRomoApeERP
             todosLosDatos =
                 txtApellido.Text.Trim() != "" &&
                 txtNombre.Text.Trim() != "" &&
-                ValidarDNI() &&
-                txtDireccion.Text.Trim() != "" &&
-                txtGeo.Text.Trim() != "" &&
-                cmbProvincia.SelectedIndex != -1 &&
-                cmbLocalidad.SelectedIndex != -1 &&
-                (
-                    txtMail.Text.Trim() != "" ||
-                    txtTelefono.Text.Trim() != ""
-                );
+                ValidarDNI();
 
             btnGuardarPer.Enabled = todosLosDatos;
         }
@@ -214,41 +215,6 @@ namespace pryRomoApeERP
         }
 
         private void txtGeo_TextChanged(object sender, EventArgs e)
-        {
-            ComprobarDatos();
-        }
-
-        private void txtMail_TextChanged(object sender, EventArgs e)
-        {
-            ComprobarDatos();
-        }
-
-        private void txtTelefono_TextChanged(object sender, EventArgs e)
-        {
-            ComprobarDatos();
-        }
-
-        private void txtTelegram_TextChanged(object sender, EventArgs e)
-        {
-            ComprobarDatos();
-        }
-
-        private void txtX_TextChanged(object sender, EventArgs e)
-        {
-            ComprobarDatos();
-        }
-
-        private void txtInstagram_TextChanged(object sender, EventArgs e)
-        {
-            ComprobarDatos();
-        }
-
-        private void txtTikTok_TextChanged(object sender, EventArgs e)
-        {
-            ComprobarDatos();
-        }
-
-        private void txtFacebook_TextChanged(object sender, EventArgs e)
         {
             ComprobarDatos();
         }
@@ -307,15 +273,6 @@ namespace pryRomoApeERP
                 txtDireccion.Clear();
                 txtGeo.Clear();
 
-                txtMail.Clear();
-                txtTelefono.Clear();
-
-                txtTelegram.Clear();
-                txtX.Clear();
-                txtInstagram.Clear();
-                txtTikTok.Clear();
-                txtFacebook.Clear();
-
                 cmbProvincia.SelectedIndex = -1;
 
                 cmbLocalidad.Items.Clear();
@@ -372,8 +329,239 @@ namespace pryRomoApeERP
         private void mskDNI_TextChanged(object sender, EventArgs e)
         {
             ComprobarDatos();
+        }    
+
+        private void ActualizarListaUbicaciones()
+        {
+            lstUbicaciones.DataSource = null;
+            lstUbicaciones.DataSource = ubicaciones;
         }
 
-        
+        private void ActualizarListaContactos()
+        {
+            lstContactos.DataSource = null;
+            lstContactos.DataSource = contactos;
+        }
+
+//BOTONES DE UBICACIONES
+        private void btnAgregarUbicacion_Click(object sender, EventArgs e)
+        {
+            if (cmbProvincia.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Seleccione una provincia");
+                return;
+            }
+
+            if (cmbLocalidad.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Seleccione una localidad");
+                return;
+            }
+
+            Ubicacion nueva =
+                new Ubicacion();
+
+            nueva.Provincia =
+                cmbProvincia.Text;
+
+            nueva.Localidad =
+                cmbLocalidad.Text;
+
+            nueva.Direccion =
+                txtDireccion.Text;
+
+            nueva.Geo =
+                txtGeo.Text;
+
+            nueva.Residencia =
+                chkResidencia.Checked;
+
+            ubicaciones.Add(nueva);
+
+            ActualizarListaUbicaciones();
+        }
+        private void lstUbicaciones_SelectedIndexChanged(object sender,EventArgs e)
+        {
+            if (lstUbicaciones.SelectedItem is Ubicacion ubicacion)
+            {
+                cmbProvincia.Text = ubicacion.Provincia;
+
+                CargarLocalidades(
+                    ubicacion.Provincia);
+
+                cmbLocalidad.Text = ubicacion.Localidad;
+
+                txtDireccion.Text =
+                    ubicacion.Direccion;
+
+                txtGeo.Text =
+                    ubicacion.Geo;
+
+                chkResidencia.Checked =
+                    ubicacion.Residencia;
+            }
+        }
+        private void btnEliminarUbicacion_Click(object sender, EventArgs e)
+        {
+            if (lstUbicaciones.SelectedItem is Ubicacion ubicacion)
+            {
+                ubicaciones.Remove(ubicacion);
+
+                ActualizarListaUbicaciones();
+            }
+        }
+
+        private void btnModificarUbicacion_Click(object sender, EventArgs e)
+        {
+            if (lstUbicaciones.SelectedItem is Ubicacion ubicacion)
+            {
+                ubicacion.Provincia =
+                    cmbProvincia.Text;
+
+                ubicacion.Localidad =
+                    cmbLocalidad.Text;
+
+                ubicacion.Direccion =
+                    txtDireccion.Text;
+
+                ubicacion.Geo =
+                    txtGeo.Text;
+
+                ubicacion.Residencia =
+                    chkResidencia.Checked;
+
+                ActualizarListaUbicaciones();
+            }
+        }
+
+//BOTONES DE CONTACTOS
+        private void btnAgregarContacto_Click(object sender, EventArgs e)
+        {
+            if (!ValidarContacto())
+            {
+                MessageBox.Show(
+                    "Formato de contacto inválido.");
+
+                return;
+            }
+
+            if (cmbTipoContacto.SelectedIndex == -1)
+            {
+                MessageBox.Show(
+                    "Seleccione un tipo de contacto.");
+
+                return;
+            }
+
+            if (txtValorContacto.Text.Trim() == "")
+            {
+                MessageBox.Show(
+                    "Ingrese un valor.");
+
+                return;
+            }
+            Contacto nuevo =
+            new Contacto();
+
+            nuevo.TipoContacto =
+                cmbTipoContacto.Text;
+
+            nuevo.Valor =
+                txtValorContacto.Text;
+
+            contactos.Add(nuevo);
+
+            ActualizarListaContactos();
+            
+        }
+
+        private void btnEliminarContacto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnModificarContacto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool ValidarContacto()
+        {
+            string valor =
+                txtValorContacto.Text.Trim();
+
+            switch (cmbTipoContacto.Text)
+            {
+                case "Email":
+
+                    return valor.Contains("@");
+
+                case "Teléfono":
+
+                case "WhatsApp":
+
+                    return long.TryParse(
+                        valor,
+                        out _);
+
+                default:
+
+                    return valor.Length > 0;
+            }
+        }
+        private void cmbTipoContacto_SelectedIndexChanged(
+    object sender,
+    EventArgs e)
+        {
+            txtValorContacto.Clear();
+
+            if (cmbTipoContacto.SelectedIndex == -1)
+            {
+                txtValorContacto.Enabled = false;
+                lblFormato.Text =
+                    "Seleccione un tipo de contacto";
+                return;
+            }
+
+            txtValorContacto.Enabled = true;
+
+            switch (cmbTipoContacto.Text)
+            {
+                case "Email":
+                    lblFormato.Text =
+                        "Ejemplo: usuario@dominio.com";
+                    break;
+
+                case "Teléfono":
+                    lblFormato.Text =
+                        "Ejemplo: 3511234567";
+                    break;
+
+                case "WhatsApp":
+                    lblFormato.Text =
+                        "Ejemplo: 3511234567";
+                    break;
+
+                case "Telegram":
+                    lblFormato.Text =
+                        "Ejemplo: @usuario";
+                    break;
+
+                case "Instagram":
+                case "Facebook":
+                case "TikTok":
+                case "X":
+                    lblFormato.Text =
+                        "Ejemplo: @usuario";
+                    break;
+
+                case "LinkedIn":
+                    lblFormato.Text =
+                        "Ejemplo: linkedin.com/in/usuario";
+                    break;
+            }
+        }
     }
 }

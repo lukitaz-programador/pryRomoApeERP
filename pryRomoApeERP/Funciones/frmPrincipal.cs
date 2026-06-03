@@ -117,5 +117,28 @@ namespace pryRomoApeERP
             DateTime.Now.ToString(
             "dd/MM/yyyy HH:mm:ss");
         }
+
+        private void datosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGestionDatosPersonales paso = new frmGestionDatosPersonales();
+            paso.ShowDialog();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void perfilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGestionPerfiles paso = new frmGestionPerfiles();
+            paso.ShowDialog();
+        }
+
+        private void verAuditoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmInformacionAuditoria paso = new frmInformacionAuditoria();
+            paso.ShowDialog();
+        }
     }
 }

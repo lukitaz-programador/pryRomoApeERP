@@ -31,7 +31,7 @@ namespace pryRomoApeERP.Base_de_Datos
                  Application.StartupPath,
                  "Base de Datos",
                  "RomoBD.accdb");
-
+                
                 rutaBD = Path.GetFullPath(rutaBD);
 
                 if (!File.Exists(rutaBD))

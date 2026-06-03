@@ -47,9 +47,9 @@
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblPerfil = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblConexion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrReloj = new System.Windows.Forms.Timer(this.components);
-            this.lblEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -125,18 +125,21 @@
             this.datosPersonalesToolStripMenuItem.Name = "datosPersonalesToolStripMenuItem";
             this.datosPersonalesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.datosPersonalesToolStripMenuItem.Text = "Datos Personales";
+            this.datosPersonalesToolStripMenuItem.Click += new System.EventHandler(this.datosPersonalesToolStripMenuItem_Click);
             // 
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
             this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // perfilesToolStripMenuItem
             // 
             this.perfilesToolStripMenuItem.Name = "perfilesToolStripMenuItem";
             this.perfilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.perfilesToolStripMenuItem.Text = "Perfiles";
+            this.perfilesToolStripMenuItem.Click += new System.EventHandler(this.perfilesToolStripMenuItem_Click);
             // 
             // auditoríaToolStripMenuItem
             // 
@@ -151,6 +154,7 @@
             this.verAuditoríaToolStripMenuItem.Name = "verAuditoríaToolStripMenuItem";
             this.verAuditoríaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.verAuditoríaToolStripMenuItem.Text = "Ver Auditoría";
+            this.verAuditoríaToolStripMenuItem.Click += new System.EventHandler(this.verAuditoríaToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -163,7 +167,7 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de";
             // 
             // statusStrip1
@@ -199,6 +203,12 @@
             this.lblConexion.Size = new System.Drawing.Size(118, 17);
             this.lblConexion.Text = "toolStripStatusLabel3";
             // 
+            // lblEstado
+            // 
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(118, 17);
+            this.lblEstado.Text = "toolStripStatusLabel1";
+            // 
             // lblFecha
             // 
             this.lblFecha.Name = "lblFecha";
@@ -209,12 +219,6 @@
             // 
             this.tmrReloj.Interval = 1000;
             this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(118, 17);
-            this.lblEstado.Text = "toolStripStatusLabel1";
             // 
             // frmPrincipal
             // 
