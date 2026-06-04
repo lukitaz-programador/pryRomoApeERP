@@ -402,7 +402,7 @@ namespace pryRomoApeERP
 
             string sql =
                 @"SELECT *
-          FROM tablaUsuario
+          FROM tablaDatosPersonales
           WHERE DNI = ?";
 
             using (OleDbCommand cmd =
@@ -425,16 +425,108 @@ namespace pryRomoApeERP
                         txtApellido.Text =
                             lector["Apellido"].ToString();
 
-                        MessageBox.Show(
-                            "Persona encontrada.",
-                            "Información",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                        int idPersona =
+                            Convert.ToInt32(
+                                lector["IdPersona"]);
+
+                        CargarContactos(idPersona);
+                        CargarUbicaciones(idPersona);
 
                         HabilitarEdicion(true);
                     }
                 }
             }
+        }
+
+        private void CargarContactos(int idPersona)
+        {
+            contactos.Clear();
+
+            string sql =
+                @"SELECT *
+          FROM tablaContactos
+          WHERE IdPersona = ?";
+
+            using (OleDbCommand cmd =
+                new OleDbCommand(
+                    sql,
+                    conexionBD.Conexion))
+            {
+                cmd.Parameters.AddWithValue(
+                    "@IdPersona",
+                    idPersona);
+
+                using (OleDbDataReader lector =
+                    cmd.ExecuteReader())
+                {
+                    while (lector.Read())
+                    {
+                        Contacto contacto =
+                            new Contacto();
+
+                        contacto.TipoContacto =
+                            lector["TipoContacto"].ToString();
+
+                        contacto.Valor =
+                            lector["Valor"].ToString();
+
+                        contactos.Add(contacto);
+                    }
+                }
+            }
+
+            ActualizarListaContactos();
+        }
+
+        private void CargarUbicaciones(int idPersona)
+        {
+            ubicaciones.Clear();
+
+            string sql =
+                @"SELECT *
+          FROM tablaUbicaciones
+          WHERE IdPersona = ?";
+
+            using (OleDbCommand cmd =
+                new OleDbCommand(
+                    sql,
+                    conexionBD.Conexion))
+            {
+                cmd.Parameters.AddWithValue(
+                    "@IdPersona",
+                    idPersona);
+
+                using (OleDbDataReader lector =
+                    cmd.ExecuteReader())
+                {
+                    while (lector.Read())
+                    {
+                        Ubicacion ubicacion =
+                            new Ubicacion();
+
+                        ubicacion.Provincia =
+                            lector["Provincia"].ToString();
+
+                        ubicacion.Localidad =
+                            lector["Localidad"].ToString();
+
+                        ubicacion.Direccion =
+                            lector["Direccion"].ToString();
+
+                        ubicacion.Geo =
+                            lector["Geo"].ToString();
+
+                        ubicacion.Residencia =
+                            Convert.ToBoolean(
+                                lector["Residencia"]);
+
+                        ubicaciones.Add(
+                            ubicacion);
+                    }
+                }
+            }
+
+            ActualizarListaUbicaciones();
         }
 
         private void mskDNI_TextChanged(
@@ -529,7 +621,13 @@ namespace pryRomoApeERP
                 lstContactos.BackColor =
                     Color.MistyRose;
 
-                error = true;
+                MessageBox.Show(
+                    "Debe cargar al menos 3 medios de contacto o redes sociales.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
             }
 
             if (error)
@@ -589,6 +687,10 @@ namespace pryRomoApeERP
                 }
             }
 
+            Random rnd = new Random();
+
+            string random = rnd.Next(10000, 100000).ToString();
+
             string usuario =
                 txtNombre.Text
                     .Trim()
@@ -613,7 +715,7 @@ namespace pryRomoApeERP
                     .Substring(0, 1)
                     .ToLower() +
 
-                "12345";
+                random;
 
             MessageBox.Show(
                 "Datos guardados correctamente.",
@@ -805,6 +907,7 @@ namespace pryRomoApeERP
             txtDireccion.Clear();
             txtGeo.Clear();
             chkResidencia.Checked = false;
+            txtValorContacto.Focus();
         }
 
         private void btnEliminarUbicacion_Click(
@@ -904,6 +1007,7 @@ namespace pryRomoApeERP
 
             cmbTipoContacto.SelectedIndex = -1;
             txtValorContacto.Clear();
+            btnGuardarPer.Focus();
         }
 
         private void btnEliminarContacto_Click(

@@ -171,6 +171,7 @@
             this.txtGeo.Size = new System.Drawing.Size(196, 20);
             this.txtGeo.TabIndex = 22;
             this.txtGeo.TextChanged += new System.EventHandler(this.txtGeo_TextChanged);
+            this.txtGeo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGeo_KeyDown);
             // 
             // txtDireccion
             // 
@@ -179,6 +180,7 @@
             this.txtDireccion.Size = new System.Drawing.Size(196, 20);
             this.txtDireccion.TabIndex = 21;
             this.txtDireccion.TextChanged += new System.EventHandler(this.txtDireccion_TextChanged);
+            this.txtDireccion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDireccion_KeyDown);
             // 
             // lblGeo
             // 
@@ -260,19 +262,21 @@
             // 
             // mskDNI
             // 
+            this.mskDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.mskDNI.Location = new System.Drawing.Point(97, 19);
             this.mskDNI.Mask = "99999999";
             this.mskDNI.Name = "mskDNI";
-            this.mskDNI.Size = new System.Drawing.Size(57, 20);
+            this.mskDNI.Size = new System.Drawing.Size(65, 21);
             this.mskDNI.TabIndex = 14;
             this.mskDNI.ValidatingType = typeof(int);
+            this.mskDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskDNI_KeyDown);
             this.mskDNI.Leave += new System.EventHandler(this.mskDNI_Leave);
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblNombre.Location = new System.Drawing.Point(13, 94);
+            this.lblNombre.Location = new System.Drawing.Point(13, 59);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(59, 16);
             this.lblNombre.TabIndex = 13;
@@ -292,7 +296,7 @@
             // 
             this.lblApellido.AutoSize = true;
             this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblApellido.Location = new System.Drawing.Point(13, 54);
+            this.lblApellido.Location = new System.Drawing.Point(13, 95);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(60, 16);
             this.lblApellido.TabIndex = 12;
@@ -312,19 +316,21 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(97, 92);
+            this.txtNombre.Location = new System.Drawing.Point(97, 57);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(196, 20);
             this.txtNombre.TabIndex = 9;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
+            this.txtNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNombre_KeyDown);
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(97, 53);
+            this.txtApellido.Location = new System.Drawing.Point(97, 94);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(196, 20);
             this.txtApellido.TabIndex = 7;
             this.txtApellido.TextChanged += new System.EventHandler(this.txtApellido_TextChanged);
+            this.txtApellido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtApellido_KeyDown);
             // 
             // lblDNI
             // 
@@ -381,6 +387,7 @@
             this.txtValorContacto.Name = "txtValorContacto";
             this.txtValorContacto.Size = new System.Drawing.Size(175, 20);
             this.txtValorContacto.TabIndex = 16;
+            this.txtValorContacto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValorContacto_KeyDown);
             // 
             // lblValor
             // 
