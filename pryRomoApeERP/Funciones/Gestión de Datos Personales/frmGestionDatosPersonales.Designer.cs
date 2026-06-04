@@ -260,7 +260,7 @@
             // 
             // mskDNI
             // 
-            this.mskDNI.Location = new System.Drawing.Point(97, 104);
+            this.mskDNI.Location = new System.Drawing.Point(97, 19);
             this.mskDNI.Mask = "99999999";
             this.mskDNI.Name = "mskDNI";
             this.mskDNI.Size = new System.Drawing.Size(57, 20);
@@ -271,7 +271,7 @@
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblNombre.Location = new System.Drawing.Point(13, 72);
+            this.lblNombre.Location = new System.Drawing.Point(13, 94);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(59, 16);
             this.lblNombre.TabIndex = 13;
@@ -291,7 +291,7 @@
             // 
             this.lblApellido.AutoSize = true;
             this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblApellido.Location = new System.Drawing.Point(13, 32);
+            this.lblApellido.Location = new System.Drawing.Point(13, 54);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(60, 16);
             this.lblApellido.TabIndex = 12;
@@ -311,7 +311,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(97, 70);
+            this.txtNombre.Location = new System.Drawing.Point(97, 92);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(196, 20);
             this.txtNombre.TabIndex = 9;
@@ -319,7 +319,7 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(97, 31);
+            this.txtApellido.Location = new System.Drawing.Point(97, 53);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(196, 20);
             this.txtApellido.TabIndex = 7;
@@ -329,7 +329,7 @@
             // 
             this.lblDNI.AutoSize = true;
             this.lblDNI.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.lblDNI.Location = new System.Drawing.Point(15, 107);
+            this.lblDNI.Location = new System.Drawing.Point(15, 22);
             this.lblDNI.Name = "lblDNI";
             this.lblDNI.Size = new System.Drawing.Size(33, 16);
             this.lblDNI.TabIndex = 6;
