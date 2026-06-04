@@ -390,6 +390,53 @@ namespace pryRomoApeERP
             ComprobarDatos();
         }
 
+        private void BuscarPersonaPorDNI()
+        {
+            string dni = new string(
+                mskDNI.Text
+                .Where(char.IsDigit)
+                .ToArray());
+
+            if (dni.Length < 7)
+                return;
+
+            string sql =
+                @"SELECT *
+          FROM tablaUsuario
+          WHERE DNI = ?";
+
+            using (OleDbCommand cmd =
+                new OleDbCommand(
+                    sql,
+                    conexionBD.Conexion))
+            {
+                cmd.Parameters.AddWithValue(
+                    "@DNI",
+                    dni);
+
+                using (OleDbDataReader lector =
+                    cmd.ExecuteReader())
+                {
+                    if (lector.Read())
+                    {
+                        txtNombre.Text =
+                            lector["Nombre"].ToString();
+
+                        txtApellido.Text =
+                            lector["Apellido"].ToString();
+
+                        MessageBox.Show(
+                            "Persona encontrada.",
+                            "Información",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                        HabilitarEdicion(true);
+                    }
+                }
+            }
+        }
+
         private void mskDNI_TextChanged(
             object sender,
             EventArgs e)
@@ -582,13 +629,14 @@ namespace pryRomoApeERP
     VALUES (?, ?, ?, ?, ?)";
 
             List<object> parametrosUsuario =
-                new List<object>()
-                {
+    new List<object>()
+    {
         txtNombre.Text.Trim(),
         txtApellido.Text.Trim(),
+        dni,
         usuario,
         password
-                };
+    };
 
             conexionBD.ExecuteNonQuery(
                 sqlUsuario,
@@ -1018,6 +1066,11 @@ namespace pryRomoApeERP
         private void lblFecha_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void mskDNI_Leave(object sender, EventArgs e)
+        {
+            BuscarPersonaPorDNI();
         }
     }
 }

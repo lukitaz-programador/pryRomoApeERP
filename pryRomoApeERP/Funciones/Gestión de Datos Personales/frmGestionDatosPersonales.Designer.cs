@@ -266,6 +266,7 @@
             this.mskDNI.Size = new System.Drawing.Size(57, 20);
             this.mskDNI.TabIndex = 14;
             this.mskDNI.ValidatingType = typeof(int);
+            this.mskDNI.Leave += new System.EventHandler(this.mskDNI_Leave);
             // 
             // lblNombre
             // 
