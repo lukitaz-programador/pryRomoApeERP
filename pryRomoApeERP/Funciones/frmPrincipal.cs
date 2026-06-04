@@ -156,7 +156,7 @@ namespace pryRomoApeERP
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void btnSalirApp_Click_1(object sender, EventArgs e)
@@ -175,6 +175,11 @@ namespace pryRomoApeERP
             this.Close();
             frmLogin paso = new frmLogin();
             paso.ShowDialog();
+        }
+
+        private void frmPrincipal_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

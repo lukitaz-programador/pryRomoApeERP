@@ -47,6 +47,7 @@
             this.lblConexion = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrReloj = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.menuNavegacion.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +73,7 @@
             this.ayudaToolStripMenuItem});
             this.menuNavegacion.Location = new System.Drawing.Point(0, 0);
             this.menuNavegacion.Name = "menuNavegacion";
-            this.menuNavegacion.Size = new System.Drawing.Size(1924, 29);
+            this.menuNavegacion.Size = new System.Drawing.Size(1370, 29);
             this.menuNavegacion.TabIndex = 5;
             this.menuNavegacion.Text = "menuStrip1";
             // 
@@ -159,9 +160,9 @@
             this.lblUsuario,
             this.lblConexion,
             this.lblFecha});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 1035);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 723);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1924, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1370, 26);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
@@ -195,7 +196,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1924, 1061);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuNavegacion);
@@ -204,6 +205,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPrincipal_FormClosing_1);
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.menuNavegacion.ResumeLayout(false);
             this.menuNavegacion.PerformLayout();
@@ -232,5 +234,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lblConexion;
         private System.Windows.Forms.ToolStripStatusLabel lblFecha;
         private System.Windows.Forms.Timer tmrReloj;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

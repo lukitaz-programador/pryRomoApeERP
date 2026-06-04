@@ -3,7 +3,8 @@ using pryRomoApeERP.Utilidades;
 using System;
 using System.Data;
 using System.Data.OleDb;
-using System.Windows.Forms;
+using System.Windows.Forms; 
+using pryRomoApeERP.Funciones.Login;
 
 namespace pryRomoApeERP
 {
@@ -17,6 +18,7 @@ namespace pryRomoApeERP
         {
             InitializeComponent();
             mailUsuario = mail;
+            InicializarBarraEstado();
         }
 
         private void frmInformacionAuditoria_Load(object sender, EventArgs e)
@@ -47,6 +49,46 @@ namespace pryRomoApeERP
                     ex.Message
                 );
             }
+        }
+
+        private void InicializarBarraEstado()
+        {
+            try
+            {
+                archivoBD = new Archivo("RomoBD.accdb");
+                conexionBD = archivoBD.Conexion;
+
+                lblUsuario.Text = $"Usuario: {Sesion.NombreUsuario}";
+
+                if (conexionBD != null &&
+                    conexionBD.EstaConectado)
+                {
+                    lblConexion.Text = "BD: Conectada";
+                }
+                else
+                {
+                    lblConexion.Text = "BD: Desconectada";
+                }
+
+                lblFecha.Text =
+                    DateTime.Now.ToString(
+                        "dd/MM/yyyy HH:mm:ss");
+
+                tmrReloj.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error al cargar la barra de estado:\n" +
+                    ex.Message);
+            }
+        }
+
+        private void tmrReloj_Tick(object sender, EventArgs e)
+        {
+            lblFecha.Text =
+                DateTime.Now.ToString(
+                    "dd/MM/yyyy HH:mm:ss");
         }
 
         private void CargarUsuarios()

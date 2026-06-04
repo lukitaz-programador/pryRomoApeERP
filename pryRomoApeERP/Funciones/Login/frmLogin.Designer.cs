@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.lblEstadoo = new System.Windows.Forms.Label();
-            this.lblEstado = new System.Windows.Forms.Label();
             this.lblMail = new System.Windows.Forms.Label();
             this.lblContrasenia = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
@@ -42,28 +41,14 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.fechaGuardada = new System.Windows.Forms.DateTimePicker();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblConexion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tmrReloj = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblEstadoo
-            // 
-            this.lblEstadoo.AutoSize = true;
-            this.lblEstadoo.Location = new System.Drawing.Point(10, 494);
-            this.lblEstadoo.Name = "lblEstadoo";
-            this.lblEstadoo.Size = new System.Drawing.Size(104, 13);
-            this.lblEstadoo.TabIndex = 0;
-            this.lblEstadoo.Text = "Estado de conexión:";
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.AutoSize = true;
-            this.lblEstado.ForeColor = System.Drawing.Color.Red;
-            this.lblEstado.Location = new System.Drawing.Point(112, 494);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(86, 13);
-            this.lblEstado.TabIndex = 1;
-            this.lblEstado.Text = "Desconectado...";
             // 
             // lblMail
             // 
@@ -175,14 +160,40 @@
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
-            // fechaGuardada
+            // statusStrip1
             // 
-            this.fechaGuardada.Enabled = false;
-            this.fechaGuardada.Location = new System.Drawing.Point(458, 494);
-            this.fechaGuardada.Name = "fechaGuardada";
-            this.fechaGuardada.Size = new System.Drawing.Size(200, 20);
-            this.fechaGuardada.TabIndex = 14;
-            this.fechaGuardada.Visible = false;
+            this.statusStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblUsuario,
+            this.lblConexion,
+            this.lblFecha});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 490);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(660, 26);
+            this.statusStrip1.TabIndex = 14;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(157, 21);
+            this.lblUsuario.Text = "toolStripStatusLabel1";
+            // 
+            // lblConexion
+            // 
+            this.lblConexion.Name = "lblConexion";
+            this.lblConexion.Size = new System.Drawing.Size(157, 21);
+            this.lblConexion.Text = "toolStripStatusLabel3";
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(157, 21);
+            this.lblFecha.Text = "toolStripStatusLabel4";
+            // 
+            // tmrReloj
+            // 
+            this.tmrReloj.Interval = 1000;
             // 
             // frmLogin
             // 
@@ -191,7 +202,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(660, 516);
-            this.Controls.Add(this.fechaGuardada);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
@@ -203,23 +214,20 @@
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.lblContrasenia);
             this.Controls.Add(this.lblMail);
-            this.Controls.Add(this.lblEstado);
-            this.Controls.Add(this.lblEstadoo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ape ERP";
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblEstadoo;
-        private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.Label lblMail;
         private System.Windows.Forms.Label lblContrasenia;
         private System.Windows.Forms.TextBox txtMail;
@@ -231,7 +239,11 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.DateTimePicker fechaGuardada;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
+        private System.Windows.Forms.ToolStripStatusLabel lblConexion;
+        private System.Windows.Forms.ToolStripStatusLabel lblFecha;
+        private System.Windows.Forms.Timer tmrReloj;
     }
 }
 

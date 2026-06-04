@@ -67,9 +67,15 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblConexion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tmrReloj = new System.Windows.Forms.Timer(this.components);
             this.grpDomicilio.SuspendLayout();
             this.grpDatosPer.SuspendLayout();
             this.grpContacto.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpDomicilio
@@ -463,12 +469,49 @@
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblUsuario,
+            this.lblConexion,
+            this.lblFecha});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 667);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(810, 26);
+            this.statusStrip1.TabIndex = 26;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(157, 21);
+            this.lblUsuario.Text = "toolStripStatusLabel1";
+            // 
+            // lblConexion
+            // 
+            this.lblConexion.Name = "lblConexion";
+            this.lblConexion.Size = new System.Drawing.Size(157, 21);
+            this.lblConexion.Text = "toolStripStatusLabel3";
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(157, 21);
+            this.lblFecha.Text = "toolStripStatusLabel4";
+            this.lblFecha.Click += new System.EventHandler(this.lblFecha_Click);
+            // 
+            // tmrReloj
+            // 
+            this.tmrReloj.Interval = 1000;
+            // 
             // frmGestionDatosPersonales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(810, 666);
+            this.ClientSize = new System.Drawing.Size(810, 693);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.grpContacto);
@@ -486,7 +529,10 @@
             this.grpDatosPer.PerformLayout();
             this.grpContacto.ResumeLayout(false);
             this.grpContacto.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -529,5 +575,10 @@
         private System.Windows.Forms.Button btnEliminarContacto;
         private System.Windows.Forms.ListBox lstContactos;
         private System.Windows.Forms.Button btnBuscarUbicacion;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
+        private System.Windows.Forms.ToolStripStatusLabel lblConexion;
+        private System.Windows.Forms.ToolStripStatusLabel lblFecha;
+        private System.Windows.Forms.Timer tmrReloj;
     }
 }

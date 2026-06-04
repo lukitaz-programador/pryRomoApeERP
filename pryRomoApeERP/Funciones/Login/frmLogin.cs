@@ -28,6 +28,7 @@ namespace pryRomoApeERP
         public frmLogin()
         {
             InitializeComponent();
+            InicializarBarraEstado();
         }
 
         int intentosIngresos = 3;
@@ -46,19 +47,6 @@ namespace pryRomoApeERP
 
                 //Inicializa el registro de auditoría
                 registroAuditoria = new RegistroAuditoria(conexionBD);
-
-                //Validación
-                if (conexionBD != null &&
-                    conexionBD.EstaConectado)
-                {
-                    lblEstado.Text = "Conectado";
-                    lblEstado.ForeColor = Color.Green;
-                }
-                else
-                {
-                    lblEstado.Text = "Desconectado";
-                    lblEstado.ForeColor = Color.Red;
-                }
             }
             catch (Exception ex)
             {
@@ -68,6 +56,45 @@ namespace pryRomoApeERP
             }
         }
 
+        private void InicializarBarraEstado()
+        {
+            try
+            {
+                archivoBD = new Archivo("RomoBD.accdb");
+                conexionBD = archivoBD.Conexion;
+
+                lblUsuario.Text = $"Usuario: {Sesion.NombreUsuario}";
+
+                if (conexionBD != null &&
+                    conexionBD.EstaConectado)
+                {
+                    lblConexion.Text = "BD: Conectada";
+                }
+                else
+                {
+                    lblConexion.Text = "BD: Desconectada";
+                }
+
+                lblFecha.Text =
+                    DateTime.Now.ToString(
+                        "dd/MM/yyyy HH:mm:ss");
+
+                tmrReloj.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error al cargar la barra de estado:\n" +
+                    ex.Message);
+            }
+        }
+
+        private void tmrReloj_Tick(object sender, EventArgs e)
+        {
+            lblFecha.Text =
+                DateTime.Now.ToString(
+                    "dd/MM/yyyy HH:mm:ss");
+        }
         private void txtMail_TextChanged(object sender, EventArgs e)
         {
             if (txtMail.Text != "" && txtContrasenia.Text != "")

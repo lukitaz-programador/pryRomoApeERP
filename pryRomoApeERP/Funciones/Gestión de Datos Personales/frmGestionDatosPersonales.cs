@@ -1,6 +1,7 @@
 ﻿using pryRomoApeERP.Base_de_Datos;
 using pryRomoApeERP.Funciones;
 using pryRomoApeERP.Funciones.Gestión_de_Datos_Personales;
+using pryRomoApeERP.Funciones.Login;
 using pryRomoApeERP.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,51 @@ namespace pryRomoApeERP
         public frmGestionDatosPersonales(string mail = "")
         {
             InitializeComponent();
+            InicializarBarraEstado();
 
             mailUsuario = mail;
 
             this.AcceptButton =
                 btnGuardarPer;
+        }
+        private void InicializarBarraEstado()
+        {
+            try
+            {
+                archivoBD = new Archivo("RomoBD.accdb");
+                conexionBD = archivoBD.Conexion;
+
+                lblUsuario.Text = $"Usuario: {Sesion.NombreUsuario}";
+
+                if (conexionBD != null &&
+                    conexionBD.EstaConectado)
+                {
+                    lblConexion.Text = "BD: Conectada";
+                }
+                else
+                {
+                    lblConexion.Text = "BD: Desconectada";
+                }
+
+                lblFecha.Text =
+                    DateTime.Now.ToString(
+                        "dd/MM/yyyy HH:mm:ss");
+
+                tmrReloj.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error al cargar la barra de estado:\n" +
+                    ex.Message);
+            }
+        }
+
+        private void tmrReloj_Tick(object sender, EventArgs e)
+        {
+            lblFecha.Text =
+                DateTime.Now.ToString(
+                    "dd/MM/yyyy HH:mm:ss");
         }
 
         private void frmGestionDatosPersonales_Load(
@@ -941,6 +982,11 @@ namespace pryRomoApeERP
                 Uri.EscapeDataString(busqueda);
 
             System.Diagnostics.Process.Start(url);
+        }
+
+        private void lblFecha_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

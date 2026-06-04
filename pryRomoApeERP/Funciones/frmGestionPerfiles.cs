@@ -4,7 +4,6 @@ using pryRomoApeERP.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
 namespace pryRomoApeERP
 {
     public partial class frmGestionPerfiles : Form
@@ -14,6 +13,7 @@ namespace pryRomoApeERP
         private tablaPerfil tablaPerfilesAcceso;
         private tablaUsuario tablaUsuariosAcceso;
         private RegistroAuditoria auditoria;
+        private ConexionDB conexionBD;
 
 
         public frmGestionPerfiles(string mail = "")
@@ -21,8 +21,48 @@ namespace pryRomoApeERP
             InitializeComponent();
             mailUsuario = mail;
             InicializarConexion();
+            InicializarBarraEstado();
         }
 
+        private void InicializarBarraEstado()
+        {
+            try
+            {
+                archivoBD = new Archivo("RomoBD.accdb");
+                conexionBD = archivoBD.Conexion;
+
+                lblUsuario.Text = $"Usuario: {Sesion.NombreUsuario}";
+
+                if (conexionBD != null &&
+                    conexionBD.EstaConectado)
+                {
+                    lblConexion.Text = "BD: Conectada";
+                }
+                else
+                {
+                    lblConexion.Text = "BD: Desconectada";
+                }
+
+                lblFecha.Text =
+                    DateTime.Now.ToString(
+                        "dd/MM/yyyy HH:mm:ss");
+
+                tmrReloj.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error al cargar la barra de estado:\n" +
+                    ex.Message);
+            }
+        }
+
+        private void tmrReloj_Tick(object sender, EventArgs e)
+        {
+            lblFecha.Text =
+                DateTime.Now.ToString(
+                    "dd/MM/yyyy HH:mm:ss");
+        }
         private void InicializarConexion()
         {
             try
