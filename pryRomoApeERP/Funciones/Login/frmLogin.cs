@@ -29,6 +29,7 @@ namespace pryRomoApeERP
         {
             InitializeComponent();
             InicializarBarraEstado();
+            this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
         }
 
         int intentosIngresos = 3;

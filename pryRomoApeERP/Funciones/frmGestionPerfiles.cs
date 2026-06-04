@@ -22,6 +22,7 @@ namespace pryRomoApeERP
             mailUsuario = mail;
             InicializarConexion();
             InicializarBarraEstado();
+            this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
         }
 
         private void InicializarBarraEstado()

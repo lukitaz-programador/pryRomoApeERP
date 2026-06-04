@@ -19,6 +19,7 @@ namespace pryRomoApeERP
             InitializeComponent();
             mailUsuario = mail;
             InicializarBarraEstado();
+            this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
         }
 
         private void frmInformacionAuditoria_Load(object sender, EventArgs e)

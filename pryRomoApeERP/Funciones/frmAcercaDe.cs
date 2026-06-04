@@ -21,6 +21,7 @@ namespace pryRomoApeERP.Funciones
         {
             InitializeComponent();
             InicializarBarraEstado();
+            this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
         }
 
         private void InicializarBarraEstado()

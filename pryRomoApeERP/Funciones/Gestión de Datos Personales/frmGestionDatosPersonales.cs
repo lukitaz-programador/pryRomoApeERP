@@ -32,6 +32,7 @@ namespace pryRomoApeERP
         {
             InitializeComponent();
             InicializarBarraEstado();
+            this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
 
             mailUsuario = mail;
 
@@ -507,6 +508,40 @@ namespace pryRomoApeERP
                 return;
             }
 
+            string dni =
+    new string(
+        mskDNI.Text
+        .Where(char.IsDigit)
+        .ToArray());
+
+            string sqlExisteDNI =
+                "SELECT COUNT(*) FROM tablaUsuario WHERE DNI = ?";
+
+            using (OleDbCommand cmd =
+                new OleDbCommand(
+                    sqlExisteDNI,
+                    conexionBD.Conexion))
+            {
+                cmd.Parameters.AddWithValue(
+                    "@DNI",
+                    dni);
+
+                int cantidad =
+                    Convert.ToInt32(
+                        cmd.ExecuteScalar());
+
+                if (cantidad > 0)
+                {
+                    MessageBox.Show(
+                        "Ya existe un usuario registrado con ese DNI.",
+                        "DNI duplicado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
+
             string usuario =
                 txtNombre.Text
                     .Trim()
@@ -533,12 +568,8 @@ namespace pryRomoApeERP
 
                 "12345";
 
-
             MessageBox.Show(
-                $"Datos validados correctamente.\n\n" +
-                $"Usuario generado:\n{usuario}\n\n" +
-                $"Contraseña generada:\n{password}",
-
+                "Datos guardados correctamente.",
                 "Información",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
@@ -547,8 +578,8 @@ namespace pryRomoApeERP
 
             string sqlUsuario =
                 @"INSERT INTO tablaUsuario
-    (Nombre, Apellido, Mail, Contrasenia)
-    VALUES (?, ?, ?, ?)";
+    (Nombre, Apellido, DNI, Mail, Contrasenia)
+    VALUES (?, ?, ?, ?, ?)";
 
             List<object> parametrosUsuario =
                 new List<object>()
