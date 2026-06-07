@@ -25,7 +25,12 @@ namespace pryRomoApeERP
         public frmPrincipal(string mail = "")
         {
             InitializeComponent();
-            mailUsuario = mail;
+            mailUsuario =
+                string.IsNullOrWhiteSpace(mail)
+                ? Sesion.MailUsuario
+                : mail;
+
+            InterfazHelper.AplicarEstiloProfesional(this);
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -133,7 +138,9 @@ namespace pryRomoApeERP
 
         private void datosPersonalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmGestionDatosPersonales paso = new frmGestionDatosPersonales();
+            frmGestionDatosPersonales paso =
+                new frmGestionDatosPersonales(mailUsuario);
+
             paso.ShowDialog();
         }
 
@@ -144,13 +151,17 @@ namespace pryRomoApeERP
 
         private void perfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmGestionPerfiles paso = new frmGestionPerfiles();
+            frmGestionPerfiles paso =
+                new frmGestionPerfiles(mailUsuario);
+
             paso.ShowDialog();
         }
 
         private void verAuditoríaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmInformacionAuditoria paso = new frmInformacionAuditoria();
+            frmInformacionAuditoria paso =
+                new frmInformacionAuditoria(mailUsuario);
+
             paso.ShowDialog();
         }
 

@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="Funciones\Gestión de Datos Personales\Ubicacion.cs" />
     <Compile Include="Utilidades\Perfiles.cs" />
+    <Compile Include="Utilidades\InterfazHelper.cs" />
     <Compile Include="Utilidades\Seguridad.cs" />
     <Compile Include="Utilidades\Sesion.cs" />
     <Compile Include="Program.cs" />

@@ -1,4 +1,5 @@
 using pryRomoApeERP.Base_de_Datos;
+using pryRomoApeERP.Funciones.Login;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -30,14 +31,19 @@ namespace pryRomoApeERP.Utilidades
                     return;
                 }
 
-                string mail = string.IsNullOrEmpty(mailUsuario) ? "SinMail" : mailUsuario.Trim();
+                string mail = string.IsNullOrWhiteSpace(mailUsuario) ? Sesion.MailUsuario : mailUsuario.Trim();
+
+                if (string.IsNullOrWhiteSpace(mail))
+                {
+                    mail = "SinMail";
+                }
                 string acc = string.IsNullOrEmpty(accion) ? "SinAccion" : accion.Trim();
                 DateTime fecha = DateTime.Now;
 
                 string sql = "INSERT INTO [tablaRegistroAuditoria] ([FechaHora], [MailUsuario], [Accion]) VALUES (?, ?, ?)";
 
                 List<object> parametros = new List<object>();
-                parametros.Add(fecha);
+                parametros.Add(fecha.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
                 parametros.Add(mail);
                 parametros.Add(acc);
 

@@ -1,5 +1,6 @@
-﻿using pryRomoApeERP.Base_de_Datos;
+using pryRomoApeERP.Base_de_Datos;
 using pryRomoApeERP.Funciones.Login;
+using pryRomoApeERP.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace pryRomoApeERP.Funciones
         public frmAcercaDe()
         {
             InitializeComponent();
+            InterfazHelper.AplicarEstiloProfesional(this);
             InicializarBarraEstado();
             this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
         }

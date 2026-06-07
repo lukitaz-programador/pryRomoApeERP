@@ -19,7 +19,13 @@ namespace pryRomoApeERP
         public frmGestionPerfiles(string mail = "")
         {
             InitializeComponent();
-            mailUsuario = mail;
+            mailUsuario =
+                string.IsNullOrWhiteSpace(mail)
+                ? Sesion.MailUsuario
+                : mail;
+
+            InterfazHelper.AplicarEstiloProfesional(this);
+            InterfazHelper.ConfigurarEnterComoTab(this);
             InicializarConexion();
             InicializarBarraEstado();
             this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);

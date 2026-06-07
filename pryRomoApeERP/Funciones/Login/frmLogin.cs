@@ -28,6 +28,7 @@ namespace pryRomoApeERP
         public frmLogin()
         {
             InitializeComponent();
+
             InicializarBarraEstado();
             this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
         }
@@ -186,6 +187,9 @@ WHERE
 
                     Sesion.NombreUsuario =
                         lector["Nombre"].ToString();
+
+                    Sesion.MailUsuario =
+                        lector["Mail"].ToString();
                 }
 
                 lector.Close();

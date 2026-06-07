@@ -3,6 +3,7 @@ using pryRomoApeERP.Utilidades;
 using System;
 using System.Data;
 using System.Data.OleDb;
+using System.Drawing;
 using System.Windows.Forms; 
 using pryRomoApeERP.Funciones.Login;
 
@@ -13,13 +14,93 @@ namespace pryRomoApeERP
         private Archivo archivoBD;
         private ConexionDB conexionBD;
         private string mailUsuario;
+        private CheckBox chkFiltrarFecha;
+        private DateTimePicker dtpFechaDesde;
+        private DateTimePicker dtpHoraDesde;
+        private DateTimePicker dtpFechaHasta;
+        private DateTimePicker dtpHoraHasta;
 
         public frmInformacionAuditoria(string mail = "")
         {
             InitializeComponent();
-            mailUsuario = mail;
+            mailUsuario =
+                string.IsNullOrWhiteSpace(mail)
+                ? Sesion.MailUsuario
+                : mail;
+
+            CrearFiltrosFechaHora();
+            InterfazHelper.AplicarEstiloProfesional(this);
+            InterfazHelper.ConfigurarEnterComoTab(this);
             InicializarBarraEstado();
             this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
+        }
+
+        private void CrearFiltrosFechaHora()
+        {
+            Calendario.Visible = false;
+
+            chkFiltrarFecha = new CheckBox();
+            chkFiltrarFecha.Text = "Filtrar por fecha y hora";
+            chkFiltrarFecha.Location = new Point(382, 34);
+            chkFiltrarFecha.AutoSize = true;
+            chkFiltrarFecha.Checked = false;
+
+            Label lblDesde = new Label();
+            lblDesde.Text = "Desde:";
+            lblDesde.Location = new Point(382, 70);
+            lblDesde.AutoSize = true;
+
+            dtpFechaDesde = new DateTimePicker();
+            dtpFechaDesde.Format = DateTimePickerFormat.Short;
+            dtpFechaDesde.Location = new Point(435, 66);
+            dtpFechaDesde.Width = 95;
+            dtpFechaDesde.Value = DateTime.Today;
+
+            dtpHoraDesde = new DateTimePicker();
+            dtpHoraDesde.Format = DateTimePickerFormat.Time;
+            dtpHoraDesde.ShowUpDown = true;
+            dtpHoraDesde.Location = new Point(536, 66);
+            dtpHoraDesde.Width = 85;
+            dtpHoraDesde.Value = DateTime.Today;
+
+            Label lblHasta = new Label();
+            lblHasta.Text = "Hasta:";
+            lblHasta.Location = new Point(382, 106);
+            lblHasta.AutoSize = true;
+
+            dtpFechaHasta = new DateTimePicker();
+            dtpFechaHasta.Format = DateTimePickerFormat.Short;
+            dtpFechaHasta.Location = new Point(435, 102);
+            dtpFechaHasta.Width = 95;
+            dtpFechaHasta.Value = DateTime.Today;
+
+            dtpHoraHasta = new DateTimePicker();
+            dtpHoraHasta.Format = DateTimePickerFormat.Time;
+            dtpHoraHasta.ShowUpDown = true;
+            dtpHoraHasta.Location = new Point(536, 102);
+            dtpHoraHasta.Width = 85;
+            dtpHoraHasta.Value = DateTime.Today
+                .AddHours(23)
+                .AddMinutes(59)
+                .AddSeconds(59);
+
+            Controls.Add(chkFiltrarFecha);
+            Controls.Add(lblDesde);
+            Controls.Add(dtpFechaDesde);
+            Controls.Add(dtpHoraDesde);
+            Controls.Add(lblHasta);
+            Controls.Add(dtpFechaHasta);
+            Controls.Add(dtpHoraHasta);
+        }
+
+        private DateTime CombinarFechaHora(
+            DateTimePicker fecha,
+            DateTimePicker hora)
+        {
+            return fecha.Value.Date
+                .AddHours(hora.Value.Hour)
+                .AddMinutes(hora.Value.Minute)
+                .AddSeconds(hora.Value.Second);
         }
 
         private void frmInformacionAuditoria_Load(object sender, EventArgs e)
@@ -248,6 +329,43 @@ namespace pryRomoApeERP
                         "@Accion",
                         cmbAccion.Text
                     );
+                }
+
+                if (chkFiltrarFecha.Checked)
+                {
+                    DateTime desde =
+                        CombinarFechaHora(
+                            dtpFechaDesde,
+                            dtpHoraDesde);
+
+                    DateTime hasta =
+                        CombinarFechaHora(
+                            dtpFechaHasta,
+                            dtpHoraHasta);
+
+                    if (desde > hasta)
+                    {
+                        MessageBox.Show(
+                            "La fecha desde no puede ser mayor que la fecha hasta.",
+                            "Validación",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+
+                        return;
+                    }
+
+                    consulta +=
+                    " AND FechaHora >= ? AND FechaHora <= ?";
+
+                    cmd.Parameters.AddWithValue(
+                        "@FechaDesde",
+                        desde.ToString("yyyy-MM-dd HH:mm:ss") +
+                        ".0000000");
+
+                    cmd.Parameters.AddWithValue(
+                        "@FechaHasta",
+                        hasta.ToString("yyyy-MM-dd HH:mm:ss") +
+                        ".9999999");
                 }
 
                 consulta +=

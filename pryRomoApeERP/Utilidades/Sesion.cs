@@ -11,5 +11,6 @@ namespace pryRomoApeERP.Funciones.Login
         public static int IdUsuario { get; set; }
         public static int IdPerfil { get; set; }
         public static string NombreUsuario { get; set; }
+        public static string MailUsuario { get; set; }
     }
 }
