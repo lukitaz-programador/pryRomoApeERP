@@ -102,6 +102,19 @@ namespace pryRomoApeERP
                 CargarProvincias();
 
                 CargarTiposContacto();
+
+                mskDNI.KeyDown += Control_KeyDown;
+                txtNombre.KeyDown += Control_KeyDown;
+                txtApellido.KeyDown += Control_KeyDown;
+
+                cmbProvincia.KeyDown += Control_KeyDown;
+                cmbLocalidad.KeyDown += Control_KeyDown;
+
+                txtDireccion.KeyDown += Control_KeyDown;
+                txtGeo.KeyDown += Control_KeyDown;
+
+                cmbTipoContacto.KeyDown += Control_KeyDown;
+                txtValorContacto.KeyDown += Control_KeyDown;
             }
             catch (Exception ex)
             {
@@ -425,6 +438,10 @@ namespace pryRomoApeERP
                         txtApellido.Text =
                             lector["Apellido"].ToString();
 
+                        chkEstado.Checked =
+                             Convert.ToBoolean(
+                             lector["Activo"]);
+
                         int idPersona =
                             Convert.ToInt32(
                                 lector["IdPersona"]);
@@ -433,6 +450,27 @@ namespace pryRomoApeERP
                         CargarUbicaciones(idPersona);
 
                         HabilitarEdicion(true);
+                    }
+                    else
+                    {
+                        txtNombre.Clear();
+                        txtApellido.Clear();
+
+                        txtDireccion.Clear();
+                        txtGeo.Clear();
+
+                        cmbProvincia.SelectedIndex = -1;
+                        cmbLocalidad.SelectedIndex = -1;
+
+                        contactos.Clear();
+                        ubicaciones.Clear();
+
+                        ActualizarListaContactos();
+                        ActualizarListaUbicaciones();
+
+                        chkEstado.Checked = false;
+
+                        HabilitarEdicion(false);
                     }
                 }
             }
@@ -577,9 +615,8 @@ namespace pryRomoApeERP
             ComprobarDatos();
         }
 
-        private void btnGuardarPer_Click(
-    object sender,
-    EventArgs e)
+
+        private void btnGuardarPer_Click(object sender, EventArgs e)
         {
             txtNombre.BackColor = Color.White;
             txtApellido.BackColor = Color.White;
@@ -610,16 +647,13 @@ namespace pryRomoApeERP
 
             if (ubicaciones.Count < 1)
             {
-                lstUbicaciones.BackColor =
-                    Color.MistyRose;
-
+                lstUbicaciones.BackColor = Color.MistyRose;
                 error = true;
             }
 
             if (contactos.Count < 3)
             {
-                lstContactos.BackColor =
-                    Color.MistyRose;
+                lstContactos.BackColor = Color.MistyRose;
 
                 MessageBox.Show(
                     "Debe cargar al menos 3 medios de contacto o redes sociales.",
@@ -654,10 +688,10 @@ namespace pryRomoApeERP
             }
 
             string dni =
-    new string(
-        mskDNI.Text
-        .Where(char.IsDigit)
-        .ToArray());
+                new string(
+                    mskDNI.Text
+                    .Where(char.IsDigit)
+                    .ToArray());
 
             string sqlExisteDNI =
                 "SELECT COUNT(*) FROM tablaUsuario WHERE DNI = ?";
@@ -689,7 +723,8 @@ namespace pryRomoApeERP
 
             Random rnd = new Random();
 
-            string random = rnd.Next(10000, 100000).ToString();
+            string random =
+                rnd.Next(10000, 100000).ToString();
 
             string usuario =
                 txtNombre.Text
@@ -717,28 +752,22 @@ namespace pryRomoApeERP
 
                 random;
 
-            MessageBox.Show(
-                "Datos guardados correctamente.",
-                "Información",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-
             // INSERT EN tablaUsuario
 
             string sqlUsuario =
                 @"INSERT INTO tablaUsuario
-    (Nombre, Apellido, DNI, Mail, Contrasenia)
-    VALUES (?, ?, ?, ?, ?)";
+        (Nombre, Apellido, DNI, Mail, Contrasenia)
+        VALUES (?, ?, ?, ?, ?)";
 
             List<object> parametrosUsuario =
-    new List<object>()
-    {
-        txtNombre.Text.Trim(),
-        txtApellido.Text.Trim(),
-        dni,
-        usuario,
-        password
-    };
+                new List<object>()
+                {
+            txtNombre.Text.Trim(),
+            txtApellido.Text.Trim(),
+            dni,
+            usuario,
+            password
+                };
 
             conexionBD.ExecuteNonQuery(
                 sqlUsuario,
@@ -770,51 +799,46 @@ namespace pryRomoApeERP
 
             string sqlRUP =
                 @"INSERT INTO tablaRUP
-    (IdUsuario, idPerfil)
-    VALUES (?, ?)";
+        (IdUsuario, idPerfil)
+        VALUES (?, ?)";
 
             List<object> parametrosRUP =
                 new List<object>()
                 {
-        idUsuario,
-        7
+            idUsuario,
+            7
                 };
 
             conexionBD.ExecuteNonQuery(
                 sqlRUP,
                 parametrosRUP);
-        }
 
-        private void btnLimpiar_Click(
-    object sender,
-    EventArgs e)
-        {
-            DialogResult respuesta =
-                MessageBox.Show(
-                    "¿Desea limpiar todos los datos cargados?",
-                    "Confirmación",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+            // INSERT EN tablaDatosPersonales
 
-            if (respuesta != DialogResult.Yes)
-                return;
+            string sqlDatos =
+                @"INSERT INTO tablaDatosPersonales
+        (IdUsuarioGuardado, Nombre, Apellido, DNI, Activo)
+        VALUES (?, ?, ?, ?, ?)";
 
-            txtApellido.Clear();
-            txtNombre.Clear();
-            mskDNI.Clear();
+            List<object> parametrosDatos =
+                new List<object>()
+                {
+            idUsuario,
+            txtNombre.Text.Trim(),
+            txtApellido.Text.Trim(),
+            dni,
+            chkEstado.Checked
+                };
 
-            txtDireccion.Clear();
-            txtGeo.Clear();
+            conexionBD.ExecuteNonQuery(
+                sqlDatos,
+                parametrosDatos);
 
-            cmbProvincia.SelectedIndex = -1;
-            cmbLocalidad.SelectedIndex = -1;
-
-            contactos.Clear();
-            ubicaciones.Clear();
-
-            ActualizarListaContactos();
-            ActualizarListaUbicaciones();
-            HabilitarEdicion(false);
+            MessageBox.Show(
+                "Datos guardados correctamente.",
+                "Información",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void btnSalir_Click(object sender,EventArgs e)
@@ -1132,6 +1156,19 @@ namespace pryRomoApeERP
             txtValorContacto.Focus();
         }
 
+        private void Control_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                this.SelectNextControl(
+                    (Control)sender,
+                    true,
+                    true,
+                    true,
+                    true);
+            }
+        }
         private void btnBuscarUbicacion_Click(object sender, EventArgs e)
         {
             if (cmbProvincia.SelectedIndex == -1)

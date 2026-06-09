@@ -37,13 +37,8 @@
             this.btnActualizar = new System.Windows.Forms.Button();
             this.lstPerfiles = new System.Windows.Forms.CheckedListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblConexion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrReloj = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblMailNuevoP
@@ -60,7 +55,7 @@
             // 
             this.btnGuardarPerfiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnGuardarPerfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnGuardarPerfiles.Location = new System.Drawing.Point(500, 436);
+            this.btnGuardarPerfiles.Location = new System.Drawing.Point(500, 449);
             this.btnGuardarPerfiles.Name = "btnGuardarPerfiles";
             this.btnGuardarPerfiles.Size = new System.Drawing.Size(127, 34);
             this.btnGuardarPerfiles.TabIndex = 3;
@@ -72,7 +67,7 @@
             // 
             this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnSalir.Location = new System.Drawing.Point(408, 436);
+            this.btnSalir.Location = new System.Drawing.Point(408, 449);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(86, 34);
             this.btnSalir.TabIndex = 4;
@@ -128,37 +123,6 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblUsuario,
-            this.lblConexion,
-            this.lblFecha});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 490);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(660, 26);
-            this.statusStrip1.TabIndex = 11;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // lblUsuario
-            // 
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(157, 21);
-            this.lblUsuario.Text = "toolStripStatusLabel1";
-            // 
-            // lblConexion
-            // 
-            this.lblConexion.Name = "lblConexion";
-            this.lblConexion.Size = new System.Drawing.Size(157, 21);
-            this.lblConexion.Text = "toolStripStatusLabel3";
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(157, 21);
-            this.lblFecha.Text = "toolStripStatusLabel4";
-            // 
             // tmrReloj
             // 
             this.tmrReloj.Interval = 1000;
@@ -169,7 +133,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(660, 516);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.lstPerfiles);
@@ -183,8 +146,6 @@
             this.Text = "Gestión de Perfiles";
             this.Load += new System.EventHandler(this.frmGestionPerfiles_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,10 +160,6 @@
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.CheckedListBox lstPerfiles;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
-        private System.Windows.Forms.ToolStripStatusLabel lblConexion;
-        private System.Windows.Forms.ToolStripStatusLabel lblFecha;
         private System.Windows.Forms.Timer tmrReloj;
     }
 }

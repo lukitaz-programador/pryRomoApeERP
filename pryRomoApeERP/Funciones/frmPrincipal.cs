@@ -183,9 +183,17 @@ namespace pryRomoApeERP
 
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
-            frmLogin paso = new frmLogin();
-            paso.ShowDialog();
+            this.Hide();
+
+            frmLogin login = new frmLogin();
+
+            login.FormClosed += (s, args) =>
+            {
+                this.Close();
+            };
+
+            login.Show();
+
         }
 
         private void frmPrincipal_FormClosing_1(object sender, FormClosingEventArgs e)

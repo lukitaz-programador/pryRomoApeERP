@@ -67,15 +67,11 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblConexion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrReloj = new System.Windows.Forms.Timer(this.components);
+            this.btnDarDeBaja = new System.Windows.Forms.Button();
             this.grpDomicilio.SuspendLayout();
             this.grpDatosPer.SuspendLayout();
             this.grpContacto.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpDomicilio
@@ -171,7 +167,6 @@
             this.txtGeo.Size = new System.Drawing.Size(196, 20);
             this.txtGeo.TabIndex = 22;
             this.txtGeo.TextChanged += new System.EventHandler(this.txtGeo_TextChanged);
-            this.txtGeo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGeo_KeyDown);
             // 
             // txtDireccion
             // 
@@ -180,7 +175,6 @@
             this.txtDireccion.Size = new System.Drawing.Size(196, 20);
             this.txtDireccion.TabIndex = 21;
             this.txtDireccion.TextChanged += new System.EventHandler(this.txtDireccion_TextChanged);
-            this.txtDireccion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDireccion_KeyDown);
             // 
             // lblGeo
             // 
@@ -269,7 +263,6 @@
             this.mskDNI.Size = new System.Drawing.Size(65, 21);
             this.mskDNI.TabIndex = 14;
             this.mskDNI.ValidatingType = typeof(int);
-            this.mskDNI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskDNI_KeyDown);
             this.mskDNI.Leave += new System.EventHandler(this.mskDNI_Leave);
             // 
             // lblNombre
@@ -321,7 +314,6 @@
             this.txtNombre.Size = new System.Drawing.Size(196, 20);
             this.txtNombre.TabIndex = 9;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
-            this.txtNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNombre_KeyDown);
             // 
             // txtApellido
             // 
@@ -330,7 +322,6 @@
             this.txtApellido.Size = new System.Drawing.Size(196, 20);
             this.txtApellido.TabIndex = 7;
             this.txtApellido.TextChanged += new System.EventHandler(this.txtApellido_TextChanged);
-            this.txtApellido.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtApellido_KeyDown);
             // 
             // lblDNI
             // 
@@ -346,7 +337,7 @@
             // 
             this.btnGuardarPer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnGuardarPer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnGuardarPer.Location = new System.Drawing.Point(649, 620);
+            this.btnGuardarPer.Location = new System.Drawing.Point(649, 638);
             this.btnGuardarPer.Name = "btnGuardarPer";
             this.btnGuardarPer.Size = new System.Drawing.Size(143, 34);
             this.btnGuardarPer.TabIndex = 8;
@@ -387,7 +378,6 @@
             this.txtValorContacto.Name = "txtValorContacto";
             this.txtValorContacto.Size = new System.Drawing.Size(175, 20);
             this.txtValorContacto.TabIndex = 16;
-            this.txtValorContacto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValorContacto_KeyDown);
             // 
             // lblValor
             // 
@@ -457,7 +447,7 @@
             // 
             this.btnLimpiar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnLimpiar.Location = new System.Drawing.Point(568, 620);
+            this.btnLimpiar.Location = new System.Drawing.Point(568, 638);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 34);
             this.btnLimpiar.TabIndex = 12;
@@ -469,7 +459,7 @@
             // 
             this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnSalir.Location = new System.Drawing.Point(487, 620);
+            this.btnSalir.Location = new System.Drawing.Point(487, 638);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 34);
             this.btnSalir.TabIndex = 25;
@@ -477,41 +467,20 @@
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblUsuario,
-            this.lblConexion,
-            this.lblFecha});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 667);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(810, 26);
-            this.statusStrip1.TabIndex = 26;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // lblUsuario
-            // 
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(157, 21);
-            this.lblUsuario.Text = "toolStripStatusLabel1";
-            // 
-            // lblConexion
-            // 
-            this.lblConexion.Name = "lblConexion";
-            this.lblConexion.Size = new System.Drawing.Size(157, 21);
-            this.lblConexion.Text = "toolStripStatusLabel3";
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(157, 21);
-            this.lblFecha.Text = "toolStripStatusLabel4";
-            this.lblFecha.Click += new System.EventHandler(this.lblFecha_Click);
-            // 
             // tmrReloj
             // 
             this.tmrReloj.Interval = 1000;
+            // 
+            // btnDarDeBaja
+            // 
+            this.btnDarDeBaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDarDeBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            this.btnDarDeBaja.Location = new System.Drawing.Point(368, 638);
+            this.btnDarDeBaja.Name = "btnDarDeBaja";
+            this.btnDarDeBaja.Size = new System.Drawing.Size(110, 34);
+            this.btnDarDeBaja.TabIndex = 26;
+            this.btnDarDeBaja.Text = "Dar de Baja";
+            this.btnDarDeBaja.UseVisualStyleBackColor = false;
             // 
             // frmGestionDatosPersonales
             // 
@@ -519,7 +488,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(810, 693);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.btnDarDeBaja);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.grpContacto);
@@ -537,10 +506,7 @@
             this.grpDatosPer.PerformLayout();
             this.grpContacto.ResumeLayout(false);
             this.grpContacto.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -583,10 +549,7 @@
         private System.Windows.Forms.Button btnEliminarContacto;
         private System.Windows.Forms.ListBox lstContactos;
         private System.Windows.Forms.Button btnBuscarUbicacion;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
-        private System.Windows.Forms.ToolStripStatusLabel lblConexion;
-        private System.Windows.Forms.ToolStripStatusLabel lblFecha;
         private System.Windows.Forms.Timer tmrReloj;
+        private System.Windows.Forms.Button btnDarDeBaja;
     }
 }

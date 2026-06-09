@@ -38,13 +38,8 @@
             this.btnConsultar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dgvAuditoria = new System.Windows.Forms.DataGridView();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblConexion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblFecha = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrReloj = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuditoria)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbUsuario
@@ -96,7 +91,7 @@
             // 
             this.btnConsultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnConsultar.Location = new System.Drawing.Point(568, 425);
+            this.btnConsultar.Location = new System.Drawing.Point(568, 438);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(75, 30);
             this.btnConsultar.TabIndex = 5;
@@ -108,7 +103,7 @@
             // 
             this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.btnSalir.Location = new System.Drawing.Point(488, 425);
+            this.btnSalir.Location = new System.Drawing.Point(488, 438);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 30);
             this.btnSalir.TabIndex = 6;
@@ -124,37 +119,6 @@
             this.dgvAuditoria.Size = new System.Drawing.Size(589, 236);
             this.dgvAuditoria.TabIndex = 7;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblUsuario,
-            this.lblConexion,
-            this.lblFecha});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 463);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(674, 26);
-            this.statusStrip1.TabIndex = 8;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // lblUsuario
-            // 
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(157, 21);
-            this.lblUsuario.Text = "toolStripStatusLabel1";
-            // 
-            // lblConexion
-            // 
-            this.lblConexion.Name = "lblConexion";
-            this.lblConexion.Size = new System.Drawing.Size(157, 21);
-            this.lblConexion.Text = "toolStripStatusLabel3";
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(157, 21);
-            this.lblFecha.Text = "toolStripStatusLabel4";
-            // 
             // tmrReloj
             // 
             this.tmrReloj.Interval = 1000;
@@ -165,7 +129,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(674, 489);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgvAuditoria);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnConsultar);
@@ -180,8 +143,6 @@
             this.Text = "Información Auditoria";
             this.Load += new System.EventHandler(this.frmInformacionAuditoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuditoria)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,10 +158,6 @@
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.DataGridView dgvAuditoria;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
-        private System.Windows.Forms.ToolStripStatusLabel lblConexion;
-        private System.Windows.Forms.ToolStripStatusLabel lblFecha;
         private System.Windows.Forms.Timer tmrReloj;
     }
 }
