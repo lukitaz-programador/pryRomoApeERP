@@ -36,6 +36,9 @@ namespace pryRomoApeERP
 
             this.AcceptButton =
                 btnGuardarPer;
+
+            InterfazHelper.AplicarEstiloProfesional(this);
+            InterfazHelper.ConfigurarEnterComoTab(this);
         }
 
 
@@ -63,22 +66,15 @@ namespace pryRomoApeERP
 
                 CargarTiposContacto();
 
-                mskDNI.KeyDown += Control_KeyDown;
-                txtNombre.KeyDown += Control_KeyDown;
-                txtApellido.KeyDown += Control_KeyDown;
-
-                cmbProvincia.KeyDown += Control_KeyDown;
-                cmbLocalidad.KeyDown += Control_KeyDown;
-
-                txtDireccion.KeyDown += Control_KeyDown;
-                txtGeo.KeyDown += Control_KeyDown;
-
-                cmbTipoContacto.KeyDown += Control_KeyDown;
-                txtValorContacto.KeyDown += Control_KeyDown;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    "No se pudo iniciar el formulario de gestión de datos personales.\n\n" +
+                    ex.Message,
+                    "Error al iniciar",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -148,8 +144,11 @@ namespace pryRomoApeERP
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Error al cargar tipos de contacto\n" +
-                    ex.Message);
+                    "No se pudieron cargar los tipos de contacto.\n\n" +
+                    ex.Message,
+                    "Error al cargar datos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -187,8 +186,11 @@ namespace pryRomoApeERP
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Error al cargar provincias:\n" +
-                    ex.Message);
+                    "No se pudieron cargar las provincias.\n\n" +
+                    ex.Message,
+                    "Error al cargar datos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -228,8 +230,11 @@ namespace pryRomoApeERP
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Error al cargar localidades:\n" +
-                    ex.Message);
+                    "No se pudieron cargar las localidades de la provincia seleccionada.\n\n" +
+                    ex.Message,
+                    "Error al cargar datos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
 
             cmbLocalidad.AutoCompleteMode =
@@ -616,8 +621,8 @@ namespace pryRomoApeERP
                 lstContactos.BackColor = Color.MistyRose;
 
                 MessageBox.Show(
-                    "Debe cargar al menos 3 medios de contacto o redes sociales.",
-                    "Validación",
+                    "Agregue al menos 3 medios de contacto o redes sociales antes de guardar.",
+                    "Datos incompletos",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -627,8 +632,8 @@ namespace pryRomoApeERP
             if (error)
             {
                 MessageBox.Show(
-                    "Complete todos los datos obligatorios.",
-                    "Validación",
+                    "Complete los datos obligatorios marcados antes de guardar.",
+                    "Datos incompletos",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -637,8 +642,8 @@ namespace pryRomoApeERP
 
             DialogResult respuesta =
                 MessageBox.Show(
-                    "¿Desea guardar los datos?",
-                    "Guardar",
+                    "¿Desea guardar los datos personales?",
+                    "Confirmar guardado",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
 
@@ -654,7 +659,9 @@ namespace pryRomoApeERP
                     .ToArray());
 
             string sqlExisteDNI =
-                "SELECT COUNT(*) FROM tablaUsuario WHERE DNI = ?";
+                "SELECT IdUsuario FROM tablaUsuario WHERE DNI = ?";
+
+            int idUsuarioExistente = 0;
 
             using (OleDbCommand cmd =
                 new OleDbCommand(
@@ -665,20 +672,106 @@ namespace pryRomoApeERP
                     "@DNI",
                     dni);
 
-                int cantidad =
-                    Convert.ToInt32(
-                        cmd.ExecuteScalar());
+                object resultado =
+                    cmd.ExecuteScalar();
 
-                if (cantidad > 0)
+                if (resultado != null &&
+                    resultado != DBNull.Value)
                 {
-                    MessageBox.Show(
-                        "Ya existe un usuario registrado con ese DNI.",
-                        "DNI duplicado",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
+                    idUsuarioExistente =
+                        Convert.ToInt32(resultado);
                 }
+            }
+
+            if (idUsuarioExistente > 0)
+            {
+                string sqlActualizarUsuario =
+                    @"UPDATE tablaUsuario
+        SET Nombre = ?, Apellido = ?
+        WHERE DNI = ?";
+
+                List<object> parametrosActualizarUsuario =
+                    new List<object>()
+                    {
+            txtNombre.Text.Trim(),
+            txtApellido.Text.Trim(),
+            dni
+                    };
+
+                conexionBD.ExecuteNonQuery(
+                    sqlActualizarUsuario,
+                    parametrosActualizarUsuario);
+
+                string sqlExisteDatos =
+                    "SELECT COUNT(*) FROM tablaDatosPersonales WHERE DNI = ?";
+
+                int cantidadDatos =
+                    0;
+
+                using (OleDbCommand cmd =
+                    new OleDbCommand(
+                        sqlExisteDatos,
+                        conexionBD.Conexion))
+                {
+                    cmd.Parameters.AddWithValue(
+                        "@DNI",
+                        dni);
+
+                    cantidadDatos =
+                        Convert.ToInt32(
+                            cmd.ExecuteScalar());
+                }
+
+                if (cantidadDatos > 0)
+                {
+                    string sqlActualizarDatos =
+                        @"UPDATE tablaDatosPersonales
+        SET IdUsuarioGuardado = ?, Nombre = ?, Apellido = ?, Activo = ?
+        WHERE DNI = ?";
+
+                    List<object> parametrosActualizarDatos =
+                        new List<object>()
+                        {
+            idUsuarioExistente,
+            txtNombre.Text.Trim(),
+            txtApellido.Text.Trim(),
+            chkEstado.Checked,
+            dni
+                        };
+
+                    conexionBD.ExecuteNonQuery(
+                        sqlActualizarDatos,
+                        parametrosActualizarDatos);
+                }
+                else
+                {
+                    string sqlInsertarDatos =
+                        @"INSERT INTO tablaDatosPersonales
+        (IdUsuarioGuardado, Nombre, Apellido, DNI, Activo)
+        VALUES (?, ?, ?, ?, ?)";
+
+                    List<object> parametrosInsertarDatos =
+                        new List<object>()
+                        {
+            idUsuarioExistente,
+            txtNombre.Text.Trim(),
+            txtApellido.Text.Trim(),
+            dni,
+            chkEstado.Checked
+                        };
+
+                    conexionBD.ExecuteNonQuery(
+                        sqlInsertarDatos,
+                        parametrosInsertarDatos);
+                }
+
+                MessageBox.Show(
+                    "Los datos del usuario se actualizaron correctamente.",
+                    "Actualización realizada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
             }
 
             Random rnd = new Random();
@@ -795,8 +888,10 @@ namespace pryRomoApeERP
                 parametrosDatos);
 
             MessageBox.Show(
-                "Datos guardados correctamente.",
-                "Información",
+                "Usuario creado correctamente.\n\n" +
+                "Usuario: " + usuario + "\n" +
+                "Contraseña: " + password,
+                "Usuario creado",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
@@ -806,7 +901,7 @@ namespace pryRomoApeERP
             DialogResult respuesta =
                 MessageBox.Show(
                     "¿Desea salir sin guardar los cambios?",
-                    "Salir",
+                    "Confirmar salida",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
 
@@ -845,14 +940,20 @@ namespace pryRomoApeERP
             if (cmbProvincia.SelectedIndex == -1)
             {
                 MessageBox.Show(
-                    "Seleccione una provincia");
+                    "Seleccione una provincia para agregar la ubicación.",
+                    "Dato requerido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
             if (cmbLocalidad.SelectedIndex == -1)
             {
                 MessageBox.Show(
-                    "Seleccione una localidad");
+                    "Seleccione una localidad para agregar la ubicación.",
+                    "Dato requerido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
@@ -880,7 +981,10 @@ namespace pryRomoApeERP
                 x.Direccion == nueva.Direccion))
             {
                 MessageBox.Show(
-                    "La ubicación ya existe");
+                    "La ubicación ingresada ya se encuentra en la lista.",
+                    "Ubicación repetida",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
@@ -949,21 +1053,30 @@ namespace pryRomoApeERP
             if (cmbTipoContacto.SelectedIndex == -1)
             {
                 MessageBox.Show(
-                    "Seleccione un tipo");
+                    "Seleccione un tipo de contacto.",
+                    "Dato requerido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
             if (txtValorContacto.Text.Trim() == "")
             {
                 MessageBox.Show(
-                    "Ingrese un valor");
+                    "Ingrese el dato del contacto.",
+                    "Dato requerido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
             if (!ValidarContacto())
             {
                 MessageBox.Show(
-                    "Formato inválido");
+                    "El dato ingresado no tiene el formato esperado para el tipo de contacto seleccionado.",
+                    "Formato inválido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
@@ -981,7 +1094,10 @@ namespace pryRomoApeERP
                 x.Valor == nuevo.Valor))
             {
                 MessageBox.Show(
-                    "El contacto ya existe");
+                    "El contacto ingresado ya se encuentra en la lista.",
+                    "Contacto repetido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1118,39 +1234,35 @@ namespace pryRomoApeERP
             txtValorContacto.Focus();
         }
 
-        private void Control_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                this.SelectNextControl(
-                    (Control)sender,
-                    true,
-                    true,
-                    true,
-                    true);
-            }
-        }
         private void btnBuscarUbicacion_Click(object sender, EventArgs e)
         {
             if (cmbProvincia.SelectedIndex == -1)
             {
                 MessageBox.Show(
-                    "Seleccione una provincia.");
+                    "Seleccione una provincia para buscar la ubicación.",
+                    "Dato requerido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
             if (cmbLocalidad.SelectedIndex == -1)
             {
                 MessageBox.Show(
-                    "Seleccione una localidad.");
+                    "Seleccione una localidad para buscar la ubicación.",
+                    "Dato requerido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
             if (txtDireccion.Text.Trim() == "")
             {
                 MessageBox.Show(
-                    "Ingrese una dirección.");
+                    "Ingrese una dirección para buscar la ubicación.",
+                    "Dato requerido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 

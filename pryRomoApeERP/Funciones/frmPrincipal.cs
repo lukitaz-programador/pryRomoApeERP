@@ -31,6 +31,7 @@ namespace pryRomoApeERP
                 : mail;
 
             InterfazHelper.AplicarEstiloProfesional(this);
+            InterfazHelper.ConfigurarEnterComoTab(this);
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)

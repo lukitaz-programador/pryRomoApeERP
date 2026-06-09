@@ -94,7 +94,7 @@
             this.btnConsultar.Location = new System.Drawing.Point(568, 438);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(75, 30);
-            this.btnConsultar.TabIndex = 5;
+            this.btnConsultar.TabIndex = 7;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = false;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -106,7 +106,7 @@
             this.btnSalir.Location = new System.Drawing.Point(488, 438);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 30);
-            this.btnSalir.TabIndex = 6;
+            this.btnSalir.TabIndex = 8;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -117,7 +117,8 @@
             this.dgvAuditoria.Location = new System.Drawing.Point(54, 183);
             this.dgvAuditoria.Name = "dgvAuditoria";
             this.dgvAuditoria.Size = new System.Drawing.Size(589, 236);
-            this.dgvAuditoria.TabIndex = 7;
+            this.dgvAuditoria.TabIndex = 9;
+            this.dgvAuditoria.TabStop = false;
             // 
             // tmrReloj
             // 

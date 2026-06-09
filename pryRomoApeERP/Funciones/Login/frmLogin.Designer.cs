@@ -75,7 +75,7 @@
             this.txtMail.Location = new System.Drawing.Point(212, 210);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(244, 20);
-            this.txtMail.TabIndex = 4;
+            this.txtMail.TabIndex = 0;
             this.txtMail.TextChanged += new System.EventHandler(this.txtMail_TextChanged);
             // 
             // btnLogin
@@ -86,7 +86,7 @@
             this.btnLogin.Location = new System.Drawing.Point(369, 332);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(87, 30);
-            this.btnLogin.TabIndex = 6;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Ingresar";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnIngresar_Click);
@@ -96,7 +96,7 @@
             this.txtContrasenia.Location = new System.Drawing.Point(260, 260);
             this.txtContrasenia.Name = "txtContrasenia";
             this.txtContrasenia.Size = new System.Drawing.Size(196, 20);
-            this.txtContrasenia.TabIndex = 7;
+            this.txtContrasenia.TabIndex = 1;
             this.txtContrasenia.TextChanged += new System.EventHandler(this.txtConrtasenia_TextChanged);
             // 
             // lblVerCon
@@ -114,7 +114,7 @@
             this.chkVer.Location = new System.Drawing.Point(428, 287);
             this.chkVer.Name = "chkVer";
             this.chkVer.Size = new System.Drawing.Size(15, 14);
-            this.chkVer.TabIndex = 9;
+            this.chkVer.TabIndex = 5;
             this.chkVer.UseVisualStyleBackColor = true;
             this.chkVer.CheckedChanged += new System.EventHandler(this.chkVer_CheckedChanged);
             // 
@@ -134,7 +134,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(288, 332);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 30);
-            this.btnLimpiar.TabIndex = 11;
+            this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
             // 
@@ -145,7 +145,7 @@
             this.btnSalir.Location = new System.Drawing.Point(207, 332);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 30);
-            this.btnSalir.TabIndex = 12;
+            this.btnSalir.TabIndex = 4;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);

@@ -58,7 +58,7 @@
             this.btnGuardarPerfiles.Location = new System.Drawing.Point(500, 449);
             this.btnGuardarPerfiles.Name = "btnGuardarPerfiles";
             this.btnGuardarPerfiles.Size = new System.Drawing.Size(127, 34);
-            this.btnGuardarPerfiles.TabIndex = 3;
+            this.btnGuardarPerfiles.TabIndex = 2;
             this.btnGuardarPerfiles.Text = "Guardar Perfiles";
             this.btnGuardarPerfiles.UseVisualStyleBackColor = false;
             this.btnGuardarPerfiles.Click += new System.EventHandler(this.btnGuardarPerfiles_Click);
@@ -82,7 +82,7 @@
             this.cboMail.Location = new System.Drawing.Point(146, 215);
             this.cboMail.Name = "cboMail";
             this.cboMail.Size = new System.Drawing.Size(220, 21);
-            this.cboMail.TabIndex = 7;
+            this.cboMail.TabIndex = 0;
             this.cboMail.SelectedIndexChanged += new System.EventHandler(this.cboMail_SelectedIndexChanged);
             // 
             // btnActualizar
@@ -91,7 +91,7 @@
             this.btnActualizar.Location = new System.Drawing.Point(517, 260);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(109, 23);
-            this.btnActualizar.TabIndex = 8;
+            this.btnActualizar.TabIndex = 3;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
@@ -110,7 +110,7 @@
             this.lstPerfiles.Location = new System.Drawing.Point(40, 261);
             this.lstPerfiles.Name = "lstPerfiles";
             this.lstPerfiles.Size = new System.Drawing.Size(587, 164);
-            this.lstPerfiles.TabIndex = 9;
+            this.lstPerfiles.TabIndex = 1;
             this.lstPerfiles.SelectedIndexChanged += new System.EventHandler(this.lstPerfiles_SelectedIndexChanged);
             // 
             // pictureBox1

@@ -29,6 +29,8 @@ namespace pryRomoApeERP
         {
             InitializeComponent();
 
+            InterfazHelper.AplicarEstiloProfesional(this);
+            InterfazHelper.ConfigurarEnterComoTab(this);
             InicializarBarraEstado();
             this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
         }

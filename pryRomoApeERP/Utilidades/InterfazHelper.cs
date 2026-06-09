@@ -24,6 +24,12 @@ namespace pryRomoApeERP.Utilidades
 
         public static void ConfigurarEnterComoTab(Form formulario)
         {
+            if (formulario == null)
+            {
+                return;
+            }
+
+            formulario.KeyPreview = true;
             ConfigurarEnterEnControles(formulario, formulario.Controls);
         }
 
@@ -115,25 +121,10 @@ namespace pryRomoApeERP.Utilidades
         {
             foreach (Control control in controles)
             {
-                if (control is TextBox ||
-                    control is MaskedTextBox ||
-                    control is ComboBox ||
-                    control is CheckBox ||
-                    control is CheckedListBox)
+                if (PermiteNavegacionConEnter(control))
                 {
-                    control.KeyDown += (sender, e) =>
-                    {
-                        if (e.KeyCode == Keys.Enter)
-                        {
-                            e.SuppressKeyPress = true;
-                            formulario.SelectNextControl(
-                                (Control)sender,
-                                true,
-                                true,
-                                true,
-                                true);
-                        }
-                    };
+                    control.KeyDown -= Control_KeyDownEnterComoTab;
+                    control.KeyDown += Control_KeyDownEnterComoTab;
                 }
 
                 if (control.HasChildren)
@@ -141,6 +132,65 @@ namespace pryRomoApeERP.Utilidades
                     ConfigurarEnterEnControles(formulario, control.Controls);
                 }
             }
+        }
+
+        private static bool PermiteNavegacionConEnter(Control control)
+        {
+            return control is TextBox ||
+                   control is MaskedTextBox ||
+                   control is ComboBox ||
+                   control is DateTimePicker ||
+                   control is NumericUpDown ||
+                   control is CheckBox ||
+                   control is RadioButton ||
+                   control is CheckedListBox ||
+                   control is Button;
+        }
+
+        private static void Control_KeyDownEnterComoTab(
+            object sender,
+            KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+
+            Control control =
+                sender as Control;
+
+            if (control == null)
+            {
+                return;
+            }
+
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+
+            if (control is Button boton)
+            {
+                if (boton.Enabled)
+                {
+                    boton.PerformClick();
+                }
+
+                return;
+            }
+
+            Form formulario =
+                control.FindForm();
+
+            if (formulario == null)
+            {
+                return;
+            }
+
+            formulario.SelectNextControl(
+                control,
+                true,
+                true,
+                true,
+                true);
         }
     }
 }

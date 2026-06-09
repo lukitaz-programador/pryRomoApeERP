@@ -42,6 +42,7 @@ namespace pryRomoApeERP
             chkFiltrarFecha.Location = new Point(382, 34);
             chkFiltrarFecha.AutoSize = true;
             chkFiltrarFecha.Checked = false;
+            chkFiltrarFecha.TabIndex = 2;
 
             Label lblDesde = new Label();
             lblDesde.Text = "Desde:";
@@ -53,6 +54,7 @@ namespace pryRomoApeERP
             dtpFechaDesde.Location = new Point(435, 66);
             dtpFechaDesde.Width = 95;
             dtpFechaDesde.Value = DateTime.Today;
+            dtpFechaDesde.TabIndex = 3;
 
             dtpHoraDesde = new DateTimePicker();
             dtpHoraDesde.Format = DateTimePickerFormat.Time;
@@ -60,6 +62,7 @@ namespace pryRomoApeERP
             dtpHoraDesde.Location = new Point(536, 66);
             dtpHoraDesde.Width = 85;
             dtpHoraDesde.Value = DateTime.Today;
+            dtpHoraDesde.TabIndex = 4;
 
             Label lblHasta = new Label();
             lblHasta.Text = "Hasta:";
@@ -71,6 +74,7 @@ namespace pryRomoApeERP
             dtpFechaHasta.Location = new Point(435, 102);
             dtpFechaHasta.Width = 95;
             dtpFechaHasta.Value = DateTime.Today;
+            dtpFechaHasta.TabIndex = 5;
 
             dtpHoraHasta = new DateTimePicker();
             dtpHoraHasta.Format = DateTimePickerFormat.Time;
@@ -81,6 +85,7 @@ namespace pryRomoApeERP
                 .AddHours(23)
                 .AddMinutes(59)
                 .AddSeconds(59);
+            dtpHoraHasta.TabIndex = 6;
 
             Controls.Add(chkFiltrarFecha);
             Controls.Add(lblDesde);

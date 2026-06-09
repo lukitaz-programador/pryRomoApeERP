@@ -22,6 +22,7 @@ namespace pryRomoApeERP.Funciones
         {
             InitializeComponent();
             InterfazHelper.AplicarEstiloProfesional(this);
+            InterfazHelper.ConfigurarEnterComoTab(this);
         }       
     }
 }
