@@ -141,17 +141,22 @@ namespace pryRomoApeERP
             {
                 // Validar usuario
                 string consulta =
-@"SELECT
+ @"SELECT
     U.IdUsuario,
     U.Nombre,
     U.Mail,
-    R.IdPerfil
+    R.IdPerfil,
+    D.Activo
 FROM
-    tablaUsuario U
+    (tablaUsuario U
 INNER JOIN
     tablaRUP R
 ON
-    U.IdUsuario = R.IdUsuario
+    U.IdUsuario = R.IdUsuario)
+INNER JOIN
+    tablaDatosPersonales D
+ON
+    U.IdUsuario = D.IdUsuarioGuardado
 WHERE
     U.Mail = ?
     AND U.Contrasenia = ?";
@@ -177,13 +182,33 @@ WHERE
 
                 if (lector.Read())
                 {
+                    bool activo =
+                        Convert.ToBoolean(
+                            lector["Activo"]);
+
+                    if (!activo)
+                    {
+                        MessageBox.Show(
+                            "El usuario se encuentra inactivo.\n\n" +
+                            "Comuníquese con un administrador para rehabilitar la cuenta.",
+                            "Acceso denegado",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+
+                        lector.Close();
+
+                        return;
+                    }
+
                     ingresoExitoso = true;
 
                     Sesion.IdUsuario =
-                        Convert.ToInt32(lector["IdUsuario"]);
+                        Convert.ToInt32(
+                            lector["IdUsuario"]);
 
                     Sesion.IdPerfil =
-                        Convert.ToInt32(lector["IdPerfil"]);
+                        Convert.ToInt32(
+                            lector["IdPerfil"]);
 
                     Sesion.NombreUsuario =
                         lector["Nombre"].ToString();

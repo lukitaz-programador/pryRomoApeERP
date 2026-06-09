@@ -31,53 +31,13 @@ namespace pryRomoApeERP
         public frmGestionDatosPersonales(string mail = "")
         {
             InitializeComponent();
-            InicializarBarraEstado();
-            this.tmrReloj.Tick += new System.EventHandler(this.tmrReloj_Tick);
 
             mailUsuario = mail;
 
             this.AcceptButton =
                 btnGuardarPer;
         }
-        private void InicializarBarraEstado()
-        {
-            try
-            {
-                archivoBD = new Archivo("RomoBD.accdb");
-                conexionBD = archivoBD.Conexion;
 
-                lblUsuario.Text = $"Usuario: {Sesion.NombreUsuario}";
-
-                if (conexionBD != null &&
-                    conexionBD.EstaConectado)
-                {
-                    lblConexion.Text = "BD: Conectada";
-                }
-                else
-                {
-                    lblConexion.Text = "BD: Desconectada";
-                }
-
-                lblFecha.Text =
-                    DateTime.Now.ToString(
-                        "dd/MM/yyyy HH:mm:ss");
-
-                tmrReloj.Start();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Error al cargar la barra de estado:\n" +
-                    ex.Message);
-            }
-        }
-
-        private void tmrReloj_Tick(object sender, EventArgs e)
-        {
-            lblFecha.Text =
-                DateTime.Now.ToString(
-                    "dd/MM/yyyy HH:mm:ss");
-        }
 
         private void frmGestionDatosPersonales_Load(
             object sender,
@@ -1084,7 +1044,9 @@ namespace pryRomoApeERP
             }
         }
 
-        private void cmbTipoContacto_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbTipoContacto_SelectedIndexChanged(
+    object sender,
+    EventArgs e)
         {
             txtValorContacto.Clear();
 
@@ -1100,51 +1062,51 @@ namespace pryRomoApeERP
 
             txtValorContacto.Enabled = true;
 
-            switch (cmbTipoContacto.Text.Trim())
+            switch (cmbTipoContacto.Text)
             {
-                case "Email":
+                case "Mail":
                     lblFormato.Text =
-                        "Ej: usuario@gmail.com";
+                        "Formato: usuario@gmail.com";
                     break;
 
-                case "Teléfono":
+                case "Telefono":
                     lblFormato.Text =
-                        "Ej: 3511234567";
+                        "Formato: 3511234567";
                     break;
 
                 case "WhatsApp":
                     lblFormato.Text =
-                        "Ej: 3511234567";
+                        "Formato: 3511234567";
                     break;
 
                 case "Telegram":
                     lblFormato.Text =
-                        "Ej: @usuario";
+                        "Formato: @usuario";
                     break;
 
                 case "Instagram":
                     lblFormato.Text =
-                        "Ej: @usuario";
+                        "Formato: @usuario";
                     break;
 
                 case "Facebook":
                     lblFormato.Text =
-                        "Ej: nombre.apellido";
+                        "Formato: nombre.apellido";
                     break;
 
                 case "TikTok":
                     lblFormato.Text =
-                        "Ej: @usuario";
+                        "Formato: @usuario";
                     break;
 
                 case "X":
                     lblFormato.Text =
-                        "Ej: @usuario";
+                        "Formato: @usuario";
                     break;
 
                 case "LinkedIn":
                     lblFormato.Text =
-                        "Ej: linkedin.com/in/usuario";
+                        "Formato: linkedin.com/in/usuario";
                     break;
 
                 default:
